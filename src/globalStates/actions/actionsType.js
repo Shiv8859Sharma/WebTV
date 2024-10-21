@@ -1,0 +1,7 @@
+export const LOADER_START = 'LOADER_START'
+export const LOADER_STOP = 'LOADER_STOP'
+export const POPUP_OPEN = 'POPUP_OPEN'
+export const POPUP_CLOSE = 'POPUP_CLOSE'
+export const AUTH_TOKEN = 'AUTH_TOKEN'
+export const FIELD_ERRORS = 'FIELD_ERRORS'
+export const GET_CURRENT_USER_DETAILS = 'GET_CURRENT_USER_DETAILS'

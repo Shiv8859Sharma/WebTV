@@ -1,0 +1,68 @@
+import { memo } from "react";
+import SectionNavigation from "@/components/sectionNavigation/sectionNavigation.index";
+import KasarHausaImageSection from "./kasarHausaImageSection";
+import HausaNewsSection from "./hausaNewsSection/hausaNewsSection";
+
+const KasarHausaNews = () => {
+  let categories = [
+    {
+      name: 'Kano',
+      link: ''
+    },
+    {
+      name: 'Zamfara',
+      link: ''
+    },
+    {
+      name: 'Kaduna',
+      link: ''
+    },
+    {
+      name: 'Jigawa',
+      link: ''
+    },
+    {
+      name: 'Sokoto',
+      link: ''
+    },
+    {
+      name: 'Katsina',
+      link: ''
+    },
+    {
+      name: 'More',
+      dropdown: true,
+      dropDownList: [
+        {
+          name: 'Katsina 1',
+          link: ''
+        },
+        {
+          name: 'Katsina 2',
+          link: ''
+        },
+        {
+          name: 'Katsina 3',
+          link: ''
+        },
+        {
+          name: 'Katsina 4',
+          link: ''
+        },
+      ]
+    },
+  ]
+  return (
+    <div className="flex flex-col gap-4">
+      <SectionNavigation
+        title={'Kasar housa'}
+        showCategory
+        categories={categories}
+      />
+      <KasarHausaImageSection/>
+      <HausaNewsSection />
+    </div>
+  )
+}
+
+export default memo(KasarHausaNews);
