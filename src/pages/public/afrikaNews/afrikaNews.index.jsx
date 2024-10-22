@@ -1,5 +1,7 @@
 import { memo } from "react";
 import SectionNavigationIndex from "@/components/sectionNavigation/sectionNavigation.index";
+import AfrikaLatestNews from "./afrikaLatestNews";
+import AfrikaHeroSection from "./AfrikaHeroSection";
 
 const AfirkaNews = () => {
   let categories = [
@@ -27,6 +29,8 @@ const AfirkaNews = () => {
         showCategory
         categories={categories}
       />
+      <AfrikaHeroSection />
+      <AfrikaLatestNews />
     </div>
   )
 }

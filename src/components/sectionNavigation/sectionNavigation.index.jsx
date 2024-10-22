@@ -31,7 +31,7 @@ const SectionNavigation = ({ title, categories = [], showCategory = false }) => 
 
         {/* Navigation Menu */}
         {showCategory &&
-          <nav className="nav-scroll flex space-x-6  overflow-x-auto scrollbar-hide z-50">
+          <nav className="nav-scroll flex space-x-6  overflow-x-auto scrollbar-hide">
             <ul className="flex space-x-6 py-2">
               {categories.map((category, index) => (
                 <li key={`section-navigation-${index}`}>

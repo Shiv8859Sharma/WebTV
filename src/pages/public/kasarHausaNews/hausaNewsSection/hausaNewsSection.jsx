@@ -4,6 +4,7 @@ import ArticleHeading from '@/components/article/articleHeading';
 import ArticleTitle from '@/components/article/articleTitle';
 import { memo } from 'react';
 import NavigatePage from '../../../../components/navigatePage';
+import { PlayCircleIcon } from '@heroicons/react/16/solid';
 
 const HausaNewsSection = ({ }) => {
   let articles = [
@@ -62,7 +63,7 @@ const HausaNewsSection = ({ }) => {
           {/* Article List */}
           <div className="h-full">
             {articles.map((article, index) => (
-              <ArticleCard key={index} article={article} />
+              <ArticleCard key={index} article={article} isVideoContent />
             ))}
           </div>
         </div>
@@ -72,30 +73,31 @@ const HausaNewsSection = ({ }) => {
 };
 
 // Reusable ArticleCard component
-const ArticleCard = ({ article }) => (
+const ArticleCard = ({ article, isVideoContent = false }) => (
   <div className="w-full px-3 pb-3 pt-3 sm:pt-0 border-b-2 border-dotted border-gray-100">
     <NavigatePage url={article?.link || '#'}>
-      <div className="flex flex-col lg:flex-row w-full hover-img">
+      <div className={`flex flex-col lg:flex-row w-full ${isVideoContent ? '' : 'hover-img'}`}>
         {/* Responsive Image */}
-        <div className="block lg:hidden">
+        <div className='relative w-full lg:w-[40%] aspect-video overflow-hidden rounded-md aspect-video'>
+          {/* Video play icon for video content */}
+          {
+            isVideoContent &&
+            <div className='absolute inset-0 flex items-center justify-center bg-black/40'>
+              <PlayCircleIcon className='w-12 h-12 text-white' />
+            </div>
+          }
+          {/* Image Element */}
           <ImageElement
-            className="w-full aspect-video"
-            src={article?.imgSrc || 'default-image.jpg'}
-            alt={article?.title || 'article image'}
-          />
-        </div>
-        <div className="hidden lg:block md:w-1/3">
-          <ImageElement
-            className="w-full aspect-video rounded-md"
+            className="w-full h-full object-cover rounded-md"
             src={article?.imgSrc || 'default-image.jpg'}
             alt={article?.title || 'article image'}
           />
         </div>
 
         {/* Article Content */}
-        <div className="w-full lg:w-2/3 px-3 mt-3 lg:mt-0">
-          <ArticleHeading heading={article?.title || 'Untitled'} className="text-lg font-bold line-clamp-3" />
-          <ArticleTitle title={article?.description || 'No description available'} className="line-clamp-4" />
+        <div className="w-full lg:w-[60%] px-0 lg:px-3 mt-3 lg:mt-0 flex flex-col justify-between">
+          <ArticleHeading heading={article?.title || 'Untitled'} className="text-lg font-bold line-clamp-1 md:line-clamp-2 lg:line-clamp-3" />
+          <ArticleTitle title={article?.description || 'No description available'} className="line-clamp-2 md:line-clamp-3 lg:line-clamp-4" />
           <ArticleMeta date={article?.date || new Date()} category={article?.category || 'General'} />
         </div>
       </div>

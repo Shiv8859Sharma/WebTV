@@ -1,9 +1,16 @@
 import { memo } from "react";
+import DuniyaImageSection from "./duniyaImageSection";
+import SectionNavigation from "@/components/sectionNavigation/sectionNavigation.index";
+import DuniyaHeroGrid from "./duniyaGridSection";
 
 const DuniyaNews = () => {
   return (
     <div>
-      <h1>Duniya</h1>
+      <SectionNavigation
+        title={'Duniya'}
+      />
+      <DuniyaImageSection />
+      <DuniyaHeroGrid />
     </div>
   )
 }

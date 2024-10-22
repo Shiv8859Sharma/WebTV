@@ -3,7 +3,7 @@ import ArticleMeta from '@/components/articleMeta/articleMeta';
 import ArticleHeading from '@/components/article/articleHeading';
 import ArticleTitle from '@/components/article/articleTitle';
 
-const HeroSection = () => {
+const AfrikaHeroSection = () => {
   const mainArticle = {
     image: 'https://ichef.bbci.co.uk/ace/standard/1024/cpsprodpb/db34/live/7c90ca90-8a08-11ef-b6b0-c9af5f7f16e4.jpg.webp',
     title: 'Amazon Shoppers Are Ditching Designer Belts for This Best-Selling',
@@ -49,7 +49,7 @@ const HeroSection = () => {
     // Add more list articles...
   ];
   return (
-    <section className="container mx-auto md:mt-10 pb-10">
+    <section className="container mx-auto md:mt-5 pb-10">
       <div className="flex flex-col md:flex-row items-stretch gap-3">
 
         {/* Main Article */}
@@ -111,7 +111,7 @@ const HeroSection = () => {
         </div>
       </div>
     </section>
-  );
-};
+  )
+}
 
-export default HeroSection;
+export default AfrikaHeroSection;
