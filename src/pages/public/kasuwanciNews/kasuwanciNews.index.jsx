@@ -8,7 +8,7 @@ const KasuwanciNews = () => {
   return (
     <div className="">
       <SectionNavigation title={"Kasuwanci"} />
-      <div className="flex gap-2 w-full justify-center">
+      <div className="flex gap-2 w-full justify-center relative">
         <AdvertisingSection />
         <div>
           <KasumanciImageSection />

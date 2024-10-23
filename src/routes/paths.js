@@ -1,11 +1,20 @@
+
 const paths = {
 	HOME: '/',
-	CATEGORY_NEWS: (categoryName = ':categoryName') => `/news/${categoryName}`, // Dynamic category-based path
-	ARTICLE_DETAIL: (categoryName = ':categoryName', slug = ':slug') => `/news/${categoryName}/${slug}`,
-	WORLD_NEWS: (slug = ':slug') => `/world-news/${slug}`,
-	AFRICA_NEWS: (slug = ':slug') => `/africa-news/${slug}`,
-	LATEST_NEWS: (slug = ':slug') => `/latest-news/${slug}`,
-	// You can add more categories here
+
+	// Main category route
+	CATEGORY_NEWS: (categoryName = ':categoryName') => `/news/${categoryName}`,
+
+	// Subcategory route
+	SUBCATEGORY_NEWS: (categoryName = ':categoryName', subCategory = ':subCategory') => `/news/${categoryName}/${subCategory}`,
+
+	// Article detail can be nested further if needed
+	ARTICLE_DETAIL: (categoryName = ':categoryName', subCategory = undefined, slug = ':slug') => {
+		return subCategory
+			? `/article/${categoryName}/${subCategory}/${slug}`
+			: `/article/${categoryName}/${slug}`;
+	},
 };
+
 
 export default paths

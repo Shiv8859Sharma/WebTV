@@ -1,6 +1,5 @@
 import ImageElement from '@/components/ImageElement';
 import NavigatePage from '@/components/navigatePage';
-import TimeAgo from '../timeAgo';
 import ArticleMeta from '../articleMeta/articleMeta';
 import ArticleHeading from '../article/articleHeading';
 import ArticleTitle from '../article/articleTitle';

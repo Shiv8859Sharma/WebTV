@@ -2,8 +2,11 @@ import { lazy } from "react";
 import paths from "./paths";
 // public pages
 import Home from "@/pages/Home";
+
 const LoginPage = lazy(() => import('@/pages/login'));
 const CategoryNews = lazy(() => import('@/pages/public/categoryNews/categoryNews.index'));
+const SubCategoryNews =  lazy(() => import('@/pages/public/categoryNews/subCategoryNews.index'));
+
 
 export const PublicRoutes = {
   children: [
@@ -25,14 +28,21 @@ export const PublicRoutes = {
     },
     {
       path: paths?.CATEGORY_NEWS(),
-      element: <CategoryNews />
+      children: [
+        {
+          index: true,
+          element: <CategoryNews />
+        },
+        {
+          path: paths?.SUBCATEGORY_NEWS(),
+          element: <SubCategoryNews />
+        }
+      ]
     },
-    {
-      path: paths?.ARTICLE_DETAIL(),
-      element: <LoginPage />
-    }
-
-
+    // {
+    //   path: ,
+    //   element: <LoginPage />
+    // }
   ]
 }
 

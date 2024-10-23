@@ -7,7 +7,7 @@ const KasarHausaNews = () => {
   let categories = [
     {
       name: 'Kano',
-      link: ''
+      link: '/news/kasar-hausa/kano'
     },
     {
       name: 'Zamfara',
@@ -34,24 +34,21 @@ const KasarHausaNews = () => {
       dropdown: true,
       dropDownList: [
         {
-          name: 'Katsina 1',
+          name: 'Bauchi',
           link: ''
         },
         {
-          name: 'Katsina 2',
+          name: 'Daura',
           link: ''
         },
         {
-          name: 'Katsina 3',
-          link: ''
-        },
-        {
-          name: 'Katsina 4',
+          name: 'Kasar  ',
           link: ''
         },
       ]
     },
   ]
+
   return (
     <div className="flex flex-col gap-4">
       <SectionNavigation
@@ -59,7 +56,7 @@ const KasarHausaNews = () => {
         showCategory
         categories={categories}
       />
-      <KasarHausaImageSection/>
+      <KasarHausaImageSection />
       <HausaNewsSection />
     </div>
   )
