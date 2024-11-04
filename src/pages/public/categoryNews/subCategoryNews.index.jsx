@@ -1,6 +1,8 @@
 import { memo, useMemo } from "react";
 import { useParams } from "react-router-dom";
 import KasarHausaStatePage from "../kasarHausaStatePage/kasarHausaStatePage.index";
+import RegionBasedPage from "../afrikaNews/regionBasedPage/regionBasedPage";
+import ContinentPage from "../continentBasedPage/continent.index";
 
 
 const SubCategoryNews = () => {
@@ -19,23 +21,15 @@ const SubCategoryNews = () => {
     ` 
     if(name.includes('kasar-hausa')){
       return <KasarHausaStatePage /> 
-    }else {
+    // } else if(name.includes('afrika')) {
+    //   return <RegionBasedPage />
+    // } else if(name.includes('duniya')){
+    //   return <ContinentPage />
+    }
+     else {
       return <p>`Category {categoryName} Sub category {subCategoryName}` page is not availble</p>
     }
-    // switch (name) {
-    //   case name.includes('kasar-hausa'):
-    //     return <p>kasar-hausa</p>
-    //   default:
-    //     return <p>`Category {categoryName} Sub category {subCategoryName}` page is not availble</p>
-    // }
   }, [categoryName, subCategoryName])
-
-  
-  let count =  0
-  const handleClick = () => {
-    count += 1 
-    console.log(count);
-  }
   
   return (
     <main className="bg-white py-6">

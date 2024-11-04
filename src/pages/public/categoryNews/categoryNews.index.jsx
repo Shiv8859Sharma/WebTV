@@ -29,7 +29,9 @@ const CategoryNews = () => {
       case 'yanayi-a-yau':
         return <Yanayi_a_yau_newsIndex />
       default:
-        return <p>This page is not availble</p>
+        return <div className="flex w-full h-96 justify-center items-center ">
+          <p className="text-5xl">We are working on this page</p>
+        </div>
     }
   }, [categoryName])
 

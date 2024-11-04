@@ -3,7 +3,7 @@ import NavigatePage from '../navigatePage';
 import { ChevronLeftIcon, ChevronRightIcon } from '@heroicons/react/16/solid';
 import { Menu, MenuButton, MenuItem, MenuItems } from '@headlessui/react';
 
-const SectionNavigation = ({ title, categories = [], showCategory = false }) => {
+const SectionNavigation = ({ title, categories = [], showCategory = false, as = '', isActive='', onChangeTab=() => {} }) => {
   // Scroll functions for the navigation bar (if required)
   const scrollLeft = () => {
     const nav = document.querySelector('.nav-scroll');
@@ -19,7 +19,7 @@ const SectionNavigation = ({ title, categories = [], showCategory = false }) => 
     <section className="container mx-auto py-6">
       {/* Section Header */}
       <div className="text-center mb-6">
-        <h1 className="text-5xl font-light">{title}</h1>
+        <h1 className="text-5xl font-light capitalize">{title}</h1>
       </div>
 
       {/* Navigation Bar */}
@@ -49,9 +49,15 @@ const SectionNavigation = ({ title, categories = [], showCategory = false }) => 
                           ))}
                         </MenuItems>
                       </Menu>
-                      : <NavigatePage url={category.link} className="text-2xl text-nowrap font-extralight text-black py-1 border-b-2 border-transparent hover:border-gray-600">
-                        {category.name}
-                      </NavigatePage>
+                      : as === 'tab' ? (
+                        <button onClick={onChangeTab} className={`text-2xl text-nowrap font-extralight text-black py-1 border-b-2  cursor-pointer ${isActive === category.name ? 'border-gray-600' : 'border-transparent'} hover:border-gray-600`}>
+                          {category.name}
+                        </button>
+                      )
+
+                        : <NavigatePage url={category.link} className="text-2xl text-nowrap font-extralight text-black py-1 border-b-2 border-transparent hover:border-gray-600">
+                          {category.name}
+                        </NavigatePage>
                   }
 
                 </li>

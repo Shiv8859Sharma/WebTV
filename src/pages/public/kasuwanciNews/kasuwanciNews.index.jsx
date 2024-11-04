@@ -8,6 +8,7 @@ const KasuwanciNews = () => {
   return (
     <div className="">
       <SectionNavigation title={"Kasuwanci"} />
+      <section className="container mx-auto px-4">
       <div className="flex gap-2 w-full justify-center relative">
         <AdvertisingSection />
         <div>
@@ -15,7 +16,7 @@ const KasuwanciNews = () => {
           <KasuwanciHeroGrid />
         </div>
       </div>
-
+      </section>
     </div>
   );
 };

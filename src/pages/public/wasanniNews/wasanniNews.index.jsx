@@ -2,32 +2,33 @@ import { memo } from "react";
 import WasaniImageSection from "./WasanniImageSection";
 import SectionNavigation from "@/components/sectionNavigation/sectionNavigation.index";
 import WasanniHeroGrid from "./wasanniHeroGrid";
+import paths from "@/routes/paths";
 
 const WasanniNews = () => {
   let categories = [
     {
       name: "Cricket",
-      link: "",
+      link: paths.SUBCATEGORY_NEWS('wasanni', 'cricket')
     },
     {
       name: "Football",
-      link: "",
+      link: paths.SUBCATEGORY_NEWS('wasanni', 'football')
     },
     {
       name: "Basketball",
-      link: "",
+      link: paths.SUBCATEGORY_NEWS('wasanni', 'basketball')
     },
     {
       name: "Tennis",
-      link: "",
+      link: paths.SUBCATEGORY_NEWS('wasanni', 'tennis')
     },
     {
       name: "Volleyball",
-      link: "",
+      link: paths.SUBCATEGORY_NEWS('wasanni', 'volleyball')
     },
     {
       name: "Hockey",
-      link: "",
+      link: paths.SUBCATEGORY_NEWS('wasanni', 'hockey')
     },
   ];
   return (

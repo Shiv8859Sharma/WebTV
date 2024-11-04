@@ -3,27 +3,14 @@ import ArticleMeta from '@/components/articleMeta/articleMeta';
 import ArticleHeading from '@/components/article/articleHeading';
 import ArticleTitle from '@/components/article/articleTitle';
 
-const AfrikaHeroSection = () => {
-  const mainArticle = {
-    image: 'https://ichef.bbci.co.uk/news/480/cpsprodpb/6768/live/fe13b710-9090-11ef-8e6d-e3e64e16c628.jpg.webp',
-    title: "Ghana's parliament suspended after chaotic scenes",
-    description: 'A row erupted over which party has the majority after it was declared that four MPs had to vacate their seats.'
-  };
 
-  const sideArticles = [
-    {
-      image: 'https://ichef.bbci.co.uk/news/1024/cpsprodpb/a4e2/live/d2a3a400-9a22-11ef-a46f-5d552daef854.jpg.webp',
-      title: 'Slavery reparations not about transfer of cash, says Lammy',
-      date: new Date('10-21-2024 18:14'),
-      category: 'Afirka'
-    },
-    {
-      image: 'https://ichef.bbci.co.uk/news/640/cpsprodpb/1362/live/3ebdd5b0-96ff-11ef-9260-19e6a950e830.jpg.webp',
-      title: 'Africans at the cutting edge of interior design',
-      date: new Date('10-21-2024 17:14'),
-      category: 'Afirka'
-    }
-  ];
+const RegionBasedPageHeroSection = () => {
+
+  const mainArticle = {
+    image: 'https://static.euronews.com/articles/stories/08/82/95/88/738x415_cmsv2_624a3c87-e0b7-55e4-a9d0-2b7f51270f01-8829588.jpg',
+    title: 'At least 14 people die in lightning strike on refugee camp in Uganda',
+    description: 'At least 14 people, including several children, were killed in a lightning strike in a refugee camp in northern Uganda, police said Sunday. Officials say the victims were residents of the Palabek settlement camp, which primarily houses people displaced from South Sudan.'
+  };
 
   const listArticles = [
     {
@@ -48,12 +35,13 @@ const AfrikaHeroSection = () => {
     },
     // Add more list articles...
   ];
+
   return (
-    <section className="container mx-auto  md:mt-5 pb-10">
+    <section className="container max-w-7xl mx-auto !mt-12 pb-10">
       <div className="flex flex-col md:flex-row items-stretch gap-3">
 
         {/* Main Article */}
-        <div className="w-full lg:w-2/4">
+        <div className="">
           <article className="flex flex-col h-full">
             <div>
               <ImageElement src={mainArticle.image} className="w-full aspect-video rounded-md" />
@@ -71,28 +59,8 @@ const AfrikaHeroSection = () => {
           </article>
         </div>
 
-        {/* Side Articles */}
-        <div className="w-full md:w-1/4">
-          <div className="flex flex-col gap-2 h-full">
-            {sideArticles.map((article, index) => (
-              <div key={index} className="flex flex-col gap-2 flex-grow">
-                <div>
-                  <ImageElement src={article.image} className="w-full aspect-video rounded-md" />
-                </div>
-                <div className="flex flex-col gap-2">
-                  <ArticleHeading
-                    heading={article.title}
-                    className='text-xl font-bold'
-                  />
-                  <ArticleMeta date={article.date} category={article.category} />
-                </div>
-              </div>
-            ))}
-          </div>
-        </div>
-
         {/* List Articles */}
-        <div className="w-full md:w-1/4">
+        <div className="">
           <div className="flex flex-col gap-2 h-full">
             {listArticles.map((article, index) => (
               <div key={index} className={`px-3 flex flex-col gap-2 py-2 flex-grow ${listArticles.length === (index + 1) ? '' : 'border-b-2 border-gray-500'} pb-3`}>
@@ -114,4 +82,4 @@ const AfrikaHeroSection = () => {
   )
 }
 
-export default AfrikaHeroSection;
+export default RegionBasedPageHeroSection;

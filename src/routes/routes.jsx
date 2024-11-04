@@ -2,11 +2,9 @@ import { lazy } from "react";
 import paths from "./paths";
 // public pages
 import Home from "@/pages/Home";
-
 const LoginPage = lazy(() => import('@/pages/login'));
 const CategoryNews = lazy(() => import('@/pages/public/categoryNews/categoryNews.index'));
-const SubCategoryNews =  lazy(() => import('@/pages/public/categoryNews/subCategoryNews.index'));
-
+const SubCategoryNews =  lazy(() => import('@/pages/public/categoryNews/subCategoryNews.index'))
 
 export const PublicRoutes = {
   children: [

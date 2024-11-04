@@ -1,6 +1,5 @@
 import LatestNewsSection from "@/components/latestNewsSection/latestNewsSection";
 import PopularArticlesList from "@/components/lists/popularArticleList";
-import paths from "@/routes/paths";
 
 const AfrikaLatestNews = () => {
   const africaArticles = [

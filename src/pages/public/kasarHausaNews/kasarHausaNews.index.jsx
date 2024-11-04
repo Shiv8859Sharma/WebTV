@@ -2,32 +2,33 @@ import { memo } from "react";
 import SectionNavigation from "@/components/sectionNavigation/sectionNavigation.index";
 import KasarHausaImageSection from "./kasarHausaImageSection";
 import HausaNewsSection from "./hausaNewsSection/hausaNewsSection";
+import paths from "@/routes/paths";
 
 const KasarHausaNews = () => {
   let categories = [
     {
       name: 'Kano',
-      link: '/news/kasar-hausa/kano'
+      link: paths.SUBCATEGORY_NEWS('kasar-hausa', 'kano')
     },
     {
       name: 'Zamfara',
-      link: ''
+      link: paths.SUBCATEGORY_NEWS('kasar-hausa', 'zamfara')
     },
     {
       name: 'Kaduna',
-      link: ''
+      link: paths.SUBCATEGORY_NEWS('kasar-hausa', 'kaduna')
     },
     {
       name: 'Jigawa',
-      link: ''
+      link: paths.SUBCATEGORY_NEWS('kasar-hausa', 'jigawa')
     },
     {
       name: 'Sokoto',
-      link: ''
+      link: paths.SUBCATEGORY_NEWS('kasar-hausa', 'sokoto')
     },
     {
       name: 'Katsina',
-      link: ''
+      link: paths.SUBCATEGORY_NEWS('kasar-hausa', 'katsina')
     },
     {
       name: 'More',
@@ -35,15 +36,15 @@ const KasarHausaNews = () => {
       dropDownList: [
         {
           name: 'Bauchi',
-          link: ''
+          link: paths.SUBCATEGORY_NEWS('kasar-hausa', 'bauchi')
         },
         {
           name: 'Daura',
-          link: ''
+          link: paths.SUBCATEGORY_NEWS('kasar-hausa', 'daura')
         },
         {
-          name: 'Kasar  ',
-          link: ''
+          name: 'Kasar',
+          link: paths.SUBCATEGORY_NEWS('kasar-hausa', 'kasar')
         },
       ]
     },

@@ -19,7 +19,7 @@ const WasanniImageSection = () => {
           className='line-clamp-2 text-xl font-light'
         />
       </NavigatePage>
-      <hr class="w-full h-0.5 mt-10 bg-black border-0 rounded dark:bg-gray-700"></hr>
+      <hr className="w-full h-0.5 mt-10 bg-black border-0 rounded dark:bg-gray-700"></hr>
     </section>
   )
 }
