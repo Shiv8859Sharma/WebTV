@@ -3,6 +3,7 @@ import { useParams } from "react-router-dom";
 import KasarHausaStatePage from "../kasarHausaStatePage/kasarHausaStatePage.index";
 import RegionBasedPage from "../afrikaNews/regionBasedPage/regionBasedPage";
 import ContinentPage from "../continentBasedPage/continent.index";
+import WasaPage from "../wasanniNews/wasanniBasedPage/wasa.index";
 
 
 const SubCategoryNews = () => {
@@ -21,12 +22,13 @@ const SubCategoryNews = () => {
     ` 
     if(name.includes('kasar-hausa')){
       return <KasarHausaStatePage /> 
-    // } else if(name.includes('afrika')) {
-    //   return <RegionBasedPage />
-    // } else if(name.includes('duniya')){
-    //   return <ContinentPage />
-    }
-     else {
+    } else if(name.includes('afrika')) {
+      return <RegionBasedPage />
+    } else if(name.includes('duniya')){
+      return <ContinentPage />
+    }else if(name.includes('wasanni')){
+        return <WasaPage />
+    } else {
       return <p>`Category {categoryName} Sub category {subCategoryName}` page is not availble</p>
     }
   }, [categoryName, subCategoryName])

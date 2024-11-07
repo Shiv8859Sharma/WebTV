@@ -1,29 +1,27 @@
 import { memo } from "react";
 import ImageElement from "@/components/ImageElement";
-import ArticleMeta from "@/components/articleMeta/articleMeta";
-import ArticleHeading from "@/components/article/articleHeading";
-import ArticleTitle from "@/components/article/articleTitle";
-import { PlayCircleIcon } from "@heroicons/react/16/solid";
+import VideoPlayer from "../../../components/videoPlayer/videoPlayer.index";
 
 const Yanayi_a_yau_hero_section = () => {
 
   return (
     <section className="container max-w-7xl mx-auto md:mt-5 pb-10">
       <div className="flex flex-col md:flex-row items-stretch gap-3">
-      <div className=" w-full bg-white shadow-md rounded-lg overflow-hidden">
-          <div className="relative">
+        <div className=" w-full bg-white shadow-md rounded-lg overflow-hidden">
+          {/* <div className="relative">
               <video 
               className="w-full  aspect-video object-cover"
               controls
-              src="http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4"
+              src="https://www.w3schools.com/html/mov_bbb.mp4"
               >
 
               </video>
-          </div>
+          </div> */}
+          <VideoPlayer src='http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4' />
         </div>
-      <div className=" w-full bg-white shadow-md rounded-lg overflow-hidden">
+        <div className=" w-full bg-white shadow-md rounded-lg overflow-hidden">
           <div className="relative">
-            <img
+            <ImageElement
               src={"https://hausa.info/wp-content/uploads/2023/10/Weather-in-Hausa.jpg.webp"}
               alt="Pangolin Smuggling News"
               className="w-full  aspect-video object-cover"

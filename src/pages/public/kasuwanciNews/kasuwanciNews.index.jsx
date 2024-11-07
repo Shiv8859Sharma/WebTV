@@ -2,14 +2,14 @@ import { memo } from "react";
 import KasumanciImageSection from "./KasumanciImageSection";
 import SectionNavigation from "@/components/sectionNavigation/sectionNavigation.index";
 import KasuwanciHeroGrid from "./kasuwanciHeroGrid";
-import AdvertisingSection from "../../../components/advertising/advertisingSection";
+import AdvertisingSection from "@/components/advertising/advertisingSection";
 
 const KasuwanciNews = () => {
   return (
     <div className="">
       <SectionNavigation title={"Kasuwanci"} />
       <section className="container mx-auto px-4">
-      <div className="flex gap-2 w-full justify-center relative">
+      <div className="flex gap-10 w-full justify-center relative">
         <AdvertisingSection />
         <div>
           <KasumanciImageSection />

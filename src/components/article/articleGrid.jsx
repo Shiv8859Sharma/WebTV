@@ -22,7 +22,6 @@ const ArticleCategory = ({ title, articles }) => {
 const ArticleGrid = ({ categories, className='', gridClassName='grid-cols-1 md:grid-cols-2 lg:grid-cols-4' }) => {
   return (
     <section className="pt-10">
-      
       <div className="container mx-auto px-4 py-6">
         <div className={`grid gap-8 ${className} ${gridClassName}`}>
           {categories.map((category, index) => (

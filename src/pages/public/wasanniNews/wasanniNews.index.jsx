@@ -1,34 +1,22 @@
 import { memo } from "react";
-import WasaniImageSection from "./WasanniImageSection";
 import SectionNavigation from "@/components/sectionNavigation/sectionNavigation.index";
-import WasanniHeroGrid from "./wasanniHeroGrid";
 import paths from "@/routes/paths";
+import WasanniHeroSection from "./wasanniHeroSection";
+import WasanniNewsFeeds from "./wasanniFeeds";
 
 const WasanniNews = () => {
   let categories = [
     {
-      name: "Cricket",
-      link: paths.SUBCATEGORY_NEWS('wasanni', 'cricket')
+      name: "Kalon Kapa",
+      link: paths.SUBCATEGORY_NEWS('wasanni', 'kalon-kapa')
     },
     {
-      name: "Football",
-      link: paths.SUBCATEGORY_NEWS('wasanni', 'football')
+      name: "Dambe",
+      link: paths.SUBCATEGORY_NEWS('wasanni', 'dambe')
     },
     {
-      name: "Basketball",
-      link: paths.SUBCATEGORY_NEWS('wasanni', 'basketball')
-    },
-    {
-      name: "Tennis",
-      link: paths.SUBCATEGORY_NEWS('wasanni', 'tennis')
-    },
-    {
-      name: "Volleyball",
-      link: paths.SUBCATEGORY_NEWS('wasanni', 'volleyball')
-    },
-    {
-      name: "Hockey",
-      link: paths.SUBCATEGORY_NEWS('wasanni', 'hockey')
+      name: "Wasa Kondo",
+      link: paths.SUBCATEGORY_NEWS('wasanni', 'wasa-kondo')
     },
   ];
   return (
@@ -38,8 +26,8 @@ const WasanniNews = () => {
         showCategory
         categories={categories}
       />
-      <WasaniImageSection />
-      <WasanniHeroGrid />
+      <WasanniHeroSection />
+      <WasanniNewsFeeds />
     </div>
   );
 };
