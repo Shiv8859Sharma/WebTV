@@ -4,7 +4,7 @@ import BlogEditorViewLoader from "./blogSkeletonLoader/BlogEditorViewLoader";
 
 const componentMap = {
   BlogEditorFormLoader: BlogEditorFormLoader,
-  BlogEditorViewLoader: BlogEditorViewLoader
+  BlogEditorViewLoader: BlogEditorViewLoader,
 };
 
 const CustomLoader = ({ count, name, ...rest }) => {

@@ -8,33 +8,33 @@ const DuniyaNews = () => {
   let categories = [
     {
       name: "Turai",
-      link: paths.SUBCATEGORY_NEWS('duniya', 'turai')
+      link: paths.SUBCATEGORY_NEWS("duniya", "turai"),
     },
     {
       name: "Amurka",
-      link: paths.SUBCATEGORY_NEWS('duniya', 'amurka')
+      link: paths.SUBCATEGORY_NEWS("duniya", "amurka"),
     },
     {
       name: "Asiya",
-      link: paths.SUBCATEGORY_NEWS('duniya', 'asiya')
+      link: paths.SUBCATEGORY_NEWS("duniya", "asiya"),
     },
     {
       name: "Gabas ta Tsakiya",
-      link: paths.SUBCATEGORY_NEWS('duniya', 'gabas-ta-tsakiya')
-    }
+      link: paths.SUBCATEGORY_NEWS("duniya", "gabas-ta-tsakiya"),
+    },
   ];
 
   return (
     <div>
       <SectionNavigation
-        title={'Duniya'}
+        title={"Duniya"}
         showCategory
         categories={categories}
       />
       <DuniyaImageSection />
       <DuniyaNewsFeeds />
     </div>
-  )
-}
+  );
+};
 
 export default memo(DuniyaNews);

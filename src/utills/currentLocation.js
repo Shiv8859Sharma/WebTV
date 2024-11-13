@@ -2,7 +2,10 @@ import { REACT_APP_GOOGLE_API_KEY } from "@/constants/common";
 
 export async function getCurrentLocation() {
   if (!navigator.geolocation) {
-    return { error: 'Geolocation is not supported by this browser.', success: false };
+    return {
+      error: "Geolocation is not supported by this browser.",
+      success: false,
+    };
   }
 
   try {
@@ -21,7 +24,7 @@ async function successCallback(position) {
 
   const response = await fetch(geocoder);
   if (!response.ok) {
-    throw new Error('Network response was not ok');
+    throw new Error("Network response was not ok");
   }
 
   const result = await response.json();
@@ -37,7 +40,10 @@ async function successCallback(position) {
   let country_short = "";
 
   for (const component of locationData.address_components) {
-    if (component.types.includes("locality") || component.types.includes("administrative_area_level_2")) {
+    if (
+      component.types.includes("locality") ||
+      component.types.includes("administrative_area_level_2")
+    ) {
       city = component.long_name;
     }
     if (component.types.includes("administrative_area_level_1")) {
@@ -56,6 +62,6 @@ async function successCallback(position) {
     country_short,
     latitude,
     longitude,
-    success: true
+    success: true,
   };
 }

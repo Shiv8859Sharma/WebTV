@@ -2,7 +2,7 @@ import Header from "@editorjs/header";
 import NestedList from "@editorjs/nested-list";
 import Marker from "@editorjs/marker";
 import Underline from "@editorjs/underline";
-import Embed from '@editorjs/embed';
+import Embed from "@editorjs/embed";
 import ImageTool from "@editorjs/image";
 import TextVariantTune from "@editorjs/text-variant-tune";
 import { convertFileToBase64URL } from "@/utills/helpers/base64Url";
@@ -41,4 +41,4 @@ export const EDITOR_JS_TOOLS = {
       },
     },
   },
-}
+};

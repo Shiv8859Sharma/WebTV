@@ -1,17 +1,23 @@
-import React from 'react';
-import { useNavigate, Link } from 'react-router-dom';
-import { useDispatch } from 'react-redux';
+import React from "react";
+import { useNavigate, Link } from "react-router-dom";
+import { useDispatch } from "react-redux";
 
-const NavigatePage = ({ id = '', url = '', children, className = '', type = 'navigate', dispatchFun = () => { } }) => {
+const NavigatePage = ({
+  id = "",
+  url = "",
+  children,
+  className = "",
+  type = "navigate",
+  dispatchFun = () => {},
+}) => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
 
   const handleClick = async () => {
     console.log("this is run", type);
-    if (type === 'dispatchAction') {
-      
+    if (type === "dispatchAction") {
       await dispatch(dispatchFun);
-    } else if (type === 'actionWithNavigation') {
+    } else if (type === "actionWithNavigation") {
       await dispatch(dispatchFun);
       await navigate(url);
     } else if (url) {
@@ -20,7 +26,7 @@ const NavigatePage = ({ id = '', url = '', children, className = '', type = 'nav
   };
 
   // Use Link for SEO and a11y when possible
-  if (url && type === 'navigate') {
+  if (url && type === "navigate") {
     return (
       <Link to={url} id={id} className={`cursor-pointer ${className}`}>
         {children}
@@ -29,7 +35,11 @@ const NavigatePage = ({ id = '', url = '', children, className = '', type = 'nav
   }
 
   return (
-    <div onClick={handleClick} id={id} className={`cursor-pointer ${className}`}>
+    <div
+      onClick={handleClick}
+      id={id}
+      className={`cursor-pointer ${className}`}
+    >
       {children}
     </div>
   );

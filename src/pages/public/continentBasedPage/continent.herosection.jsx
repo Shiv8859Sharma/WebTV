@@ -1,103 +1,133 @@
 import NumberWiseArticleCard from "@/components/cards/numberWiseArticleCard";
 import Pagination from "@/components/pagination/paginationUI";
 
-
-const ContinentHeroSection = ({ currentTab = '' }) => {
+const ContinentHeroSection = ({ currentTab = "" }) => {
   const articles = [
     {
       title: "Muna tattaunawa da Tinubu don shiga gwamnatinsa - Kwankwaso",
-      description: "The head of the UN health agency says the world's attention to Sudan is 'really low' and race is a factor.",
-      imgSrc: "https://ichef.bbci.co.uk/news/480/cpsprodpb/a5a0/live/8fa1fdc0-74dc-11ef-8eeb-fb4751416701.jpg.webp",
-      link: ''
+      description:
+        "The head of the UN health agency says the world's attention to Sudan is 'really low' and race is a factor.",
+      imgSrc:
+        "https://ichef.bbci.co.uk/news/480/cpsprodpb/a5a0/live/8fa1fdc0-74dc-11ef-8eeb-fb4751416701.jpg.webp",
+      link: "",
     },
     {
-      title: "Kotu ta ayyana Gawuna a matsayin wanda ya lashe zaɓen gwamnan Kano",
-      description: "The head of the UN health agency says the world's attention to Sudan is 'really low' and race is a factor.",
-      imgSrc: "https://ichef.bbci.co.uk/news/480/cpsprodpb/a5a0/live/8fa1fdc0-74dc-11ef-8eeb-fb4751416701.jpg.webp",
-      link: ''
+      title:
+        "Kotu ta ayyana Gawuna a matsayin wanda ya lashe zaɓen gwamnan Kano",
+      description:
+        "The head of the UN health agency says the world's attention to Sudan is 'really low' and race is a factor.",
+      imgSrc:
+        "https://ichef.bbci.co.uk/news/480/cpsprodpb/a5a0/live/8fa1fdc0-74dc-11ef-8eeb-fb4751416701.jpg.webp",
+      link: "",
     },
     {
       title: "Me ke haddasa tsananin mutuwar aure a Kano?",
-      description: "The head of the UN health agency says the world's attention to Sudan is 'really low' and race is a factor.",
-      imgSrc: "https://ichef.bbci.co.uk/news/480/cpsprodpb/a5a0/live/8fa1fdc0-74dc-11ef-8eeb-fb4751416701.jpg.webp",
+      description:
+        "The head of the UN health agency says the world's attention to Sudan is 'really low' and race is a factor.",
+      imgSrc:
+        "https://ichef.bbci.co.uk/news/480/cpsprodpb/a5a0/live/8fa1fdc0-74dc-11ef-8eeb-fb4751416701.jpg.webp",
     },
     {
       title: "Siyasar Kano: APC da NNPP sun koma ga Allah kafin hukuncin kotu ",
-      description: "The head of the UN health agency says the world's attention to Sudan is 'really low' and race is a factor.",
-      imgSrc: "https://ichef.bbci.co.uk/news/480/cpsprodpb/a5a0/live/8fa1fdc0-74dc-11ef-8eeb-fb4751416701.jpg.webp",
+      description:
+        "The head of the UN health agency says the world's attention to Sudan is 'really low' and race is a factor.",
+      imgSrc:
+        "https://ichef.bbci.co.uk/news/480/cpsprodpb/a5a0/live/8fa1fdc0-74dc-11ef-8eeb-fb4751416701.jpg.webp",
     },
     {
       title: "Ma'anar unguwar 'Tudunwada' da yadda ta samo asali",
-      description: "The head of the UN health agency says the world's attention to Sudan is 'really low' and race is a factor.",
-      imgSrc: "https://ichef.bbci.co.uk/news/480/cpsprodpb/a5a0/live/8fa1fdc0-74dc-11ef-8eeb-fb4751416701.jpg.webp",
+      description:
+        "The head of the UN health agency says the world's attention to Sudan is 'really low' and race is a factor.",
+      imgSrc:
+        "https://ichef.bbci.co.uk/news/480/cpsprodpb/a5a0/live/8fa1fdc0-74dc-11ef-8eeb-fb4751416701.jpg.webp",
     },
     {
       title: "Me ke haddasa tsananin mutuwar aure a Kano?",
-      description: "The head of the UN health agency says the world's attention to Sudan is 'really low' and race is a factor.",
-      imgSrc: "https://ichef.bbci.co.uk/news/480/cpsprodpb/a5a0/live/8fa1fdc0-74dc-11ef-8eeb-fb4751416701.jpg.webp",
+      description:
+        "The head of the UN health agency says the world's attention to Sudan is 'really low' and race is a factor.",
+      imgSrc:
+        "https://ichef.bbci.co.uk/news/480/cpsprodpb/a5a0/live/8fa1fdc0-74dc-11ef-8eeb-fb4751416701.jpg.webp",
     },
     {
       title: "Siyasar Kano: APC da NNPP sun koma ga Allah kafin hukuncin kotu ",
-      description: "The head of the UN health agency says the world's attention to Sudan is 'really low' and race is a factor.",
-      imgSrc: "https://ichef.bbci.co.uk/news/480/cpsprodpb/a5a0/live/8fa1fdc0-74dc-11ef-8eeb-fb4751416701.jpg.webp",
+      description:
+        "The head of the UN health agency says the world's attention to Sudan is 'really low' and race is a factor.",
+      imgSrc:
+        "https://ichef.bbci.co.uk/news/480/cpsprodpb/a5a0/live/8fa1fdc0-74dc-11ef-8eeb-fb4751416701.jpg.webp",
     },
     {
       title: "Ma'anar unguwar 'Tudunwada' da yadda ta samo asali",
-      description: "The head of the UN health agency says the world's attention to Sudan is 'really low' and race is a factor.",
-      imgSrc: "https://ichef.bbci.co.uk/news/480/cpsprodpb/a5a0/live/8fa1fdc0-74dc-11ef-8eeb-fb4751416701.jpg.webp",
+      description:
+        "The head of the UN health agency says the world's attention to Sudan is 'really low' and race is a factor.",
+      imgSrc:
+        "https://ichef.bbci.co.uk/news/480/cpsprodpb/a5a0/live/8fa1fdc0-74dc-11ef-8eeb-fb4751416701.jpg.webp",
     },
     {
       title: "Me ke haddasa tsananin mutuwar aure a Kano?",
-      description: "The head of the UN health agency says the world's attention to Sudan is 'really low' and race is a factor.",
-      imgSrc: "https://ichef.bbci.co.uk/news/480/cpsprodpb/a5a0/live/8fa1fdc0-74dc-11ef-8eeb-fb4751416701.jpg.webp",
+      description:
+        "The head of the UN health agency says the world's attention to Sudan is 'really low' and race is a factor.",
+      imgSrc:
+        "https://ichef.bbci.co.uk/news/480/cpsprodpb/a5a0/live/8fa1fdc0-74dc-11ef-8eeb-fb4751416701.jpg.webp",
     },
     {
       title: "Siyasar Kano: APC da NNPP sun koma ga Allah kafin hukuncin kotu ",
-      description: "The head of the UN health agency says the world's attention to Sudan is 'really low' and race is a factor.",
-      imgSrc: "https://ichef.bbci.co.uk/news/480/cpsprodpb/a5a0/live/8fa1fdc0-74dc-11ef-8eeb-fb4751416701.jpg.webp",
+      description:
+        "The head of the UN health agency says the world's attention to Sudan is 'really low' and race is a factor.",
+      imgSrc:
+        "https://ichef.bbci.co.uk/news/480/cpsprodpb/a5a0/live/8fa1fdc0-74dc-11ef-8eeb-fb4751416701.jpg.webp",
     },
     {
       title: "Ma'anar unguwar 'Tudunwada' da yadda ta samo asali",
-      description: "The head of the UN health agency says the world's attention to Sudan is 'really low' and race is a factor.",
-      imgSrc: "https://ichef.bbci.co.uk/news/480/cpsprodpb/a5a0/live/8fa1fdc0-74dc-11ef-8eeb-fb4751416701.jpg.webp",
+      description:
+        "The head of the UN health agency says the world's attention to Sudan is 'really low' and race is a factor.",
+      imgSrc:
+        "https://ichef.bbci.co.uk/news/480/cpsprodpb/a5a0/live/8fa1fdc0-74dc-11ef-8eeb-fb4751416701.jpg.webp",
     },
     {
       title: "Me ke haddasa tsananin mutuwar aure a Kano?",
-      description: "The head of the UN health agency says the world's attention to Sudan is 'really low' and race is a factor.",
-      imgSrc: "https://ichef.bbci.co.uk/news/480/cpsprodpb/a5a0/live/8fa1fdc0-74dc-11ef-8eeb-fb4751416701.jpg.webp",
-    }
+      description:
+        "The head of the UN health agency says the world's attention to Sudan is 'really low' and race is a factor.",
+      imgSrc:
+        "https://ichef.bbci.co.uk/news/480/cpsprodpb/a5a0/live/8fa1fdc0-74dc-11ef-8eeb-fb4751416701.jpg.webp",
+    },
   ];
 
   let siyassaHeroArticle = {
-    imgSrc: "https://ichef.bbci.co.uk/ace/ws/602/cpsprodpb/0948/live/9f53bea0-57ca-11ee-93bf-c758a853042c.jpg.webp",
-    title: 'Muna tattaunawa da Tinubu don shiga gwamnatinsa - Kwankwaso'
-  }
+    imgSrc:
+      "https://ichef.bbci.co.uk/ace/ws/602/cpsprodpb/0948/live/9f53bea0-57ca-11ee-93bf-c758a853042c.jpg.webp",
+    title: "Muna tattaunawa da Tinubu don shiga gwamnatinsa - Kwankwaso",
+  };
 
   let addiniHeroArticle = {
-    imgSrc: "https://ichef.bbci.co.uk/ace/ws/800/cpsprodpb/6242/live/633d35e0-fc16-11ee-8369-47dc4454b972.jpg.webp",
-    title: `Babban fasto ɗan Najeriya da ke sa jama'a su ƙyamaci rigakafin malaria`
-  }
+    imgSrc:
+      "https://ichef.bbci.co.uk/ace/ws/800/cpsprodpb/6242/live/633d35e0-fc16-11ee-8369-47dc4454b972.jpg.webp",
+    title: `Babban fasto ɗan Najeriya da ke sa jama'a su ƙyamaci rigakafin malaria`,
+  };
   let wasaninHeroArticle = {
-    imgSrc: "https://ichef.bbci.co.uk/ace/ws/800/cpsprodpb/257c/live/2b773000-9484-11ef-9504-b516e8b5f45f.jpg.webp",
-    title: 'Premier League: West ham ta doke United, Chelsea ta yi nasara kan Newcastle'
-  }
+    imgSrc:
+      "https://ichef.bbci.co.uk/ace/ws/800/cpsprodpb/257c/live/2b773000-9484-11ef-9504-b516e8b5f45f.jpg.webp",
+    title:
+      "Premier League: West ham ta doke United, Chelsea ta yi nasara kan Newcastle",
+  };
   let silmaHeroArticle = {
-    imgSrc: "https://ichef.bbci.co.uk/ace/ws/800/cpsprodpb/930B/production/_109234673_4936fea2-2b20-47b8-bf86-471caea61a06.jpg.webp",
-    title: 'Me ya sa mawaƙan Kudancin Najeriya suka fi na Arewa ɗaukaka?'
-  }
+    imgSrc:
+      "https://ichef.bbci.co.uk/ace/ws/800/cpsprodpb/930B/production/_109234673_4936fea2-2b20-47b8-bf86-471caea61a06.jpg.webp",
+    title: "Me ya sa mawaƙan Kudancin Najeriya suka fi na Arewa ɗaukaka?",
+  };
 
   let yanayiAyou = {
-    imgSrc: "https://c02.purpledshub.com/uploads/sites/77/2024/07/1ef4368b-74c5-6b22-96a8-f743f52572fc.png",
-    title: 'Schools close amid scrotching heat'
-  }
+    imgSrc:
+      "https://c02.purpledshub.com/uploads/sites/77/2024/07/1ef4368b-74c5-6b22-96a8-f743f52572fc.png",
+    title: "Schools close amid scrotching heat",
+  };
 
   let mainArticle = {
-    'Siyassa': siyassaHeroArticle,
-    'Addini': addiniHeroArticle,
-    'Wasanin': wasaninHeroArticle,
-    'Kasawanci': silmaHeroArticle,
-    "Yanayi a yau": yanayiAyou
-  }
+    Siyassa: siyassaHeroArticle,
+    Addini: addiniHeroArticle,
+    Wasanin: wasaninHeroArticle,
+    Kasawanci: silmaHeroArticle,
+    "Yanayi a yau": yanayiAyou,
+  };
 
   return (
     <section className="container mx-auto">
@@ -132,15 +162,12 @@ const ContinentHeroSection = ({ currentTab = '' }) => {
             ))}
           </div>
           <div>
-            <Pagination
-
-            />
+            <Pagination />
           </div>
         </div>
       </div>
     </section>
-  )
-}
+  );
+};
 
 export default ContinentHeroSection;
-

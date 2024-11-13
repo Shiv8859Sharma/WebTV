@@ -3,7 +3,7 @@ const ForgetPassword = () => {
     <div>
       <p>ForgetPassword</p>
     </div>
-  )
-}
+  );
+};
 
-export default ForgetPassword
+export default ForgetPassword;

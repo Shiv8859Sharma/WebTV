@@ -9,13 +9,11 @@ const WasaPage = () => {
     <div className="flex gap-10 w-full justify-center relative">
       <AdvertisingSection />
       <div>
-        <WasaHeroSection
-          currentTab={subCategory}
-        />
+        <WasaHeroSection currentTab={subCategory} />
         <WasaGrid />
       </div>
     </div>
-  )
-}
+  );
+};
 
 export default WasaPage;

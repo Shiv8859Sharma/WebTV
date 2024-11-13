@@ -5,7 +5,7 @@ import { useState } from "react";
 
 const KasarHausaStatePage = () => {
   const { subCategory } = useParams();
-  const [isActiveTab, setIsActioveTab] = useState('Siyassa')
+  const [isActiveTab, setIsActioveTab] = useState("Siyassa");
   let categories = [
     {
       name: "Siyassa",
@@ -22,12 +22,12 @@ const KasarHausaStatePage = () => {
     {
       name: "Silma/Kannywood",
       // link: paths.SUBCATEGORY_NEWS('duniya', '"gabas-ta-tsakiya')
-    }
+    },
   ];
 
   const handleTabChange = (e) => {
-    setIsActioveTab(e.target.innerText)
-  }
+    setIsActioveTab(e.target.innerText);
+  };
 
   return (
     <div>
@@ -35,13 +35,13 @@ const KasarHausaStatePage = () => {
         title={subCategory}
         showCategory
         categories={categories}
-        as='tab'
+        as="tab"
         isActive={isActiveTab}
         onChangeTab={handleTabChange}
       />
       <KasarHausaStateHeroSection currentTab={isActiveTab} />
     </div>
-  )
-}
+  );
+};
 
 export default KasarHausaStatePage;

@@ -1,20 +1,17 @@
 import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import './blog.style.css';
+import "./blog.style.css";
 import { useParams } from "react-router-dom";
-import ImageElement from '@/components/ImageElement';
+import ImageElement from "@/components/ImageElement";
 import VideoPlayer from "@/components/videoPlayer/videoPlayer.index";
 import { fetchSingleBlog, clearBlog } from "@/globalStates/actions/blogActions";
-import CustomLoader from '@/layouts/skeletonLoaders'
-import NoDataFoundMessage from '@/constants/NoDataFoundMessage';
+import CustomLoader from "@/layouts/skeletonLoaders";
+import NoDataFoundMessage from "@/constants/NoDataFoundMessage";
 
 function ViewBlog() {
   const dispatch = useDispatch();
   const { id } = useParams(); // Assuming you have the id in the URL
-  const {
-    blogDetails,
-    error
-  } = useSelector((state) => state.blog);
+  const { blogDetails, error } = useSelector((state) => state.blog);
 
   let {
     title = "Sample Blog Title",
@@ -25,9 +22,9 @@ function ViewBlog() {
     state_name = "State",
     media,
     content = {},
-  } = blogDetails
+  } = blogDetails;
 
-  const isLoading = useSelector(state => state?.loader?.isLoading);
+  const isLoading = useSelector((state) => state?.loader?.isLoading);
 
   const fetchBlogById = async () => {
     if (id) {
@@ -41,11 +38,11 @@ function ViewBlog() {
   }, [id, dispatch]);
 
   if (isLoading) {
-    return <CustomLoader name='BlogEditorViewLoader' />
+    return <CustomLoader name="BlogEditorViewLoader" />;
   }
 
-  if(error){
-    return <NoDataFoundMessage  message='Something went wrong!'/>
+  if (error) {
+    return <NoDataFoundMessage message="Something went wrong!" />;
   }
 
   return (
@@ -69,7 +66,10 @@ function ViewBlog() {
         {media && (
           <div className="mb-8">
             {media.type === "video" ? (
-              <VideoPlayer src={media?.url} className="w-full h-auto rounded-lg" />
+              <VideoPlayer
+                src={media?.url}
+                className="w-full h-auto rounded-lg"
+              />
             ) : (
               <ImageElement
                 src={media?.file}
@@ -86,25 +86,15 @@ function ViewBlog() {
           {content?.blocks?.map((block, index) => {
             switch (block.type) {
               case "header":
-                return (
-                  <Header key={index} block={block} />
-                );
+                return <Header key={index} block={block} />;
               case "paragraph":
-                return (
-                  <Paragraph key={index} block={block} />
-                );
+                return <Paragraph key={index} block={block} />;
               case "List":
-                return (
-                  <List key={index} block={block} />
-                );
+                return <List key={index} block={block} />;
               case "image":
-                return (
-                  <ImageBlock key={index} block={block} />
-                );
+                return <ImageBlock key={index} block={block} />;
               case "embed":
-                return (
-                  <EmbedBlock key={index} block={block} />
-                );
+                return <EmbedBlock key={index} block={block} />;
               default:
                 return null;
             }
@@ -117,11 +107,15 @@ function ViewBlog() {
 
 const Header = ({ block }) => {
   const { level, text } = block.data;
-  const headingClass = `font-bold my-4 ${level === 1 ? 'text-5xl' :
-    level === 2 ? 'text-4xl' :
-      level === 3 ? 'text-3xl' :
-        'text-2xl'
-    }`;
+  const headingClass = `font-bold my-4 ${
+    level === 1
+      ? "text-5xl"
+      : level === 2
+        ? "text-4xl"
+        : level === 3
+          ? "text-3xl"
+          : "text-2xl"
+  }`;
 
   return (
     <div>
@@ -132,7 +126,10 @@ const Header = ({ block }) => {
 
 const Paragraph = ({ block }) => {
   return (
-    <p className="my-4 text-gray-700" dangerouslySetInnerHTML={{ __html: block.data.text }} />
+    <p
+      className="my-4 text-gray-700"
+      dangerouslySetInnerHTML={{ __html: block.data.text }}
+    />
   );
 };
 
@@ -145,7 +142,10 @@ const List = ({ block }) => {
           {item.items.length > 0 && (
             <ul className="list-disc list-inside pl-5 mt-2">
               {item.items.map((subItem, j) => (
-                <li key={j} dangerouslySetInnerHTML={{ __html: subItem.content }} />
+                <li
+                  key={j}
+                  dangerouslySetInnerHTML={{ __html: subItem.content }}
+                />
               ))}
             </ul>
           )}
@@ -165,7 +165,9 @@ const ImageBlock = ({ block }) => {
         loading="lazy"
       />
       {block.data.caption && (
-        <p className="text-center my-2 text-sm text-gray-600">{block.data.caption}</p>
+        <p className="text-center my-2 text-sm text-gray-600">
+          {block.data.caption}
+        </p>
       )}
     </div>
   );
@@ -184,7 +186,9 @@ const EmbedBlock = ({ block }) => {
         allowFullScreen
       ></iframe>
       {block.data.caption && (
-        <p className="text-center my-2 text-sm text-gray-600">{block.data.caption}</p>
+        <p className="text-center my-2 text-sm text-gray-600">
+          {block.data.caption}
+        </p>
       )}
     </div>
   );

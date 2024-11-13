@@ -18,14 +18,14 @@ const InitiEditorjs = () => {
       data: initialContent,
       onChange: async () => {
         const data = await editorjsRef.current.save();
-        dispatch(setBlog({ content: JSON.parse(JSON.stringify(data))}));
+        dispatch(setBlog({ content: JSON.parse(JSON.stringify(data)) }));
       },
     });
   }
 
   let dat = true;
   useEffect(() => {
-    if ((editorjsRef.current === null) && !dat) {
+    if (editorjsRef.current === null && !dat) {
       initializeEditorjs();
       dat = true;
     }
@@ -36,9 +36,7 @@ const InitiEditorjs = () => {
     };
   }, []);
 
-  return (
-    <div id="editorjs"></div>
-  )
-}
+  return <div id="editorjs"></div>;
+};
 
-export default InitiEditorjs
+export default InitiEditorjs;

@@ -9,13 +9,13 @@ const KasuwanciNews = () => {
     <div className="">
       <SectionNavigation title={"Kasuwanci"} />
       <section className="container mx-auto px-4">
-      <div className="flex gap-10 w-full justify-center relative">
-        <AdvertisingSection />
-        <div>
-          <KasumanciImageSection />
-          <KasuwanciHeroGrid />
+        <div className="flex gap-10 w-full justify-center relative">
+          <AdvertisingSection />
+          <div>
+            <KasumanciImageSection />
+            <KasuwanciHeroGrid />
+          </div>
         </div>
-      </div>
       </section>
     </div>
   );

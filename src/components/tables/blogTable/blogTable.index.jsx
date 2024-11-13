@@ -1,13 +1,13 @@
-import React from 'react';
-import { PencilIcon, TrashIcon, EyeIcon } from '@heroicons/react/24/solid';
-import NoDataFoundMessage from '@/constants/NoDataFoundMessage';
-import NavigatePage from '@/components/navigatePage';
-import paths from '@/routes/paths';
+import React from "react";
+import { PencilIcon, TrashIcon, EyeIcon } from "@heroicons/react/24/solid";
+import NoDataFoundMessage from "@/constants/NoDataFoundMessage";
+import NavigatePage from "@/components/navigatePage";
+import paths from "@/routes/paths";
 
-const BlogTable = ({ blogs = []}) => {
+const BlogTable = ({ blogs = [] }) => {
   if (blogs.length === 0) {
     return (
-      <NoDataFoundMessage message='No blogs available. Please add a new article.' />
+      <NoDataFoundMessage message="No blogs available. Please add a new article." />
     );
   }
 
@@ -32,7 +32,9 @@ const BlogTable = ({ blogs = []}) => {
               <td className="py-3 px-6 whitespace-nowrap">{blog.title}</td>
               <td className="py-3 px-6">{blog.author}</td>
               <td className="py-3 px-6">{blog.category}</td>
-              <td className="py-3 px-6">{new Date(blog.updatedAt).toLocaleDateString()}</td>
+              <td className="py-3 px-6">
+                {new Date(blog.updatedAt).toLocaleDateString()}
+              </td>
               <td className="py-3 px-6 text-center">
                 <div className="flex item-center justify-center space-x-4">
                   <NavigatePage
@@ -48,9 +50,7 @@ const BlogTable = ({ blogs = []}) => {
                   >
                     <PencilIcon className="w-5 h-5" />
                   </NavigatePage>
-                  <button
-                    className="text-red-500 hover:text-red-700 transition-colors duration-150"
-                  >
+                  <button className="text-red-500 hover:text-red-700 transition-colors duration-150">
                     <TrashIcon className="w-5 h-5" />
                   </button>
                 </div>

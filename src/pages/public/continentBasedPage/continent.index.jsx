@@ -5,7 +5,7 @@ import ContinentHeroSection from "./continent.herosection";
 
 const ContinentPage = () => {
   const { subCategory } = useParams();
-  const [isActiveTab, setIsActioveTab] = useState('Siyassa')
+  const [isActiveTab, setIsActioveTab] = useState("Siyassa");
   let allCategories = [
     {
       name: "Siyassa",
@@ -31,33 +31,33 @@ const ContinentPage = () => {
     {
       name: "Yanayi a yau",
     },
-  ]
+  ];
 
   const handleTabChange = (e) => {
-    setIsActioveTab(e.target.innerText)
-  }
+    setIsActioveTab(e.target.innerText);
+  };
 
   let title = {
-    'turai': 'Turai',
-    'amurka': 'Amurka | Kudancin Amurka | Caribbean',
-    'asiya': 'Asiya',
-    'gabas-ta-tsakiya': 'Gabas-ta-tsakiya'
-  }
+    turai: "Turai",
+    amurka: "Amurka | Kudancin Amurka | Caribbean",
+    asiya: "Asiya",
+    "gabas-ta-tsakiya": "Gabas-ta-tsakiya",
+  };
   return (
     <div>
       <SectionNavigation
         title={title[subCategory]}
         showCategory
-        categories={subCategory === 'gabas-ta-tsakiya' ? gabasCategoties : allCategories}
-        as='tab'
+        categories={
+          subCategory === "gabas-ta-tsakiya" ? gabasCategoties : allCategories
+        }
+        as="tab"
         isActive={isActiveTab}
         onChangeTab={handleTabChange}
       />
-      <ContinentHeroSection
-        currentTab={isActiveTab}
-      />
+      <ContinentHeroSection currentTab={isActiveTab} />
     </div>
-  )
-}
+  );
+};
 
 export default ContinentPage;

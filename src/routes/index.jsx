@@ -1,14 +1,12 @@
-import {
-  createBrowserRouter
-} from 'react-router-dom';
+import { createBrowserRouter } from "react-router-dom";
 import Layout from "@/layouts";
-import PageNotFound from '@/constants/PageNotFound';
-import { ErrorBoundary } from '@/constants/ErrorBoundary'
-import { AdminRoutes, PublicRoutes } from './routes';
+import PageNotFound from "@/constants/PageNotFound";
+import { ErrorBoundary } from "@/constants/ErrorBoundary";
+import { AdminRoutes, PublicRoutes } from "./routes";
 
 function getRoutes(type) {
   switch (type) {
-    case 'admin':
+    case "admin":
       return { ...AdminRoutes };
     default:
       return { ...PublicRoutes };
@@ -20,13 +18,13 @@ const router = (user) => {
     {
       element: <Layout userType={user} />,
       errorElement: <ErrorBoundary />,
-      children: [{ ...getRoutes(user) }]
+      children: [{ ...getRoutes(user) }],
     },
     {
-      path: '*',
-      element: <PageNotFound />
-    }
+      path: "*",
+      element: <PageNotFound />,
+    },
   ]);
-}
+};
 
-export default router
+export default router;

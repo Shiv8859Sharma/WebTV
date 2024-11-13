@@ -6,9 +6,9 @@ import loaderReducer from "./loader";
 import blogReducer from "./blogReducer";
 
 export default combineReducers({
-    auth: AuthDetails,
-    popup: PopupDetails,
-    loader: loaderReducer,
-    FormDetails,
-    blog: blogReducer,
-})
+  auth: AuthDetails,
+  popup: PopupDetails,
+  loader: loaderReducer,
+  FormDetails,
+  blog: blogReducer,
+});

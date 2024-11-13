@@ -1,9 +1,7 @@
-import NewsFeeds from "../../newsFeeds/newsFeeds"
+import NewsFeeds from "../../newsFeeds/newsFeeds";
 
 const DuniyaNewsFeeds = () => {
-  return (
-    <NewsFeeds />
-  )
-}
+  return <NewsFeeds />;
+};
 
-export default DuniyaNewsFeeds
+export default DuniyaNewsFeeds;

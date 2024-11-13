@@ -8,15 +8,15 @@ const WasanniNews = () => {
   let categories = [
     {
       name: "Kalon Kapa",
-      link: paths.SUBCATEGORY_NEWS('wasanni', 'kalon-kapa')
+      link: paths.SUBCATEGORY_NEWS("wasanni", "kalon-kapa"),
     },
     {
       name: "Dambe",
-      link: paths.SUBCATEGORY_NEWS('wasanni', 'dambe')
+      link: paths.SUBCATEGORY_NEWS("wasanni", "dambe"),
     },
     {
       name: "Wasa Kondo",
-      link: paths.SUBCATEGORY_NEWS('wasanni', 'wasa-kondo')
+      link: paths.SUBCATEGORY_NEWS("wasanni", "wasa-kondo"),
     },
   ];
   return (

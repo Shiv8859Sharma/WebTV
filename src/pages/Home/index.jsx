@@ -1,9 +1,9 @@
-import AfricaNews from './africaNews';
-import HeroGrid from './heroGrid';
-import HeroSection from './heroSection';
-import './home.css';
-import LetestNews from './latestNews';
-import WorldNews from './worldNews';
+import AfricaNews from "./africaNews";
+import HeroGrid from "./heroGrid";
+import HeroSection from "./heroSection";
+import "./home.css";
+import LetestNews from "./latestNews";
+import WorldNews from "./worldNews";
 
 const Home = () => {
   return (

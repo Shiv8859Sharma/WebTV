@@ -7,60 +7,60 @@ import paths from "@/routes/paths";
 const KasarHausaNews = () => {
   let categories = [
     {
-      name: 'Kano',
-      link: paths.SUBCATEGORY_NEWS('kasar-hausa', 'kano')
+      name: "Kano",
+      link: paths.SUBCATEGORY_NEWS("kasar-hausa", "kano"),
     },
     {
-      name: 'Zamfara',
-      link: paths.SUBCATEGORY_NEWS('kasar-hausa', 'zamfara')
+      name: "Zamfara",
+      link: paths.SUBCATEGORY_NEWS("kasar-hausa", "zamfara"),
     },
     {
-      name: 'Kaduna',
-      link: paths.SUBCATEGORY_NEWS('kasar-hausa', 'kaduna')
+      name: "Kaduna",
+      link: paths.SUBCATEGORY_NEWS("kasar-hausa", "kaduna"),
     },
     {
-      name: 'Jigawa',
-      link: paths.SUBCATEGORY_NEWS('kasar-hausa', 'jigawa')
+      name: "Jigawa",
+      link: paths.SUBCATEGORY_NEWS("kasar-hausa", "jigawa"),
     },
     {
-      name: 'Sokoto',
-      link: paths.SUBCATEGORY_NEWS('kasar-hausa', 'sokoto')
+      name: "Sokoto",
+      link: paths.SUBCATEGORY_NEWS("kasar-hausa", "sokoto"),
     },
     {
-      name: 'Katsina',
-      link: paths.SUBCATEGORY_NEWS('kasar-hausa', 'katsina')
+      name: "Katsina",
+      link: paths.SUBCATEGORY_NEWS("kasar-hausa", "katsina"),
     },
     {
-      name: 'More',
+      name: "More",
       dropdown: true,
       dropDownList: [
         {
-          name: 'Bauchi',
-          link: paths.SUBCATEGORY_NEWS('kasar-hausa', 'bauchi')
+          name: "Bauchi",
+          link: paths.SUBCATEGORY_NEWS("kasar-hausa", "bauchi"),
         },
         {
-          name: 'Daura',
-          link: paths.SUBCATEGORY_NEWS('kasar-hausa', 'daura')
+          name: "Daura",
+          link: paths.SUBCATEGORY_NEWS("kasar-hausa", "daura"),
         },
         {
-          name: 'Kasar',
-          link: paths.SUBCATEGORY_NEWS('kasar-hausa', 'kasar')
+          name: "Kasar",
+          link: paths.SUBCATEGORY_NEWS("kasar-hausa", "kasar"),
         },
-      ]
+      ],
     },
-  ]
+  ];
 
   return (
     <div className="flex flex-col gap-4">
       <SectionNavigation
-        title={'Kasar housa'}
+        title={"Kasar housa"}
         showCategory
         categories={categories}
       />
       <KasarHausaImageSection />
       <HausaNewsSection />
     </div>
-  )
-}
+  );
+};
 
 export default memo(KasarHausaNews);

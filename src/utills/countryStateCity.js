@@ -1,18 +1,13 @@
-import {
-  GetCountries,
-  GetState,
-  GetRegions
-} from "react-country-state-city";
-
+import { GetCountries, GetState, GetRegions } from "react-country-state-city";
 
 const countryList = await GetCountries().then((result) => {
-  return result
+  return result;
 });
 
-export const getStatesList =  (countryCode) => {
+export const getStatesList = (countryCode) => {
   return GetState(countryCode).then((result) => {
-    return result
+    return result;
   });
 };
 
-export default countryList
+export default countryList;

@@ -4,7 +4,16 @@ import RightContent from "../rightContent";
 import ArticleCoverCard from "@/components/cards/articleCoverCard";
 import NumberWiseArticleCard from "@/components/cards/numberWiseArticleCard";
 
-const NewsBlock = ({ sectionTitle, articles, reverseLayout, hasRightContent = false, children, coverDetails = { show: false }, veiwAllURL = '/', articlesWithImage = true }) => {
+const NewsBlock = ({
+  sectionTitle,
+  articles,
+  reverseLayout,
+  hasRightContent = false,
+  children,
+  coverDetails = { show: false },
+  veiwAllURL = "/",
+  articlesWithImage = true,
+}) => {
   return (
     <section className="container mx-auto px-4">
       <hr className="w-full h-0.5 my-8 bg-black border-0 rounded dark:bg-gray-700" />
@@ -15,20 +24,19 @@ const NewsBlock = ({ sectionTitle, articles, reverseLayout, hasRightContent = fa
           <ContentLayout
             leftContent={
               <>
-                {
-                  coverDetails?.show &&
+                {coverDetails?.show && (
                   <ArticleCoverCard
                     article={coverDetails}
                     height="max-h-[30.05rem]"
                     titleClassName="text-3xl font-bold"
                     padding="p-4"
                     showDescription={true}
-                    className='mb-4'
+                    className="mb-4"
                   />
-                }
+                )}
 
                 <div className="flex flex-row flex-wrap -mx-3">
-                  {articles.map((article, index) => (
+                  {articles.map((article, index) =>
                     articlesWithImage ? (
                       <ArticleCard
                         key={index}
@@ -37,8 +45,8 @@ const NewsBlock = ({ sectionTitle, articles, reverseLayout, hasRightContent = fa
                         imgSrc={article.imgSrc}
                         category={article.category}
                         link={article.link}
-                      /> )
-                      : 
+                      />
+                    ) : (
                       <NumberWiseArticleCard
                         key={index}
                         title={article.title}
@@ -46,9 +54,10 @@ const NewsBlock = ({ sectionTitle, articles, reverseLayout, hasRightContent = fa
                         imgSrc={article.imgSrc}
                         category={article.category}
                         link={article.link}
-                        number={index+1}
+                        number={index + 1}
                       />
-                  ))}
+                    )
+                  )}
                 </div>
               </>
             }
@@ -59,28 +68,34 @@ const NewsBlock = ({ sectionTitle, articles, reverseLayout, hasRightContent = fa
         </div>
       </div>
     </section>
-  )
-}
+  );
+};
 
 export default NewsBlock;
 
-const ContentLayout = ({ leftContent, rightContent, reverse, hasRightContent = false }) => {
+const ContentLayout = ({
+  leftContent,
+  rightContent,
+  reverse,
+  hasRightContent = false,
+}) => {
   return (
     <div className="flex flex-row flex-wrap">
       {/* Left Content */}
-      <div className={`flex-shrink max-w-full gap-2 w-full  ${hasRightContent ? 'lg:w-2/3' : ''} overflow-hidden ${reverse ? 'order-first lg:order-last' : ''}`}>
+      <div
+        className={`flex-shrink max-w-full gap-2 w-full  ${hasRightContent ? "lg:w-2/3" : ""} overflow-hidden ${reverse ? "order-first lg:order-last" : ""}`}
+      >
         {leftContent}
       </div>
 
       {/* Right Content */}
-      {
-        hasRightContent &&
-        <div className={`flex-shrink max-w-full w-full lg:w-1/3 ${reverse ? 'lg:pe-8' : 'lg:pl-8'} ${reverse ? 'order-last lg:order-first' : ''}`}>
+      {hasRightContent && (
+        <div
+          className={`flex-shrink max-w-full w-full lg:w-1/3 ${reverse ? "lg:pe-8" : "lg:pl-8"} ${reverse ? "order-last lg:order-first" : ""}`}
+        >
           {rightContent}
         </div>
-      }
-
+      )}
     </div>
   );
 };
-

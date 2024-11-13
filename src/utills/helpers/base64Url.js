@@ -1,5 +1,4 @@
 export const convertFileToBase64URL = async (file) => {
-
   const reader = new FileReader();
   // Wrap FileReader in a Promise to handle asynchronous reading
   const base64Url = await new Promise((resolve, reject) => {
@@ -9,5 +8,5 @@ export const convertFileToBase64URL = async (file) => {
     reader.onerror = (error) => reject(error); // Handle read error
     reader.readAsDataURL(file);
   });
-  return base64Url
-}
+  return base64Url;
+};

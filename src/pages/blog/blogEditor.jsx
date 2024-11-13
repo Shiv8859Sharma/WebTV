@@ -3,7 +3,7 @@ import { useParams } from "react-router-dom";
 import SectionNavigation from "@/components/sectionNavigation/sectionNavigation.index";
 import InputField from "@/components/formFields/input";
 import InitiEditorjs from "@/constants/editorjs/initializeEditorjs";
-import CustomLoader from '@/layouts/skeletonLoaders'
+import CustomLoader from "@/layouts/skeletonLoaders";
 import { useDispatch, useSelector } from "react-redux";
 import {
   setBlog,
@@ -22,7 +22,7 @@ function BlogEditor() {
   const dispatch = useDispatch();
   const formData = new FormData();
   const blogData = useSelector((state) => state.blog.blogDetails);
-  const isLoading = useSelector(state => state?.loader?.isLoading)
+  const isLoading = useSelector((state) => state?.loader?.isLoading);
 
   // Local State
   const [locationCategory, setLocationCategory] = useState([]);
@@ -42,7 +42,7 @@ function BlogEditor() {
   // Fetch data if editing an existing blog
   const fetchBlogById = async () => {
     if (id) {
-     await dispatch(fetchSingleBlog(id)); 
+      await dispatch(fetchSingleBlog(id));
     }
   };
 
@@ -50,7 +50,11 @@ function BlogEditor() {
   function appendFormData(formData, data, parentKey = "") {
     if (data && typeof data === "object" && !Array.isArray(data)) {
       Object.keys(data).forEach((key) => {
-        appendFormData(formData, data[key], parentKey ? `${parentKey}[${key}]` : key);
+        appendFormData(
+          formData,
+          data[key],
+          parentKey ? `${parentKey}[${key}]` : key
+        );
       });
     } else if (Array.isArray(data)) {
       data.forEach((value, index) => {
@@ -96,12 +100,14 @@ function BlogEditor() {
       let file = files[0];
       const fileType = file.type.startsWith("video/") ? "video" : "image";
       const fileURL = await convertFileToBase64URL(file);
-      dispatch(setBlog({
-        media: {
-          type: fileType,
-          url: fileURL,
-        },
-      }));
+      dispatch(
+        setBlog({
+          media: {
+            type: fileType,
+            url: fileURL,
+          },
+        })
+      );
     } else {
       dispatch(setBlog({ [name]: value }));
     }
@@ -113,20 +119,24 @@ function BlogEditor() {
       textarea.style.height = `${textarea.scrollHeight + 5}px`;
     }
   };
-  
-  if(isLoading){
-    return <CustomLoader name='BlogEditorFormLoader' />
+
+  if (isLoading) {
+    return <CustomLoader name="BlogEditorFormLoader" />;
   }
   return (
     <section className="container max-w-5xl mx-auto md:mt-5 pb-10 px-4">
-      <SectionNavigation 
-      title={id ? "Edit Blog" : "Create Blog"}
-       titlePosition='!text-left !mb-0'
-        titleClassname='!text-2xl'
+      <SectionNavigation
+        title={id ? "Edit Blog" : "Create Blog"}
+        titlePosition="!text-left !mb-0"
+        titleClassname="!text-2xl"
       />
 
       <div className="pt-0 bg-white p-6 rounded-lg shadow-lg">
-        <form onChange={handleSetBlog} onSubmit={handlePostOrUpdateBlog} className="space-y-6">
+        <form
+          onChange={handleSetBlog}
+          onSubmit={handlePostOrUpdateBlog}
+          className="space-y-6"
+        >
           {/* Title */}
           <div>
             <label htmlFor="title" className="text-[#17181C] font-bold ">
@@ -181,10 +191,22 @@ function BlogEditor() {
               showCheck={false}
               selected={blogData?.location_category_name}
               onSelect={async (value) => {
-                handleSetBlog({ target: { value, name: "location_category_name", type: "select" } });
+                handleSetBlog({
+                  target: {
+                    value,
+                    name: "location_category_name",
+                    type: "select",
+                  },
+                });
                 let state = value?.id ? await fetchCategory(value.id) : [];
                 setSubLocationCategoryList(state);
-                handleSetBlog({ target: { value: "", name: "location_sub_category_name", type: "select" } });
+                handleSetBlog({
+                  target: {
+                    value: "",
+                    name: "location_sub_category_name",
+                    type: "select",
+                  },
+                });
               }}
             />
           </div>
@@ -203,10 +225,14 @@ function BlogEditor() {
                 showCheck={false}
                 selected={blogData?.location_sub_category_name}
                 onSelect={async (value) => {
-                  handleSetBlog({ target: { value, name: "location_sub_category_name" } });
+                  handleSetBlog({
+                    target: { value, name: "location_sub_category_name" },
+                  });
                   let categoryList = await fetchCategory(value.id);
                   setCategoryList(categoryList);
-                  handleSetBlog({ target: { value: "", name: "category", type: "select" } });
+                  handleSetBlog({
+                    target: { value: "", name: "category", type: "select" },
+                  });
                 }}
               />
             </div>
@@ -222,7 +248,9 @@ function BlogEditor() {
                 value="name"
                 options={categoryList}
                 selected={blogData?.category}
-                onSelect={(value) => handleSetBlog({ target: { value, name: "category" } })}
+                onSelect={(value) =>
+                  handleSetBlog({ target: { value, name: "category" } })
+                }
                 placeholder="Select blog category"
                 className="w-full mt-1"
               />
@@ -231,7 +259,10 @@ function BlogEditor() {
 
           {/* Media Upload */}
           <div>
-            <label htmlFor="media" className="block text-sm font-medium text-gray-700 cursor-pointer">
+            <label
+              htmlFor="media"
+              className="block text-sm font-medium text-gray-700 cursor-pointer"
+            >
               Media
               <div className="bg-slate-500 aspect-video flex justify-center items-center text-4xl text-white mt-2 rounded-lg overflow-hidden">
                 {!blogData.media ? (

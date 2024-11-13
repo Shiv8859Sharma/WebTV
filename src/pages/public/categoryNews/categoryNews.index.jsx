@@ -11,35 +11,33 @@ const CategoryNews = () => {
   const param = useParams();
 
   const categoryName = useMemo(() => {
-    return param?.categoryName
-  }, [param?.categoryName])
+    return param?.categoryName;
+  }, [param?.categoryName]);
 
   const currentPage = useMemo(() => {
     switch (categoryName) {
-      case 'kasar-hausa':
-        return <KasarHausaNewsIndex />
-      case 'afrika':
-        return <AfrikaNewsIndex />
-      case 'duniya':
-        return <DuniyaNewsIndex />
-      case 'kasuwanci':
-        return <KasuwanciNewsIndex />
-      case 'wasanni':
-        return <WasanniNewsIndex />
-      case 'yanayi-a-yau':
-        return <Yanayi_a_yau_newsIndex />
+      case "kasar-hausa":
+        return <KasarHausaNewsIndex />;
+      case "afrika":
+        return <AfrikaNewsIndex />;
+      case "duniya":
+        return <DuniyaNewsIndex />;
+      case "kasuwanci":
+        return <KasuwanciNewsIndex />;
+      case "wasanni":
+        return <WasanniNewsIndex />;
+      case "yanayi-a-yau":
+        return <Yanayi_a_yau_newsIndex />;
       default:
-        return <div className="flex w-full h-96 justify-center items-center ">
-          <p className="text-5xl">We are working on this page</p>
-        </div>
+        return (
+          <div className="flex w-full h-96 justify-center items-center ">
+            <p className="text-5xl">We are working on this page</p>
+          </div>
+        );
     }
-  }, [categoryName])
+  }, [categoryName]);
 
-  return (
-    <main className="bg-white py-6">
-      {currentPage}
-    </main>
-  )
-}
+  return <main className="bg-white py-6">{currentPage}</main>;
+};
 
 export default memo(CategoryNews);

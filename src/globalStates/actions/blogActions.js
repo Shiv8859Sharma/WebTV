@@ -1,4 +1,10 @@
-import { CLEAR_BLOG, CREATE_A_NEW_BLOG, FETCH_ALL_BLOG, SET_BLOG, FETCH_SINGLE_BLOG } from "./actionsType";
+import {
+  CLEAR_BLOG,
+  CREATE_A_NEW_BLOG,
+  FETCH_ALL_BLOG,
+  SET_BLOG,
+  FETCH_SINGLE_BLOG,
+} from "./actionsType";
 
 export const setBlog = (blog) => ({
   type: SET_BLOG,
@@ -11,34 +17,33 @@ export const clearBlog = () => ({
 
 export const createNewBlog = (payload) => ({
   type: CREATE_A_NEW_BLOG,
-  method: 'post',
+  method: "post",
   data: payload,
   URLEndPoint: CREATE_A_NEW_BLOG,
   axiosService: true,
   toaster: {
-    loading: true
-  }
-})
+    loading: true,
+  },
+});
 
 export const fetchAllBlog = (payload) => ({
   type: FETCH_ALL_BLOG,
-  method: 'post',
+  method: "post",
   data: payload,
   URLEndPoint: FETCH_ALL_BLOG,
   axiosService: true,
   toaster: {
-    loading: true
-  }
-})
+    loading: true,
+  },
+});
 
 export const fetchSingleBlog = (payload) => ({
   type: FETCH_SINGLE_BLOG,
-  method: 'post',
+  method: "post",
   params: { id: payload },
   URLEndPoint: FETCH_SINGLE_BLOG,
   axiosService: true,
   toaster: {
-    loading: true
-  }
-})
-
+    loading: true,
+  },
+});

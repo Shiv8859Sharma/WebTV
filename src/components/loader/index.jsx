@@ -1,3 +1,3 @@
 import SpinLoader from "./spinLoader";
 
-export { SpinLoader }
+export { SpinLoader };

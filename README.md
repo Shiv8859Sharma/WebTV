@@ -1,9 +1,9 @@
-
 # WebTV
 
 **WebTV** is a web-based platform for streaming TV shows and movies. This project allows users to browse, stream, and manage their content preferences.
 
 ## Features
+
 - Stream TV shows and movies
 - Create and manage watchlists
 - Personalized recommendations
@@ -28,12 +28,15 @@
 4. Open your browser and go to `http://localhost:3000`.
 
 ## Technologies Used
+
 - **Frontend**: React.js, Tailwind, Redux
 
 ## Contributing
+
 1. Fork the repository.
 2. Create a new branch (`git checkout -b feature-name`).
 3. Push your changes and create a Pull Request.
 
 ## License
+
 This project is licensed under the MIT License.

@@ -1,11 +1,16 @@
-import { CLEAR_BLOG, FETCH_ALL_BLOG, FETCH_SINGLE_BLOG, SET_BLOG } from "../actions/actionsType";
+import {
+  CLEAR_BLOG,
+  FETCH_ALL_BLOG,
+  FETCH_SINGLE_BLOG,
+  SET_BLOG,
+} from "../actions/actionsType";
 
 const initialState = {
   title: "",
   description: "",
-  author: '',
+  author: "",
   published: "yes",
-  content: {}
+  content: {},
 };
 
 const init = {
@@ -14,22 +19,26 @@ const init = {
     title: "",
     description: "",
     author: "Anonymous",
-    location_category_name: '',
-    category: '',
-    media: '',
-    location_sub_category_name: '',
+    location_category_name: "",
+    category: "",
+    media: "",
+    location_sub_category_name: "",
     published: "yes",
-    content: {}
+    content: {},
   },
-  error: ''
-}
+  error: "",
+};
 
 const blogReducer = (state = init, action) => {
   switch (action.type) {
     case `${FETCH_ALL_BLOG}_SUCCESS`:
-      return { ...state, allBlogs: action.payload, error: '' };
+      return { ...state, allBlogs: action.payload, error: "" };
     case SET_BLOG:
-      return { ...state, blogDetails: { ...state?.blogDetails, ...action.payload }, error: '' };
+      return {
+        ...state,
+        blogDetails: { ...state?.blogDetails, ...action.payload },
+        error: "",
+      };
     case `${FETCH_ALL_BLOG}_ERROR`:
     case `${FETCH_SINGLE_BLOG}_ERROR`:
       return { ...init, error: action.payload };

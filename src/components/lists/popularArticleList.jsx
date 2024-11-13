@@ -9,8 +9,14 @@ const PopularArticlesList = ({ title = "Most Popular", articles = [] }) => {
         </div>
         <ul className="post-number">
           {articles.map((article, index) => (
-            <li key={index} className="border-b border-gray-100 hover:bg-gray-50">
-              <NavigatePage className="text-lg font-bold px-6 py-3 flex flex-row items-center" url={article.link}>
+            <li
+              key={index}
+              className="border-b border-gray-100 hover:bg-gray-50"
+            >
+              <NavigatePage
+                className="text-lg font-bold px-6 py-3 flex flex-row items-center"
+                url={article.link}
+              >
                 {article.text}
               </NavigatePage>
             </li>

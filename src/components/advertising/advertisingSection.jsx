@@ -1,7 +1,6 @@
-import ImageElement from '@/components/ImageElement';
-import image from '@/assets/image/advertisingImg.png'
+import ImageElement from "@/components/ImageElement";
+import image from "@/assets/image/advertisingImg.png";
 const AdvertisingSection = () => {
-
   return (
     <section className="w-64 bg-gray-50 relative">
       <div className="text-sm sticky top-10">
@@ -10,7 +9,7 @@ const AdvertisingSection = () => {
         </div>
       </div>
     </section>
-  )
-}
+  );
+};
 
 export default AdvertisingSection;

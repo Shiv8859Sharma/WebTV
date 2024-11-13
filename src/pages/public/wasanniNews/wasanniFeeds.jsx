@@ -1,9 +1,7 @@
-import NewsFeeds from "../../newsFeeds/newsFeeds"
+import NewsFeeds from "../../newsFeeds/newsFeeds";
 
 const WasanniNewsFeeds = () => {
-  return (
-    <NewsFeeds />
-  )
-}
+  return <NewsFeeds />;
+};
 
-export default WasanniNewsFeeds
+export default WasanniNewsFeeds;

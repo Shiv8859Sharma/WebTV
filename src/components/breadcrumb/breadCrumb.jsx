@@ -4,8 +4,8 @@ import paths from "@/routes/paths";
 
 const BreadCrumbs = ({ categoryName, subCategory }) => {
   const navigateUrl = paths.CATEGORY_NEWS(categoryName);
-  const parentCategory = categoryName.split("-").join(" ")
-  const childCategory = subCategory.split("-").join(" ")
+  const parentCategory = categoryName.split("-").join(" ");
+  const childCategory = subCategory.split("-").join(" ");
 
   return (
     <section className="container mx-auto">
