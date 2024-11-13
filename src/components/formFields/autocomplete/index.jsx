@@ -9,9 +9,8 @@ function isObject(objValue) {
 }
 
 const AutocompleteField = (props) => {
-  let { label = '', name = '', containerClass = 'flex flex-col gap-2.5', labelClass = '', options = [], defaultValue = '', errorElement = 'span', errorMessageClassName = '', title = 'name', showCheck = true } = props
+  let { label = '', name = '', placeholder='', containerClass = 'flex flex-col gap-2.5', labelClass = '', options = [], defaultValue = '', errorElement = 'span', errorMessageClassName = '', title = 'name', showCheck = true, onSelect = () => { }, selected='' } = props
 
-  const [selected, setSelected] = useState('')
   const [query, setQuery] = useState('')
   let optionsIsObject = options.length > 0 ? isObject(options[0]) : false
 
@@ -32,10 +31,10 @@ const AutocompleteField = (props) => {
       <div className="input-container">
         <div className={`${name} relative ${containerClass}`}>
           <label className={`text-[#17181C] font-bold ${labelClass}`} htmlFor={`${name}Id`}>{label}</label>
-          <Combobox value={selected || defaultValue} onChange={setSelected} name={name}>
+          <Combobox value={selected || defaultValue} placeholder={placeholder} onChange={onSelect} name={name}>
             <div className="">
               <Combobox.Button className="flex items-center pr-2 w-full">
-                <div aria-hidden="true" className="w-full px-4 py-3 border border-[#BBBDC8] rounded-full flex items-center " >
+                <div aria-hidden="true" className="w-full px-4 py-3 border border-[#BBBDC8] rounded-md flex items-center " >
 
                   <Combobox.Input
                     className="w-full outline-none bg-transparent"

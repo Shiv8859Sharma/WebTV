@@ -7,7 +7,9 @@ const NavigatePage = ({ id = '', url = '', children, className = '', type = 'nav
   const dispatch = useDispatch();
 
   const handleClick = async () => {
+    console.log("this is run", type);
     if (type === 'dispatchAction') {
+      
       await dispatch(dispatchFun);
     } else if (type === 'actionWithNavigation') {
       await dispatch(dispatchFun);

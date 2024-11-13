@@ -3,12 +3,14 @@ import ArticleMeta from '@/components/articleMeta/articleMeta';
 import ArticleHeading from '@/components/article/articleHeading';
 import ArticleTitle from '@/components/article/articleTitle';
 import { memo } from 'react';
-import NavigatePage from '../../../../components/navigatePage';
-import { PlayCircleIcon } from '@heroicons/react/16/solid';
+import NavigatePage from '@/components/navigatePage';
+import VideoPlayer from '@/components/videoPlayer/videoPlayer.index';
+import { VideoProvider } from '@/context/videoContext';
 
 const HausaNewsSection = () => {
   let articles = [
     {
+      id:'12-t-45',
       title: "Starvation in war-hit Sudan 'almost everywhere' - WHO",
       description: "The head of the UN health agency says the world's attention to Sudan is 'really low' and race is a factor.",
       imgSrc: "https://ichef.bbci.co.uk/news/480/cpsprodpb/a5a0/live/8fa1fdc0-74dc-11ef-8eeb-fb4751416701.jpg.webp",
@@ -16,6 +18,7 @@ const HausaNewsSection = () => {
       link: ''
     },
     {
+      id:'12-34-f',
       title: "Starvation in war-hit Sudan 'almost everywhere' - WHO",
       description: "The head of the UN health agency says the world's attention to Sudan is 'really low' and race is a factor.",
       imgSrc: "https://ichef.bbci.co.uk/news/480/cpsprodpb/a5a0/live/8fa1fdc0-74dc-11ef-8eeb-fb4751416701.jpg.webp",
@@ -23,6 +26,7 @@ const HausaNewsSection = () => {
       link: ''
     },
     {
+      id:'12-34-r',
       title: "Starvation in war-hit Sudan 'almost everywhere' - WHO",
       description: "The head of the UN health agency says the world's attention to Sudan is 'really low' and race is a factor.",
       imgSrc: "https://ichef.bbci.co.uk/news/480/cpsprodpb/a5a0/live/8fa1fdc0-74dc-11ef-8eeb-fb4751416701.jpg.webp",
@@ -30,6 +34,7 @@ const HausaNewsSection = () => {
       link: ''
     },
     {
+      id:'12-s-35e',
       title: "Starvation in war-hit Sudan 'almost everywhere' - WHO",
       description: "The head of the UN health agency says the world's attention to Sudan is 'really low' and race is a factor.",
       imgSrc: "https://ichef.bbci.co.uk/news/480/cpsprodpb/a5a0/live/8fa1fdc0-74dc-11ef-8eeb-fb4751416701.jpg.webp",
@@ -38,6 +43,7 @@ const HausaNewsSection = () => {
     }
   ];
   return (
+    <VideoProvider>
     <section className="container mx-auto mt-10">
       <div className="flex flex-col md:flex-row gap-6">
 
@@ -69,6 +75,7 @@ const HausaNewsSection = () => {
         </div>
       </div>
     </section>
+    </VideoProvider>
   );
 };
 
@@ -81,17 +88,15 @@ const ArticleCard = ({ article, isVideoContent = false }) => (
         <div className='relative w-full lg:w-[40%] aspect-video overflow-hidden rounded-md aspect-video'>
           {/* Video play icon for video content */}
           {
-            isVideoContent &&
-            <div className='absolute inset-0 flex items-center justify-center bg-black/40'>
-              <PlayCircleIcon className='w-12 h-12 text-white' />
-            </div>
-          }
-          {/* Image Element */}
+            isVideoContent ?
+            <VideoPlayer id={article?.id} src='http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4' />
+         :
           <ImageElement
             className="w-full h-full object-cover rounded-md"
             src={article?.imgSrc || 'default-image.jpg'}
             alt={article?.title || 'article image'}
           />
+          }
         </div>
 
         {/* Article Content */}

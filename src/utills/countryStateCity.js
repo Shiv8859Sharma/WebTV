@@ -1,5 +1,18 @@
-import { Country } from 'country-state-city';
+import {
+  GetCountries,
+  GetState,
+  GetRegions
+} from "react-country-state-city";
 
-const countryList = Country.getAllCountries().map((country, index) => ({ ...country, id: index + 1 }))
+
+const countryList = await GetCountries().then((result) => {
+  return result
+});
+
+export const getStatesList =  (countryCode) => {
+  return GetState(countryCode).then((result) => {
+    return result
+  });
+};
 
 export default countryList

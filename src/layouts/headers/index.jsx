@@ -9,11 +9,11 @@ const Header = () => {
   const dispatch = useDispatch()
   useEffect(() => {
     if (role) {
-      dispatch(getCurrentUserDatails())
+      // dispatch(getCurrentUserDatails())
     }
   }, [role, dispatch])
   return (
-    role === 'Admin' ?
+    role === 'admin' ?
       <AdminHeader />
       : <LandingPageHeader />
   )

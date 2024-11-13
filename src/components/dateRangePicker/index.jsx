@@ -5,7 +5,7 @@ import { DateRange } from 'react-date-range';
 import { Popover, PopoverButton, PopoverPanel, Transition } from '@headlessui/react';
 import 'react-date-range/dist/styles.css';
 import 'react-date-range/dist/theme/default.css';
-import formatDate from '../../utills/formatDate';
+import formatDate from '@/utills/formatDate';
 import { ChevronDownIcon } from '@heroicons/react/20/solid';
 import { GradientButton, OutlineButton } from '@/components/buttons';
 // import { Placeholder } from 'react-select/animated';

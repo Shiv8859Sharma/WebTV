@@ -1,6 +1,5 @@
-import NumberWiseArticleCard from "@/components/cards/numberWiseArticleCard";
-import Pagination from "@/components/pagination/paginationUI";
-import VideoPlayer from "../../../../components/videoPlayer/videoPlayer.index";
+import VideoPlayer from "@/components/videoPlayer/videoPlayer.index";
+import { VideoProvider } from "@/context/videoContext";
 
 
 const WasaHeroSection = ({ currentTab = '' }) => {
@@ -44,16 +43,18 @@ const WasaHeroSection = ({ currentTab = '' }) => {
                   </h2>
                 </div>
               </div>
-              : mainArticle[currentTab]?.videoSrc ?  <div className="relative">
+              : mainArticle[currentTab]?.videoSrc ? <div className="relative">
                 {/* <video
                   className="w-full h-[32rem]  aspect-video object-cover"
                   controls
                   src={mainArticle[currentTab]?.videoSrc}
                 >
                 </video> */}
-                <VideoPlayer src={mainArticle[currentTab]?.videoSrc} />
+                <VideoProvider>
+                  <VideoPlayer src={mainArticle[currentTab]?.videoSrc} />
+                </VideoProvider>
               </div>
-               : null
+                : null
           }
 
         </div>

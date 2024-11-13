@@ -8,7 +8,7 @@ import { AdminRoutes, PublicRoutes } from './routes';
 
 function getRoutes(type) {
   switch (type) {
-    case 'Admin':
+    case 'admin':
       return { ...AdminRoutes };
     default:
       return { ...PublicRoutes };

@@ -15,7 +15,7 @@ function App() {
 
   return (
     <div className="relative w-full h-full font-sans">
-      <RouterProvider router={router} />
+        <RouterProvider router={router} />
     </div>
   );
 }

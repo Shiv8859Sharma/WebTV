@@ -1,6 +1,10 @@
 import React, { memo } from "react";
+import BlogEditorFormLoader from "./blogSkeletonLoader/BlogEditorFormLoader";
+import BlogEditorViewLoader from "./blogSkeletonLoader/BlogEditorViewLoader";
 
 const componentMap = {
+  BlogEditorFormLoader: BlogEditorFormLoader,
+  BlogEditorViewLoader: BlogEditorViewLoader
 };
 
 const CustomLoader = ({ count, name, ...rest }) => {

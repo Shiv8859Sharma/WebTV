@@ -1,7 +1,7 @@
 
 const paths = {
 	HOME: '/',
-
+	LOGIN: '/login',
 	// Main category route
 	CATEGORY_NEWS: (categoryName = ':categoryName') => `/news/${categoryName}`,
 
@@ -14,6 +14,11 @@ const paths = {
 			? `/article/${categoryName}/${subCategory}/${slug}`
 			: `/article/${categoryName}/${slug}`;
 	},
+
+	// admin routes
+	CREATE_BLOG: '/create-blog',
+	VIEW_BLOG: (id = ':id') => `/view-blog/${id}`,
+	EDIT_BLOG: (id = ':id') => `/edit-blog/${id}`
 };
 
 

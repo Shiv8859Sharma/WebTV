@@ -1,8 +1,10 @@
 import { PauseIcon, PlayIcon, SpeakerWaveIcon, SpeakerXMarkIcon } from '@heroicons/react/24/solid';
 import React, { useRef, useState, useCallback, useEffect } from 'react';
 import './videoPlayer.style.css';
+import { useVideoContext } from '@/context/videoContext';
 
-const VideoPlayer = ({ src }) => {
+const VideoPlayer = ({ src, id }) => {
+  const { activeVideoId, setActiveVideoId } = useVideoContext();
   const videoRef = useRef(null);
   const [state, setState] = useState({
     isPlaying: false,
@@ -14,6 +16,9 @@ const VideoPlayer = ({ src }) => {
   });
 
   const handlePlayPause = useCallback(() => {
+    if(id && (id !== activeVideoId)){
+      setActiveVideoId(id)
+    }
     if (videoRef.current.paused) {
       videoRef.current.play();
       setState(prevState => ({ ...prevState, isPlaying: true }));
@@ -22,6 +27,13 @@ const VideoPlayer = ({ src }) => {
       setState(prevState => ({ ...prevState, isPlaying: false }));
     }
   }, []);
+
+  useEffect(() => {
+    if(id && (id !== activeVideoId)){
+      videoRef.current.pause();
+      setState(prevState => ({ ...prevState, isPlaying: false }));
+    }
+  },[id, activeVideoId])
 
   const handleVolumeChange = (e) => {
     const newVolume = parseFloat(e.target.value);

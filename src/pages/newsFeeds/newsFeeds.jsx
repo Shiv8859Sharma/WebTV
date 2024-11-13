@@ -1,7 +1,7 @@
 import ImageElement from '@/components/ImageElement';
-import NavigatePage from '../../components/navigatePage';
-import TimeAgo from '../../components/timeAgo';
-import staticData from '../../static/staticData.json'
+import NavigatePage from '@/components/navigatePage';
+import TimeAgo from '@/components/timeAgo';
+import staticData from '@/static/staticData.json'
 
 const NewsFeeds = () => {
 

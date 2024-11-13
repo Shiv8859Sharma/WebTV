@@ -1,5 +1,5 @@
 import NumberWiseArticleCard from "@/components/cards/numberWiseArticleCard";
-import Pagination from "../../../components/pagination/paginationUI";
+import Pagination from "@/components/pagination/paginationUI";
 
 
 const KasarHausaStateHeroSection = ({ currentTab = '' }) => {

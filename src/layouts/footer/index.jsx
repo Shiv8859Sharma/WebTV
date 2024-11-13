@@ -1,7 +1,7 @@
 import { memo } from 'react';
 import { Link } from 'react-router-dom';
-import NavigatePage from '../../components/navigatePage';
-import paths from '../../routes/paths';
+import NavigatePage from '@/components/navigatePage';
+import paths from '@/routes/paths';
 let defaultProps = {
   companyName: 'Bakandamiya TV',
   socialLinks: [

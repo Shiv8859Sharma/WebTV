@@ -3,7 +3,7 @@ import NavigatePage from '../navigatePage';
 import { ChevronLeftIcon, ChevronRightIcon } from '@heroicons/react/16/solid';
 import { Menu, MenuButton, MenuItem, MenuItems } from '@headlessui/react';
 
-const SectionNavigation = ({ title, categories = [], showCategory = false, as = '', isActive='', onChangeTab=() => {} }) => {
+const SectionNavigation = ({ title, titlePosition = '', titleClassname = 'text-5xl font-light capitalize', categories = [], showCategory = false, as = '', isActive = '', onChangeTab = () => { } }) => {
   // Scroll functions for the navigation bar (if required)
   const scrollLeft = () => {
     const nav = document.querySelector('.nav-scroll');
@@ -18,19 +18,18 @@ const SectionNavigation = ({ title, categories = [], showCategory = false, as = 
   return (
     <section className="container mx-auto py-6">
       {/* Section Header */}
-      <div className="text-center mb-6">
-        <h1 className="text-5xl font-light capitalize">{title}</h1>
+      <div className={`text-center mb-6 ${titlePosition}`}>
+        <h1 className={` ${titleClassname}`}>{title}</h1>
       </div>
-
       {/* Navigation Bar */}
-      <div className="flex justify-center items-center border-b border-gray-300 mb-6">
-        {/* Left Scroll Arrow */}
-        <button className="flex md:hidden p-2" onClick={scrollLeft}>
-          <ChevronLeftIcon className='w-7 h-7' />
-        </button>
+      {showCategory &&
+        <div className="flex justify-center items-center border-b border-gray-300 mb-6">
+          {/* Left Scroll Arrow */}
+          <button className="flex md:hidden p-2" onClick={scrollLeft}>
+            <ChevronLeftIcon className='w-7 h-7' />
+          </button>
 
-        {/* Navigation Menu */}
-        {showCategory &&
+
           <nav className="nav-scroll flex space-x-6  overflow-x-auto scrollbar-hide">
             <ul className="flex space-x-6 py-2">
               {categories.map((category, index) => (
@@ -64,12 +63,13 @@ const SectionNavigation = ({ title, categories = [], showCategory = false, as = 
               ))}
             </ul>
           </nav>
-        }
-        {/* Right Scroll Arrow */}
-        <button className="flex md:hidden p-2" onClick={scrollRight}>
-          <ChevronRightIcon className='w-7 h-7' />
-        </button>
-      </div>
+          {/* Right Scroll Arrow */}
+          <button className="flex md:hidden p-2" onClick={scrollRight}>
+            <ChevronRightIcon className='w-7 h-7' />
+          </button>
+        </div>
+      }
+
     </section>
   );
 };

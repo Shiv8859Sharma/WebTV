@@ -23,7 +23,7 @@ export const loginUser = (payload) => ({
 
 export const logOutUser = () => ({
   type: 'LOGOUT',
-  method: "delete",
+  method: "post",
   URLEndPoint: 'LOGOUT',
   axiosService: true,
   toaster: {

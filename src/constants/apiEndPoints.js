@@ -1,6 +1,10 @@
 const apiEndPoint = {
-  LOGIN: '/login',
-  LOGOUT: '/logout',
+  LOGIN: '/auth/signin',
+  LOGOUT: '/auth/signout',
+  CREATE_A_NEW_BLOG: '/article/create',
+  FETCH_CATEGORY_LIST: '/general/category/',
+  FETCH_ALL_BLOG: '/article/all',
+  FETCH_SINGLE_BLOG: '/fetch/article/'
 }
 
 export default apiEndPoint

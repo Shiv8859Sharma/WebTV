@@ -52,7 +52,7 @@ const SelectField = (props) => {
       <div className="input-container">
         <div className={`${name} flex flex-col gap-2.5 ${containerClass}`}>
           <label className={`text-[#17181C] font-bold text-nowrap ${labelClass}`} htmlFor={`${name}Id`}>{label}</label>
-          <div aria-hidden="true" className={`border px-4 border-[#BBBDC8] rounded-full flex gap-2 items-center min-w-max ${inputContainerClass}`} >
+          <div aria-hidden="true" className={`border px-4 border-[#BBBDC8] rounded-md flex gap-2 items-center min-w-max ${inputContainerClass}`} >
             {
               leftIcon && (
                 <div className={`w-[1.5rem] ${leftIconClass}`}>

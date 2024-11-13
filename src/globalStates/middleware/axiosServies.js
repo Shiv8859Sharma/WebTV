@@ -1,7 +1,7 @@
 import axios from "axios";
 import { REACT_APP_BASE_URL } from "@/constants/common";
 import { loaderStart, loaderStop } from "@/globalStates/actions/loaderAction";
-import apiEndPoint from "../../constants/apiEndPoints";
+import apiEndPoint from "@/constants/apiEndPoints";
 import { removeAuthToken } from "@/globalStates/actions/authAction";
 
 const randomId = () => {
@@ -87,6 +87,7 @@ const getAxiosProps = (apiDetails, token) => {
         headers: {
             "Authorization": token,
             "content-type": "application/json",
+            "ngrok-skip-browser-warning": "69420",
             'Accept': "application/json",
             ...header
         }
