@@ -6,6 +6,7 @@ import ScrollToTopOnRouteChange from "../constants/ScrollToTopOnRouteChange";
 import SideBar from "./sideBars/sidebar.index";
 import logo from "@/assets/webp/logo.webp";
 import slogan from "@/assets/webp/slogan.webp";
+import PopupComponent from "@/components/popUp/popup.index";
 
 const layout = ({ userType }) => {
   const contentLayoutRef = useRef(null);
@@ -74,7 +75,9 @@ const layout = ({ userType }) => {
             {/* Grid Layout */}
             <div className={`grid grid-rows-[auto_1fr_auto] h-full`}>
               {/* Main Content Row */}
-              <div className={`grid grid-cols-1 md:grid-cols-[auto_1fr] gap-4`}>
+              <div
+                className={`grid ${showSidebar ? "grid-cols-1 md:grid-cols-[auto_1fr]" : ""} gap-4`}
+              >
                 {/* Sidebar (Visible on larger screens only if showSidebar is true) */}
                 {showSidebar && (
                   <div className="hidden md:block bg-gray-200 min-w-[200px] lg:min-w-[250px] xl:min-w-[300px]">
@@ -93,6 +96,9 @@ const layout = ({ userType }) => {
               </div>
             </div>
           </div>
+        </div>
+        <div>
+          <PopupComponent />
         </div>
       </Suspense>
     </div>

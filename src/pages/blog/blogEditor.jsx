@@ -17,7 +17,6 @@ import TextAreaField from "@/components/formFields/textarea";
 import { convertFileToBase64URL } from "@/utills/helpers/base64Url";
 import { fetchLocationCategory } from "@/globalStates/actions/cateGoryAction";
 import { FETCH_SINGLE_BLOG } from "@/globalStates/actions/actionsType";
-import Alert from "../../components/alert/alertMessage";
 
 function BlogEditor() {
   const { id } = useParams(); // Get blog ID from URL if editing
@@ -28,7 +27,6 @@ function BlogEditor() {
   const isError = useSelector(
     (state) => state.blog?.error?.response?.data?.error
   );
-  const isblogUpdated = useSelector((state) => state.blog?.success);
 
   const { loadingArray } = useSelector((state) => state?.loader);
   let isLoading = loadingArray?.filter(
@@ -90,14 +88,6 @@ function BlogEditor() {
     return () => dispatch(clearBlog()); // Clear form data on unmount
   }, [id, dispatch]);
 
-  useEffect(() => {
-    if (isblogUpdated) {
-      setTimeout(() => {
-        navigate("/");
-      }, 3000);
-    }
-  }, [isblogUpdated, dispatch]);
-
   // Handle posting or updating the blog
   async function handlePostOrUpdateBlog(e) {
     e.preventDefault();
@@ -108,9 +98,11 @@ function BlogEditor() {
     if (id) {
       // Update an existing blog
       await dispatch(updateExistingBlog(id, formData));
+      navigate("/");
     } else {
       // Create a new blog
       await dispatch(createNewBlog(formData));
+      navigate("/");
     }
   }
 
@@ -152,10 +144,6 @@ function BlogEditor() {
         titlePosition="!text-left !mb-0"
         titleClassname="!text-2xl"
       />
-      {/* {
-        isError && <p className="error-container text-red-700 font-medium text-md border border-red-700 rounded-md p-3">Something went wrong!</p>
-      } */}
-      <Alert show={isError} type="error" message="Something went wrong!" />
 
       <div className="pt-0 bg-white p-6 rounded-lg shadow-lg">
         <form
@@ -322,12 +310,6 @@ function BlogEditor() {
           <div>
             <InitiEditorjs />
           </div>
-
-          <Alert
-            show={isblogUpdated}
-            type="success"
-            message="Blog updated successfully!"
-          />
 
           {/* Submit Button */}
           <button

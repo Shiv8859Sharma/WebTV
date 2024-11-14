@@ -11,10 +11,10 @@ const AdminSidebar = () => {
 };
 
 const SidebarItem = ({ label, url }) => (
-  <div className="p-2.5 mt-3 flex items-center px-4 duration-300 cursor-pointer hover:bg-blue-600 text-white">
+  <div className="mt-3 flex items-center  duration-300 cursor-pointer hover:bg-blue-600 text-white">
     <NavigatePage
       url={url}
-      className="text-[15px] ml-4 text-gray-200 font-bold"
+      className="text-[15px] p-2.5 px-4 w-full text-left text-gray-200 font-bold"
     >
       {label}
     </NavigatePage>

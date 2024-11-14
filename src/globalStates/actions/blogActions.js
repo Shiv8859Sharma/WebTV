@@ -5,6 +5,7 @@ import {
   SET_BLOG,
   FETCH_SINGLE_BLOG,
   UPDATE_SINGLE_BLOG,
+  DELETE_SINGLE_BLOG,
 } from "./actionsType";
 
 import apiEndPoint from "@/constants/apiEndPoints";
@@ -49,12 +50,24 @@ export const fetchSingleBlog = (payload) => ({
     loading: true,
   },
 });
+
 export const updateExistingBlog = (id, payload) => ({
   type: UPDATE_SINGLE_BLOG,
   method: "PUT",
   url: apiEndPoint.FETCH_SINGLE_BLOG(id),
   data: payload,
   axiosService: true,
+  toaster: {
+    loading: true,
+  },
+});
+
+export const deleteExistingBlog = (id) => ({
+  type: DELETE_SINGLE_BLOG,
+  method: "DELETE",
+  url: apiEndPoint.FETCH_SINGLE_BLOG(id),
+  axiosService: true,
+  withResponseReturnData: { id },
   toaster: {
     loading: true,
   },

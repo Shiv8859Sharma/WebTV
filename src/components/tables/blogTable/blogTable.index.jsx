@@ -6,7 +6,7 @@ import paths from "@/routes/paths";
 import CustomLoader from "@/layouts/skeletonLoaders";
 import Pagination from "../../pagination/paginationUI";
 
-const BlogTable = ({ blogs = [], isLoading = false }) => {
+const BlogTable = ({ blogs = [], isLoading = false, onDelete }) => {
   if (blogs.length === 0 && !isLoading) {
     return (
       <NoDataFoundMessage message="No blogs available. Please add a new article." />
@@ -62,9 +62,13 @@ const BlogTable = ({ blogs = [], isLoading = false }) => {
                       >
                         <PencilIcon className="w-4 h-4 md:w-5 md:h-5" />
                       </NavigatePage>
-                      <button className="text-red-500 hover:text-red-700 transition-colors duration-150">
+                      <NavigatePage
+                        type="dispatchAction"
+                        dispatchFun={() => onDelete(blog.id)}
+                        className="text-red-500 hover:text-red-700 transition-colors duration-150"
+                      >
                         <TrashIcon className="w-4 h-4 md:w-5 md:h-5" />
-                      </button>
+                      </NavigatePage>
                     </div>
                   </td>
                 </tr>
