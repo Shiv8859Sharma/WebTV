@@ -6,6 +6,7 @@ import { fetchAllBlog } from "@/globalStates/actions/blogActions";
 
 const AdminHomePage = () => {
   const allBlogs = useSelector((state) => state.blog.allBlogs);
+  const isLoading = useSelector((state) => state?.loader?.isLoading);
   const dispatch = useDispatch();
 
   useLayoutEffect(() => {
@@ -26,7 +27,7 @@ const AdminHomePage = () => {
         titlePosition="!text-left !mb-0"
         titleClassname="!text-2xl"
       />
-      <BlogTable blogs={allBlogs} />
+      <BlogTable blogs={allBlogs} isLoading={isLoading} />
     </section>
   );
 };

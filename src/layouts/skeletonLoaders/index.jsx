@@ -1,10 +1,12 @@
 import React, { memo } from "react";
 import BlogEditorFormLoader from "./blogSkeletonLoader/BlogEditorFormLoader";
 import BlogEditorViewLoader from "./blogSkeletonLoader/BlogEditorViewLoader";
+import TableBodyLoader from "./tableSkeletonLoader/tableBodyLoader";
 
 const componentMap = {
   BlogEditorFormLoader: BlogEditorFormLoader,
   BlogEditorViewLoader: BlogEditorViewLoader,
+  TableBodyLoader: TableBodyLoader,
 };
 
 const CustomLoader = ({ count, name, ...rest }) => {

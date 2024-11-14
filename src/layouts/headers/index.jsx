@@ -2,7 +2,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { lazy, useEffect } from "react";
 import LandingPageHeader from "./LandingPageHeader";
 const AdminHeader = lazy(() => import("./AdminHeader"));
-import { getCurrentUserDatails } from "@/globalStates/actions/userAction";
+// import { getCurrentUserDatails } from "@/globalStates/actions/userAction";
 
 const Header = () => {
   const { role } = useSelector((state) => state.auth);

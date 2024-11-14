@@ -178,6 +178,7 @@ const AxiosService =
       } catch (axiosError) {
         let errorResponse = "";
         if (error) {
+          if (axiosError?.message === "canceled") return;
           const getErrors = [
             "Invalid user",
             "Signature has expired",

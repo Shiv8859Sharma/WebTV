@@ -4,7 +4,10 @@ import {
   FETCH_ALL_BLOG,
   SET_BLOG,
   FETCH_SINGLE_BLOG,
+  UPDATE_SINGLE_BLOG,
 } from "./actionsType";
+
+import apiEndPoint from "@/constants/apiEndPoints";
 
 export const setBlog = (blog) => ({
   type: SET_BLOG,
@@ -28,7 +31,7 @@ export const createNewBlog = (payload) => ({
 
 export const fetchAllBlog = (payload) => ({
   type: FETCH_ALL_BLOG,
-  method: "post",
+  method: "POST",
   data: payload,
   URLEndPoint: FETCH_ALL_BLOG,
   axiosService: true,
@@ -39,9 +42,18 @@ export const fetchAllBlog = (payload) => ({
 
 export const fetchSingleBlog = (payload) => ({
   type: FETCH_SINGLE_BLOG,
-  method: "post",
-  params: { id: payload },
-  URLEndPoint: FETCH_SINGLE_BLOG,
+  method: "GET",
+  url: apiEndPoint.FETCH_SINGLE_BLOG(payload),
+  axiosService: true,
+  toaster: {
+    loading: true,
+  },
+});
+export const updateExistingBlog = (id, payload) => ({
+  type: UPDATE_SINGLE_BLOG,
+  method: "PUT",
+  url: apiEndPoint.FETCH_SINGLE_BLOG(id),
+  data: payload,
   axiosService: true,
   toaster: {
     loading: true,

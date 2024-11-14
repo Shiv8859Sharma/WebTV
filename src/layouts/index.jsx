@@ -58,27 +58,40 @@ const layout = ({ userType }) => {
   return (
     <div className="h-full w-full overflow-hidden">
       <Suspense fallback={<InitialLoader />}>
-        <div className={headerHeight}>
+        {/* Header */}
+        <div className={`${headerHeight} bg-gray-100 shadow-md`}>
           <Headers />
         </div>
 
-        <div className={`${contentHeight} w-full min-h-40`}>
+        {/* Main Content Area */}
+        <div className={`${contentHeight} w-full min-h-96`}>
           <div
             ref={contentLayoutRef}
             className="h-full overflow-x-auto scrollbar"
           >
             <ScrollToTopOnRouteChange contentLayout={contentLayoutRef} />
 
-            <div className={showSidebar ? "flex gap-2" : ""}>
-              {showSidebar && (
-                <div>
-                  <SideBar />
-                </div>
-              )}
-              <Outlet />
-            </div>
+            {/* Grid Layout */}
+            <div className={`grid grid-rows-[auto_1fr_auto] h-full`}>
+              {/* Main Content Row */}
+              <div className={`grid grid-cols-1 md:grid-cols-[auto_1fr] gap-4`}>
+                {/* Sidebar (Visible on larger screens only if showSidebar is true) */}
+                {showSidebar && (
+                  <div className="hidden md:block bg-gray-200 min-w-[200px] lg:min-w-[250px] xl:min-w-[300px]">
+                    <SideBar />
+                  </div>
+                )}
 
-            <Footer companyName="Bakandamiya TV" />
+                {/* Main Content */}
+                <div className="bg-white shadow-lg p-4 rounded-lg overflow-auto">
+                  <Outlet />
+                </div>
+              </div>
+              {/* Footer */}
+              <div className="bg-gray-100 relative">
+                <Footer companyName="Bakandamiya TV" />
+              </div>
+            </div>
           </div>
         </div>
       </Suspense>

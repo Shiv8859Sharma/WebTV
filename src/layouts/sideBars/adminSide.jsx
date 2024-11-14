@@ -3,7 +3,7 @@ import paths from "@/routes/paths";
 
 const AdminSidebar = () => {
   return (
-    <aside className="sidebar  min-h-[calc(100vh-54.4dvh)] h-full lg:left-0 p-2 w-[300px] overflow-y-auto scrollbar text-center bg-gray-900">
+    <aside className="sidebar fixed top-36  min-h-[calc(100vh-54.4dvh)] h-full lg:left-0 p-2 w-[300px] overflow-y-auto scrollbar text-center bg-gray-900">
       <SidebarItem label="Home" url={paths.HOME} />
       <SidebarItem label="Create blog" url={paths.CREATE_BLOG} />
     </aside>

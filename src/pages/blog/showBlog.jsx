@@ -16,10 +16,10 @@ function ViewBlog() {
   let {
     title = "Sample Blog Title",
     description = "This is a sample blog description.",
-    author_name = "Author Name",
-    category = "Category",
-    country_name = "Country",
-    state_name = "State",
+    // author_name = "Author Name",
+    // category = "Category",
+    // country_name = "Country",
+    // state_name = "State",
     media,
     content = {},
   } = blogDetails;
@@ -50,7 +50,7 @@ function ViewBlog() {
       {/* Blog Section */}
       <section className="container max-w-5xl mx-auto mt-10 p-6 bg-white shadow-lg rounded-lg blog-container">
         {/* Blog Title */}
-        <h1 className="text-3xl font-bold text-gray-800 mb-4">{title}</h1>
+        <h1 className="text-5xl font-bold text-gray-800 mb-4">{title}</h1>
 
         {/* Blog Metadata */}
         {/* <div className="flex items-center space-x-4 text-sm text-gray-500 mb-6">
@@ -72,9 +72,9 @@ function ViewBlog() {
               />
             ) : (
               <ImageElement
-                src={media?.file}
+                src={media?.url}
                 alt="Blog media"
-                className="w-full h-auto rounded-lg"
+                className="w-full h-auto rounded-lg aspect-video object-cover"
                 loading="lazy" // Implement lazy loading for images
               />
             )}
@@ -82,7 +82,7 @@ function ViewBlog() {
         )}
 
         {/* Blog Content */}
-        <div className="my-10">
+        <div className="my-10 mx-7">
           {content?.blocks?.map((block, index) => {
             switch (block.type) {
               case "header":
@@ -108,13 +108,7 @@ function ViewBlog() {
 const Header = ({ block }) => {
   const { level, text } = block.data;
   const headingClass = `font-bold my-4 ${
-    level === 1
-      ? "text-5xl"
-      : level === 2
-        ? "text-4xl"
-        : level === 3
-          ? "text-3xl"
-          : "text-2xl"
+    level === 2 ? "text-4xl" : level === 3 ? "text-3xl" : "text-2xl"
   }`;
 
   return (
@@ -159,9 +153,9 @@ const ImageBlock = ({ block }) => {
   return (
     <div className="my-4">
       <ImageElement
-        src={block.data.file.image}
+        src={block.data.file.url}
         alt="Blog image"
-        className="w-full rounded-lg"
+        className="w-full rounded-lg aspect-video object-cover"
         loading="lazy"
       />
       {block.data.caption && (

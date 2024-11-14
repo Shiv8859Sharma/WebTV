@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import SectionNavigation from "@/components/sectionNavigation/sectionNavigation.index";
 import InputField from "@/components/formFields/input";
 import InitiEditorjs from "@/constants/editorjs/initializeEditorjs";
@@ -8,7 +8,7 @@ import { useDispatch, useSelector } from "react-redux";
 import {
   setBlog,
   createNewBlog,
-  // updateExistingBlog,
+  updateExistingBlog,
   fetchSingleBlog,
   clearBlog,
 } from "@/globalStates/actions/blogActions";
@@ -16,13 +16,24 @@ import AutocompleteField from "@/components/formFields/autocomplete";
 import TextAreaField from "@/components/formFields/textarea";
 import { convertFileToBase64URL } from "@/utills/helpers/base64Url";
 import { fetchLocationCategory } from "@/globalStates/actions/cateGoryAction";
+import { FETCH_SINGLE_BLOG } from "@/globalStates/actions/actionsType";
+import Alert from "../../components/alert/alertMessage";
 
 function BlogEditor() {
   const { id } = useParams(); // Get blog ID from URL if editing
   const dispatch = useDispatch();
+  const navigate = useNavigate();
   const formData = new FormData();
   const blogData = useSelector((state) => state.blog.blogDetails);
-  const isLoading = useSelector((state) => state?.loader?.isLoading);
+  const isError = useSelector(
+    (state) => state.blog?.error?.response?.data?.error
+  );
+  const isblogUpdated = useSelector((state) => state.blog?.success);
+
+  const { loadingArray } = useSelector((state) => state?.loader);
+  let isLoading = loadingArray?.filter(
+    (loader) => loader.type === FETCH_SINGLE_BLOG
+  ).length;
 
   // Local State
   const [locationCategory, setLocationCategory] = useState([]);
@@ -79,14 +90,24 @@ function BlogEditor() {
     return () => dispatch(clearBlog()); // Clear form data on unmount
   }, [id, dispatch]);
 
+  useEffect(() => {
+    if (isblogUpdated) {
+      setTimeout(() => {
+        navigate("/");
+      }, 3000);
+    }
+  }, [isblogUpdated, dispatch]);
+
   // Handle posting or updating the blog
   async function handlePostOrUpdateBlog(e) {
     e.preventDefault();
     await appendFormData(formData, blogData);
 
+    if (isError) return;
+
     if (id) {
       // Update an existing blog
-      // await dispatch(updateExistingBlog(id, formData));
+      await dispatch(updateExistingBlog(id, formData));
     } else {
       // Create a new blog
       await dispatch(createNewBlog(formData));
@@ -123,6 +144,7 @@ function BlogEditor() {
   if (isLoading) {
     return <CustomLoader name="BlogEditorFormLoader" />;
   }
+
   return (
     <section className="container max-w-5xl mx-auto md:mt-5 pb-10 px-4">
       <SectionNavigation
@@ -130,12 +152,16 @@ function BlogEditor() {
         titlePosition="!text-left !mb-0"
         titleClassname="!text-2xl"
       />
+      {/* {
+        isError && <p className="error-container text-red-700 font-medium text-md border border-red-700 rounded-md p-3">Something went wrong!</p>
+      } */}
+      <Alert show={isError} type="error" message="Something went wrong!" />
 
       <div className="pt-0 bg-white p-6 rounded-lg shadow-lg">
         <form
           onChange={handleSetBlog}
           onSubmit={handlePostOrUpdateBlog}
-          className="space-y-6"
+          className={`space-y-6 ${isError ? "pointer-events-none" : ""}`}
         >
           {/* Title */}
           <div>
@@ -266,7 +292,7 @@ function BlogEditor() {
               Media
               <div className="bg-slate-500 aspect-video flex justify-center items-center text-4xl text-white mt-2 rounded-lg overflow-hidden">
                 {!blogData.media ? (
-                  <div>Select Image or Video</div>
+                  <div>Select cover Image or Video</div>
                 ) : blogData.media.type === "video" ? (
                   <video
                     controls
@@ -296,6 +322,12 @@ function BlogEditor() {
           <div>
             <InitiEditorjs />
           </div>
+
+          <Alert
+            show={isblogUpdated}
+            type="success"
+            message="Blog updated successfully!"
+          />
 
           {/* Submit Button */}
           <button

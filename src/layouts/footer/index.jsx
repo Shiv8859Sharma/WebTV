@@ -2,6 +2,7 @@ import { memo } from "react";
 import { Link } from "react-router-dom";
 import NavigatePage from "@/components/navigatePage";
 import paths from "@/routes/paths";
+import { useSelector } from "react-redux";
 let defaultProps = {
   companyName: "Bakandamiya TV",
   socialLinks: [
@@ -107,6 +108,8 @@ const Footer = ({
   footerLinks = defaultProps?.footerLinks,
   copyright = defaultProps?.copyright,
 }) => {
+  const { role } = useSelector((state) => state.auth);
+
   return (
     <footer className="bg-black text-gray-400">
       {/* Footer content */}
@@ -145,36 +148,42 @@ const Footer = ({
             {/* Footer Navigation */}
             <div className="flex-shrink max-w-full w-full lg:w-3/5 px-3">
               <div className="flex flex-wrap flex-row">
-                {footerLinks.map((section, idx) => (
-                  <div
-                    key={idx}
-                    className="flex-shrink max-w-full w-1/2 md:w-1/4 mb-6 lg:mb-0"
-                  >
-                    <h4 className="text-base leading-normal mb-3 uppercase text-gray-100">
-                      {section.title}
-                    </h4>
-                    <ul>
-                      {section.links.map((link, linkIdx) => (
-                        <li key={linkIdx} className="py-1 hover:text-white">
-                          {link.isExternal ? (
-                            <NavigatePage
-                              url={link.href}
-                              title={link.label}
-                              target="_blank"
-                              rel="noopener noreferrer"
-                            >
-                              {link.label}
-                            </NavigatePage>
-                          ) : (
-                            <Link to={link.href} title={link.label}>
-                              {link.label}
-                            </Link>
-                          )}
-                        </li>
-                      ))}
-                    </ul>
-                  </div>
-                ))}
+                {footerLinks.map((section, idx) => {
+                  let sectionLinks = section.links.filter((link) =>
+                    role ? link.label !== "Shiga" : link
+                  );
+
+                  return (
+                    <div
+                      key={idx}
+                      className="flex-shrink max-w-full w-1/2 md:w-1/4 mb-6 lg:mb-0"
+                    >
+                      <h4 className="text-base leading-normal mb-3 uppercase text-gray-100">
+                        {section.title}
+                      </h4>
+                      <ul>
+                        {sectionLinks.map((link, linkIdx) => (
+                          <li key={linkIdx} className="py-1 hover:text-white">
+                            {link.isExternal ? (
+                              <NavigatePage
+                                url={link.href}
+                                title={link.label}
+                                target="_blank"
+                                rel="noopener noreferrer"
+                              >
+                                {link.label}
+                              </NavigatePage>
+                            ) : (
+                              <Link to={link.href} title={link.label}>
+                                {link.label}
+                              </Link>
+                            )}
+                          </li>
+                        ))}
+                      </ul>
+                    </div>
+                  );
+                })}
               </div>
             </div>
           </div>

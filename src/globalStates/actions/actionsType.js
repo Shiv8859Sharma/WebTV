@@ -10,3 +10,4 @@ export const SET_BLOG = "SET_BLOG";
 export const CLEAR_BLOG = "CLEAR_BLOG";
 export const FETCH_ALL_BLOG = "FETCH_ALL_BLOG";
 export const FETCH_SINGLE_BLOG = "FETCH_SINGLE_BLOG";
+export const UPDATE_SINGLE_BLOG = "UPDATE_SINGLE_BLOG";
