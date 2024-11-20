@@ -1,9 +1,9 @@
-import React, { createContext, useState, useContext } from "react";
+// VideoProvider.js
+import React, { createContext, useState } from "react";
 
 // Create the context
 const VideoContext = createContext();
 
-// Context provider component
 export const VideoProvider = ({ children }) => {
   const [activeVideoId, setActiveVideoId] = useState(null);
 
@@ -14,7 +14,5 @@ export const VideoProvider = ({ children }) => {
   );
 };
 
-// Custom hook to use video context
-export const useVideoContext = () => {
-  return useContext(VideoContext);
-};
+// Export the context itself for use in other files
+export { VideoContext };

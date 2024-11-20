@@ -36,6 +36,7 @@ function ViewBlog() {
   useEffect(() => {
     if (id) fetchBlogById();
     return () => dispatch(clearBlog()); // Clear form data on unmount
+    // eslint-disable-next-line
   }, [id, dispatch]);
 
   if (isLoading) {
@@ -106,6 +107,5 @@ function ViewBlog() {
     </>
   );
 }
-
 
 export default ViewBlog;

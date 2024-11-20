@@ -6,7 +6,7 @@ import {
 } from "@heroicons/react/24/solid";
 import React, { useRef, useState, useCallback, useEffect } from "react";
 import "./videoPlayer.style.css";
-import { useVideoContext } from "@/context/videoContext";
+import { useVideoContext } from "@/context/useVideoContext";
 
 const VideoPlayer = ({ src, id }) => {
   const { activeVideoId, setActiveVideoId } = useVideoContext();
@@ -31,6 +31,7 @@ const VideoPlayer = ({ src, id }) => {
       videoRef.current.pause();
       setState((prevState) => ({ ...prevState, isPlaying: false }));
     }
+    // eslint-disable-next-line
   }, []);
 
   useEffect(() => {

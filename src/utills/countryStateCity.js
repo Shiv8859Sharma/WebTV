@@ -1,4 +1,4 @@
-import { GetCountries, GetState, GetRegions } from "react-country-state-city";
+import { GetCountries, GetState } from "react-country-state-city";
 
 const countryList = await GetCountries().then((result) => {
   return result;

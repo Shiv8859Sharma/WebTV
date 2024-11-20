@@ -16,7 +16,7 @@ import { fetchLocationCategory } from "@/globalStates/actions/cateGoryAction";
 const LandingPageHeader = () => {
   const [open, setOpen] = useState(false);
   const dispatch = useDispatch();
-  const [linkList, setLinkList] = useState([])
+  const [linkList, setLinkList] = useState([]);
 
   const fetchCategory = async (id) => {
     let category = await dispatch(fetchLocationCategory(id));
@@ -31,13 +31,13 @@ const LandingPageHeader = () => {
     fetchCategory(0).then((result) => {
       setLinkList(result);
     });
+    // eslint-disable-next-line
   }, []);
 
   const handleHideMobileTab = (event) => {
     const clickedElement = event.target;
     let targetedID = clickedElement.closest("[id]")?.getAttribute("id");
-    let id = [
-    ];
+    let id = [];
     if (id.includes(targetedID) && open) {
       setOpen(false);
     }
@@ -76,14 +76,19 @@ const LandingPageHeader = () => {
                   onClick={handleHideMobileTab}
                 >
                   {/* Mobile menu items */}
-                  {
-                    linkList.map((link) => (
-                      <Link to={link.category_code === "home" ? '/' : `news/${link?.category_code}`} key={`mobile-link-${link?.id}`} className="px-4 py-2 font-medium">
-                        {link?.name}
-                      </Link>
-                    )
-                    )
-                  }
+                  {linkList.map((link) => (
+                    <Link
+                      to={
+                        link.category_code === "home"
+                          ? "/"
+                          : `news/${link?.category_code}`
+                      }
+                      key={`mobile-link-${link?.id}`}
+                      className="px-4 py-2 font-medium"
+                    >
+                      {link?.name}
+                    </Link>
+                  ))}
                   {/* <Link
                     to="/"
                     className="block px-4 py-1 rounded-md hover:bg-gray-300"
@@ -195,14 +200,19 @@ const LandingPageHeader = () => {
         <div className="mt-2 border-t border-gray-200 bg-gray-100 text-gray-700 border-b-2 border-gray-700">
           <nav aria-label="Top" className="container mx-auto px-4">
             <div className="hidden lg:flex lg:flex-1 lg:items-center lg:justify-start lg:py-2 gap-2">
-              {
-                linkList.map((link) => (
-                  <Link to={link.category_code === "home" ? '/' : `news/${link?.category_code}`} key={link?.id} className="px-4 py-2 font-medium">
-                    {link?.name}
-                  </Link>
-                )
-                )
-              }
+              {linkList.map((link) => (
+                <Link
+                  to={
+                    link.category_code === "home"
+                      ? "/"
+                      : `news/${link?.category_code}`
+                  }
+                  key={link?.id}
+                  className="px-4 py-2 font-medium"
+                >
+                  {link?.name}
+                </Link>
+              ))}
               {/* <Link to="/" className="px-4 py-2 font-medium">
                 GIDA
               </Link>

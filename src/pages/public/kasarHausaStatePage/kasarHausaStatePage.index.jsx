@@ -4,8 +4,6 @@ import SectionNavigation from "@/components/sectionNavigation/sectionNavigation.
 import { useState } from "react";
 
 const KasarHausaStatePage = ({ categories }) => {
-  console.log("categories ::", categories);
-  
   const { subCategory } = useParams();
   const [isActiveTab, setIsActioveTab] = useState("Siyassa");
   // let categories = [

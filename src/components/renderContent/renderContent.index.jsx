@@ -1,11 +1,11 @@
 import React from "react";
 
 const textSize = {
-  2: '4xl',
-  3: '3xl',
-  4: '2xl',
-  5: 'xl',
-  6: 'lg',
+  2: "4xl",
+  3: "3xl",
+  4: "2xl",
+  5: "xl",
+  6: "lg",
 };
 
 // Helper function to decode HTML entities
@@ -16,12 +16,11 @@ const decodeHtml = (html) => {
 };
 
 // Recursive function to render list items, supporting nested lists
-const renderListItems = (items, isOrdered = false) => (
+const renderListItems = (items, isOrdered = false) =>
   isOrdered ? (
     <ol className="list-decimal list-inside my-4">
       {items.map((item, index) => (
-        <li key={index} className="my-1"
-        >
+        <li key={index} className="my-1">
           {item.content ? (
             <span dangerouslySetInnerHTML={{ __html: item.content }} />
           ) : (
@@ -44,8 +43,7 @@ const renderListItems = (items, isOrdered = false) => (
         </li>
       ))}
     </ul>
-  )
-);
+  );
 
 // Component to render individual blocks
 const RenderBlock = ({ block }) => {
@@ -56,15 +54,15 @@ const RenderBlock = ({ block }) => {
       const { level, text } = data;
 
       // Apply a special style if the 'textVariant' is set to 'call-out'
-      const variantClass = block.tunes?.textVariant === "call-out" ? "bg-yellow-100 p-2 rounded" : "";
+      const variantClass =
+        block.tunes?.textVariant === "call-out"
+          ? "bg-yellow-100 p-2 rounded"
+          : "";
 
-      return React.createElement(
-        `h${level}`,
-        {
-          className: `font-bold my-4 text-${textSize[level]} ${variantClass}`,
-          dangerouslySetInnerHTML: { __html: decodeHtml(text) },
-        }
-      );
+      return React.createElement(`h${level}`, {
+        className: `font-bold my-4 text-${textSize[level]} ${variantClass}`,
+        dangerouslySetInnerHTML: { __html: decodeHtml(text) },
+      });
     }
 
     case "paragraph":
@@ -114,14 +112,13 @@ const RenderBlock = ({ block }) => {
 };
 
 // Component to render the content
-const RenderContent = ({ content }) => (
+const RenderContent = ({ content }) =>
   content?.blocks ? (
     <div className="prose lg:prose-lg">
       {content.blocks.map((block, index) => (
         <RenderBlock block={block} key={index} />
       ))}
     </div>
-  ) : null
-);
+  ) : null;
 
 export default RenderContent;

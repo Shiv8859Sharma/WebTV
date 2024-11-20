@@ -2,7 +2,6 @@ import { memo, useEffect, useState, useMemo } from "react";
 import SectionNavigation from "@/components/sectionNavigation/sectionNavigation.index";
 import KasarHausaImageSection from "./kasarHausaImageSection";
 import HausaNewsSection from "./hausaNewsSection/hausaNewsSection";
-import paths from "@/routes/paths";
 
 // Debounce utility to limit function calls
 function debounce(func, wait) {
@@ -40,20 +39,20 @@ const KasarHausaNews = ({ categories }) => {
   const displayLinks = useMemo(() => {
     if (isLargeScreen) {
       // For large screens, show only the first 6 items, and the rest in "More" dropdown
-      const mainLinks = categories.slice(0, 6)
-      const moreLinks = categories.slice(6)
+      const mainLinks = categories.slice(0, 6);
+      const moreLinks = categories.slice(6);
 
       return [
         ...mainLinks,
         {
-          name: 'More',
+          name: "More",
           dropdown: true,
           dropDownList: moreLinks,
         },
       ];
     } else {
       // For small screens, display all items as a list
-      return categories
+      return categories;
     }
   }, [isLargeScreen, categories]);
 

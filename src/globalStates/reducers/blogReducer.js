@@ -11,7 +11,7 @@ import {
 const init = {
   allBlogs: {
     rows: [],
-    count: 1
+    count: 1,
   },
   blogDetails: {
     title: "",
@@ -23,7 +23,7 @@ const init = {
     location_sub_category: "",
     published: "yes",
     content: {},
-    blog_type: 'news'
+    blog_type: "news",
   },
   error: "",
   successMessage: "",
@@ -82,7 +82,8 @@ const blogReducer = (state = init, action) => {
         ...state,
         error: payload,
         successMessage: "",
-        errorMessage: payload.message || payload || "An error occurred, please try again.",
+        errorMessage:
+          payload.message || payload || "An error occurred, please try again.",
       };
 
     // Clear Blog State

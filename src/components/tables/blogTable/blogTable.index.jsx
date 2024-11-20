@@ -6,9 +6,16 @@ import paths from "@/routes/paths";
 import CustomLoader from "@/layouts/skeletonLoaders";
 import Pagination from "../../pagination/paginationUI";
 
-const BlogTable = ({ blogs = {}, isLoading = false, onDelete, onPageChange = () => { }, pageSize = 10, currentPage=1 }) => {
-  let { rows = [], count = 1,  } = blogs
-  
+const BlogTable = ({
+  blogs = {},
+  isLoading = false,
+  onDelete,
+  onPageChange = () => {},
+  pageSize = 10,
+  currentPage = 1,
+}) => {
+  let { rows = [], count = 1 } = blogs;
+
   if (rows.length === 0 && !isLoading) {
     return (
       <NoDataFoundMessage message="No blogs available. Please add a new article." />
@@ -80,7 +87,7 @@ const BlogTable = ({ blogs = {}, isLoading = false, onDelete, onPageChange = () 
               <tr>
                 <td colSpan={5} className="pb-2">
                   <Pagination
-                    totalPages={Math.ceil(count/pageSize)}
+                    totalPages={Math.ceil(count / pageSize)}
                     currentPage={currentPage}
                     onPageChange={onPageChange}
                   />

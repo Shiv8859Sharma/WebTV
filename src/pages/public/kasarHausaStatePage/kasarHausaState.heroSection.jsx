@@ -4,12 +4,7 @@ import ImageElement from "@/components/ImageElement";
 import VideoPlayer from "@/components/videoPlayer/videoPlayer.index";
 
 const KasarHausaStateHeroSection = ({ currentTab = "" }) => {
-  let {
-    title = "Sample Blog Title",
-    description = "This is a sample blog description.",
-    media,
-    content = {},
-  } = kanoStateArticle[currentTab];
+  let { media, content = {} } = kanoStateArticle[currentTab];
   return (
     <section className="container max-w-5xl mx-auto pt-0 p-6 bg-white shadow-lg rounded-lg blog-container">
       {/* Blog Title */}

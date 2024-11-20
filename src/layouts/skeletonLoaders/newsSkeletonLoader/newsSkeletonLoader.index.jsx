@@ -1,5 +1,4 @@
 const NewsSkeletonLoader = () => {
-
   return (
     <div className="animate-pulse">
       {/* Title Skeleton */}
@@ -37,7 +36,7 @@ const NewsSkeletonLoader = () => {
         </div>
       </div>
     </div>
-  )
-}
+  );
+};
 
 export default NewsSkeletonLoader;

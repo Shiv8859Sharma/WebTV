@@ -1,4 +1,11 @@
-import { Combobox, ComboboxButton, ComboboxInput, ComboboxOption, ComboboxOptions, Transition } from "@headlessui/react";
+import {
+  Combobox,
+  ComboboxButton,
+  ComboboxInput,
+  ComboboxOption,
+  ComboboxOptions,
+  Transition,
+} from "@headlessui/react";
 import { CheckIcon, ChevronDownIcon } from "@heroicons/react/24/outline";
 import { Fragment, useState } from "react";
 import { useSelector } from "react-redux";
@@ -14,7 +21,7 @@ const AutocompleteField = (props) => {
   let {
     label = "",
     name = "",
-    isMultiple=false,
+    isMultiple = false,
     placeholder = "",
     containerClass = "flex flex-col gap-2.5",
     labelClass = "",

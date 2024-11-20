@@ -8,7 +8,9 @@ import logo from "@/assets/webp/logo.webp";
 import slogan from "@/assets/webp/slogan.webp";
 import PopupComponent from "@/components/popUp/popup.index";
 
-const layout = ({ userType }) => {
+let hasSideBar = ["admin"];
+
+const Layout = ({ userType }) => {
   const contentLayoutRef = useRef(null);
 
   let InitialLoader = () => {
@@ -35,8 +37,6 @@ const layout = ({ userType }) => {
     );
   };
 
-  let hasSideBar = ["admin"];
-
   // Calculate height based on `userType`
   const headerHeight = useMemo(
     () => (userType === "" ? "h-[8rem] lg:h-[13rem]" : "h-[9rem]"),
@@ -51,10 +51,7 @@ const layout = ({ userType }) => {
   );
 
   // Determine sidebar visibility
-  const showSidebar = useMemo(
-    () => hasSideBar.includes(userType),
-    [hasSideBar, userType]
-  );
+  const showSidebar = useMemo(() => hasSideBar.includes(userType), [userType]);
 
   return (
     <div className="h-full w-full overflow-hidden">
@@ -104,4 +101,4 @@ const layout = ({ userType }) => {
     </div>
   );
 };
-export default memo(layout);
+export default memo(Layout);

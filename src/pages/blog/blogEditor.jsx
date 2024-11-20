@@ -21,10 +21,10 @@ import RadioFields from "../../components/formFields/radio";
 
 function BlogEditor() {
   const { id } = useParams();
-  const rendomID = useId()
+  const rendomID = useId();
   const dispatch = useDispatch();
   const navigate = useNavigate();
-  const location = useLocation()
+  const location = useLocation();
   const formData = new FormData();
   const blogData = useSelector((state) => state.blog.blogDetails);
   const isError = useSelector(
@@ -40,16 +40,16 @@ function BlogEditor() {
   const [locationCategory, setLocationCategory] = useState([]);
   const [subLocationCategoryList, setSubLocationCategoryList] = useState([]);
   const [categoryList, setCategoryList] = useState([]);
-  const [changePageLoader, setChangePageLoader] = useState(false)
+  const [changePageLoader, setChangePageLoader] = useState(false);
 
   useEffect(() => {
     if (location.key) {
-      setChangePageLoader(true)
+      setChangePageLoader(true);
       setTimeout(() => {
-        setChangePageLoader(false)
-      }, 500)
+        setChangePageLoader(false);
+      }, 500);
     }
-  }, [location.key])
+  }, [location.key]);
 
   // Fetch Categories (Countries, States, etc.)
   const fetchCategory = async (id) => {
@@ -93,6 +93,7 @@ function BlogEditor() {
       const filteredCategories = result.filter((cate) => cate.name !== "Gida");
       setLocationCategory(filteredCategories);
     });
+    // eslint-disable-next-line
   }, []);
 
   // Clear form data and fetch blog data when switching between create/edit mode
@@ -103,31 +104,34 @@ function BlogEditor() {
       dispatch(clearBlog()); // Clear the form when it's in create mode
     }
     return () => dispatch(clearBlog()); // Clear on unmount
+    // eslint-disable-next-line
   }, [id, dispatch]);
 
   const fetchSubLocationCategoryList = async (id) => {
     let subCategory = id ? await fetchCategory(id) : [];
-    setSubLocationCategoryList(subCategory)
-  }
+    setSubLocationCategoryList(subCategory);
+  };
 
   const fetchCategoryList = async (id) => {
     let category = id ? await fetchCategory(id) : [];
     setCategoryList(category);
-  }
+  };
 
   useEffect(() => {
-    let id = blogData?.parentMaincategory?.id ?? ''
+    let id = blogData?.parentMaincategory?.id ?? "";
     if (id) {
-      fetchSubLocationCategoryList(id)
+      fetchSubLocationCategoryList(id);
     }
-  }, [blogData?.parentMaincategory?.id])
+    // eslint-disable-next-line
+  }, [blogData?.parentMaincategory?.id]);
 
   useEffect(() => {
-    let id = blogData?.parentSubcategory?.id ?? ''
+    let id = blogData?.parentSubcategory?.id ?? "";
     if (id) {
-      fetchCategoryList(id)
+      fetchCategoryList(id);
     }
-  }, [blogData?.parentSubcategory?.id])
+    // eslint-disable-next-line
+  }, [blogData?.parentSubcategory?.id]);
 
   // Handle posting or updating the blog
   async function handlePostOrUpdateBlog(e) {
@@ -137,7 +141,7 @@ function BlogEditor() {
       category_id: blogData.category.id,
       parent_main_category_id: blogData.parentMaincategory.id,
       parent_sub_category_id: blogData.parentSubcategory.id,
-    }
+    };
 
     await appendFormData(formData, updateKeys);
 
@@ -186,7 +190,10 @@ function BlogEditor() {
   }
 
   return (
-    <section className="container max-w-5xl mx-auto md:mt-5 pb-10 px-4" key={`section-${rendomID}`} >
+    <section
+      className="container max-w-5xl mx-auto md:mt-5 pb-10 px-4"
+      key={`section-${rendomID}`}
+    >
       <SectionNavigation
         title={id ? "Edit Blog" : "Create Blog"}
         titlePosition="!text-left !mb-0"
@@ -202,44 +209,46 @@ function BlogEditor() {
         >
           <div>
             <RadioFields
-              label='Blog type'
-              name='blog_type'
+              label="Blog type"
+              name="blog_type"
               defaultValue={blogData?.blog_type}
-              radioContainerClass={'flex gap-4'}
-              options={[{ value: 'news', label: 'News' }, { value: 'informational', label: 'Informational' }]}
+              radioContainerClass={"flex gap-4"}
+              options={[
+                { value: "news", label: "News" },
+                { value: "informational", label: "Informational" },
+              ]}
             />
           </div>
           {/* Title */}
           {/* {blogData?.blog_type === 'news' && */}
-            <>
-              <div>
-                <label htmlFor="title" className="text-[#17181C] font-bold ">
-                  Title
-                </label>
-                <InputField
-                  key={`input-${rendomID}`}
+          <>
+            <div>
+              <label htmlFor="title" className="text-[#17181C] font-bold ">
+                Title
+              </label>
+              <InputField
+                key={`input-${rendomID}`}
+                type="text"
+                name="title"
+                placeholder="Write your blog title"
+                className="w-full mt-1"
+                defaultValue={blogData?.title}
+              />
+            </div>
 
-                  type="text"
-                  name="title"
-                  placeholder="Write your blog title"
-                  className="w-full mt-1"
-                  defaultValue={blogData?.title}
-                />
-              </div>
-
-              {/* Description */}
-              <div>
-                <label htmlFor="description" className="text-[#17181C] font-bold">
-                  Description
-                </label>
-                <TextAreaField
-                  name="description"
-                  placeholder="Write your blog description"
-                  className="w-full mt-1"
-                  defaultValue={blogData?.description}
-                />
-              </div>
-            </>
+            {/* Description */}
+            <div>
+              <label htmlFor="description" className="text-[#17181C] font-bold">
+                Description
+              </label>
+              <TextAreaField
+                name="description"
+                placeholder="Write your blog description"
+                className="w-full mt-1"
+                defaultValue={blogData?.description}
+              />
+            </div>
+          </>
           {/* } */}
 
           {/* Author Name */}
@@ -255,7 +264,6 @@ function BlogEditor() {
               defaultValue={blogData?.author}
             />
           </div>
-
 
           {/* Country Autocomplete */}
           <div>

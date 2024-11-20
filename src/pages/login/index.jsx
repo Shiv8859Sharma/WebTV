@@ -47,15 +47,11 @@ const LoginPage = () => {
         userDetails.append(key, data[key]);
       });
       dispatch(loginUser(userDetails)).then((response) => {
-        console.log("response :::", response);
-
         if (response.status === 200) {
           let details = {
             token: response?.data?.data.token,
             role: response.data?.data?.role || "admin",
           };
-          console.log("details ::", details);
-
           login(details);
         } else {
           e.target.scrollIntoView({ top: 0, behavior: "smooth" });
@@ -73,7 +69,7 @@ const LoginPage = () => {
           <img
             src="https://img.freepik.com/fotos-premium/imagen-fondo_910766-187.jpg?w=826"
             alt="Placeholder Image"
-            class="object-cover w-full h-full"
+            className="object-cover w-full h-full"
           />
         </div>
         <div className="lg:p-36 md:p-52 sm:20 p-8 w-full lg:w-1/2">

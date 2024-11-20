@@ -1,7 +1,6 @@
 import { useSelector } from "react-redux";
 import { fielError } from "@/utills/fieldError";
 import { Transition } from "@headlessui/react";
-import { useRef } from "react";
 
 const TextAreaField = (props) => {
   let {

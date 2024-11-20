@@ -13,7 +13,6 @@ import {
   clearBlog,
 } from "@/globalStates/actions/blogActions";
 import AutocompleteField from "@/components/formFields/autocomplete";
-import TextAreaField from "@/components/formFields/textarea";
 import { convertFileToBase64URL } from "@/utills/helpers/base64Url";
 import { fetchLocationCategory } from "@/globalStates/actions/cateGoryAction";
 import { FETCH_SINGLE_BLOG } from "@/globalStates/actions/actionsType";
@@ -27,7 +26,6 @@ function CreateStaticPage() {
   const isError = useSelector(
     (state) => state.blog?.error?.response?.data?.error
   );
-console.log("blogData ::", blogData);
 
   const { loadingArray } = useSelector((state) => state?.loader);
   let isLoading = loadingArray?.filter(
@@ -81,12 +79,14 @@ console.log("blogData ::", blogData);
       const filteredCategories = result.filter((cate) => cate.name !== "Gida");
       setLocationCategory(filteredCategories);
     });
+    // eslint-disable-next-line
   }, []);
 
   // Fetch blog data if `id` exists
   useEffect(() => {
     if (id) fetchBlogById();
     return () => dispatch(clearBlog()); // Clear form data on unmount
+    // eslint-disable-next-line
   }, [id, dispatch]);
 
   // Handle posting or updating the blog

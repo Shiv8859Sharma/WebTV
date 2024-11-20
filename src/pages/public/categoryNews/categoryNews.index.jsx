@@ -36,7 +36,7 @@ const CategoryNews = () => {
       setLoading(true);
       fetchCategory(categoryName).then((result) => {
         // if()result.l
-        let data  = result.map((item) => ({
+        let data = result.map((item) => ({
           ...item,
           link: paths.SUBCATEGORY_NEWS(categoryName, item.category_code), // Replace underscores with hyphens
         }));
@@ -44,8 +44,8 @@ const CategoryNews = () => {
         setLoading(false);
       });
     }
+    // eslint-disable-next-line
   }, [categoryName]);
-
 
   const currentPage = useMemo(() => {
     switch (categoryName) {
@@ -70,11 +70,10 @@ const CategoryNews = () => {
     }
   }, [categoryName, subCategory]);
 
-
-  if(loading){
-    return <CustomLoader name='NewsSkeletonLoader' />
+  if (loading) {
+    return <CustomLoader name="NewsSkeletonLoader" />;
   }
-  
+
   return <main className="bg-white py-6">{currentPage}</main>;
 };
 

@@ -8,7 +8,7 @@ const componentMap = {
   BlogEditorFormLoader: BlogEditorFormLoader,
   BlogEditorViewLoader: BlogEditorViewLoader,
   TableBodyLoader: TableBodyLoader,
-  NewsSkeletonLoader: NewsSkeletonLoader
+  NewsSkeletonLoader: NewsSkeletonLoader,
 };
 
 const CustomLoader = ({ count, name, ...rest }) => {

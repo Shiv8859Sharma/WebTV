@@ -12,8 +12,8 @@ const NavigatePage = ({
 }) => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
-  const keyId = useId()
-  
+  const keyId = useId();
+
   const handleClick = async () => {
     if (type === "dispatchAction") {
       await dispatch(dispatchFun);
@@ -22,7 +22,7 @@ const NavigatePage = ({
       await navigate(url);
     } else if (url) {
       navigate(url, {
-        key: keyId
+        key: keyId,
       });
     }
   };

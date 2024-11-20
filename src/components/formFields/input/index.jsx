@@ -22,7 +22,7 @@ const InputField = (props) => {
     inputContainerClass = "",
     autoComplete = "off",
   } = props;
-  
+
   const formDetails = useSelector((state) => state?.FormDetails);
   let message = fielError(name, formDetails?.errors);
   return (

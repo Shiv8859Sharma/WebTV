@@ -43,11 +43,11 @@ const SubCategoryNews = () => {
         setSubCategory(data); // Store the raw data
         setTimeout(() => {
           setLoading(false);
-        }, 100)
+        }, 100);
       });
     }
+    // eslint-disable-next-line
   }, [categoryName, subCategoryName]);
-
 
   const currentPage = useMemo(() => {
     let name = `${categoryName}-${subCategoryName}
@@ -68,10 +68,11 @@ const SubCategoryNews = () => {
         </p>
       );
     }
+    // eslint-disable-next-line
   }, [categoryName, subCategory]);
 
   if (loading) {
-    return <CustomLoader name='NewsSkeletonLoader' />
+    return <CustomLoader name="NewsSkeletonLoader" />;
   }
   return <main className="bg-white py-6">{currentPage}</main>;
 };

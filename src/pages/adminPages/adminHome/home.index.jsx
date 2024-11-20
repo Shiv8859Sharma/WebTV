@@ -9,7 +9,7 @@ const AdminHomePage = () => {
   const { allBlogs, successMessage, errorMessage } = useSelector(
     (state) => state.blog
   );
-  
+
   const isLoading = useSelector((state) => state?.loader?.isLoading);
   const dispatch = useDispatch();
 
@@ -80,8 +80,8 @@ const AdminHomePage = () => {
         isLoading={isLoading}
         onDelete={handleDeleteBlog}
         onPageChange={handlePageChange}
-        currentPage={pagination.page}  // Passing the current page to BlogTable
-        pageSize={pagination.limit}     // Passing the page limit to BlogTable
+        currentPage={pagination.page} // Passing the current page to BlogTable
+        pageSize={pagination.limit} // Passing the page limit to BlogTable
       />
     </section>
   );
