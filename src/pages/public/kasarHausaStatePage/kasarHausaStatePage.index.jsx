@@ -3,27 +3,29 @@ import KasarHausaStateHeroSection from "./kasarHausaState.heroSection";
 import SectionNavigation from "@/components/sectionNavigation/sectionNavigation.index";
 import { useState } from "react";
 
-const KasarHausaStatePage = () => {
+const KasarHausaStatePage = ({ categories }) => {
+  console.log("categories ::", categories);
+  
   const { subCategory } = useParams();
   const [isActiveTab, setIsActioveTab] = useState("Siyassa");
-  let categories = [
-    {
-      name: "Siyassa",
-      // link: paths.SUBCATEGORY_NEWS('duniya', 'turai')
-    },
-    {
-      name: "Addini",
-      // link: paths.SUBCATEGORY_NEWS('duniya', 'amurka')
-    },
-    {
-      name: "Wasanin",
-      // link: paths.SUBCATEGORY_NEWS('duniya', 'asiya')
-    },
-    {
-      name: "Silma/Kannywood",
-      // link: paths.SUBCATEGORY_NEWS('duniya', '"gabas-ta-tsakiya')
-    },
-  ];
+  // let categories = [
+  //   {
+  //     name: "Siyassa",
+  //     // link: paths.SUBCATEGORY_NEWS('duniya', 'turai')
+  //   },
+  //   {
+  //     name: "Addini",
+  //     // link: paths.SUBCATEGORY_NEWS('duniya', 'amurka')
+  //   },
+  //   {
+  //     name: "Wasanin",
+  //     // link: paths.SUBCATEGORY_NEWS('duniya', 'asiya')
+  //   },
+  //   {
+  //     name: "Silma/Kannywood",
+  //     // link: paths.SUBCATEGORY_NEWS('duniya', '"gabas-ta-tsakiya')
+  //   },
+  // ];
 
   const handleTabChange = (e) => {
     setIsActioveTab(e.target.innerText);

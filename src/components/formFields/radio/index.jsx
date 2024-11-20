@@ -30,18 +30,18 @@ const RadioFields = (props) => {
         </label>
         <div className={`${radioContainerClass} radio-options px-1`}>
           {options.map((option, index) => (
-            <div key={index} className="radio-option flex items-center gap-2">
+            <div key={index} className="radio-option flex items-center gap-2 ">
               <input
                 type="radio"
                 id={`${name}_id_option_${index + 1}`}
                 name={name}
                 value={option.value}
                 defaultChecked={defaultValue === option.value}
-                className="radio-input"
+                className="radio-input cursor-pointer"
               />
               <label
                 htmlFor={`${name}_id_option_${index + 1}`}
-                className="radio-label text-slate-500"
+                className="radio-label text-slate-500 cursor-pointer"
               >
                 {option.label}
               </label>

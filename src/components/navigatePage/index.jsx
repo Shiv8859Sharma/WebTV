@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useId } from "react";
 import { useNavigate, Link } from "react-router-dom";
 import { useDispatch } from "react-redux";
 
@@ -12,16 +12,18 @@ const NavigatePage = ({
 }) => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
-
+  const keyId = useId()
+  
   const handleClick = async () => {
-    console.log("this is run", type);
     if (type === "dispatchAction") {
       await dispatch(dispatchFun);
     } else if (type === "actionWithNavigation") {
       await dispatch(dispatchFun);
       await navigate(url);
     } else if (url) {
-      navigate(url);
+      navigate(url, {
+        key: keyId
+      });
     }
   };
 

@@ -32,7 +32,7 @@ const AlertPopup = ({ message, type, onClose }) => {
           onClick={onClose}
           class="px-5 py-3 rounded-md font-figtree border font-semibold text-[#ECF9FD] text-base bg-[#b4773e] transition-all"
         >
-          Superb!
+          {buttonText}
         </button>
       </div>
     </div>

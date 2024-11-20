@@ -7,6 +7,7 @@ import VideoPlayer from "@/components/videoPlayer/videoPlayer.index";
 import { fetchSingleBlog, clearBlog } from "@/globalStates/actions/blogActions";
 import CustomLoader from "@/layouts/skeletonLoaders";
 import NoDataFoundMessage from "@/constants/NoDataFoundMessage";
+import RenderContent from "../../components/renderContent/renderContent.index";
 
 function ViewBlog() {
   const dispatch = useDispatch();
@@ -83,14 +84,14 @@ function ViewBlog() {
 
         {/* Blog Content */}
         <div className="my-10 mx-7">
-          {content?.blocks?.map((block, index) => {
+          {/* {content?.blocks?.map((block, index) => {
             switch (block.type) {
               case "header":
                 return <Header key={index} block={block} />;
               case "paragraph":
                 return <Paragraph key={index} block={block} />;
-              case "List":
-                return <List key={index} block={block} />;
+              // case "List":
+              //   return <List key={index} block={block} />;
               case "image":
                 return <ImageBlock key={index} block={block} />;
               case "embed":
@@ -98,94 +99,13 @@ function ViewBlog() {
               default:
                 return null;
             }
-          })}
+          })} */}
+          <RenderContent content={content} />
         </div>
       </section>
     </>
   );
 }
 
-const Header = ({ block }) => {
-  const { level, text } = block.data;
-  const headingClass = `font-bold my-4 ${
-    level === 2 ? "text-4xl" : level === 3 ? "text-3xl" : "text-2xl"
-  }`;
-
-  return (
-    <div>
-      <h1 className={headingClass} dangerouslySetInnerHTML={{ __html: text }} />
-    </div>
-  );
-};
-
-const Paragraph = ({ block }) => {
-  return (
-    <p
-      className="my-4 text-gray-700"
-      dangerouslySetInnerHTML={{ __html: block.data.text }}
-    />
-  );
-};
-
-const List = ({ block }) => {
-  return (
-    <ul className="list-disc list-inside my-4 pl-5">
-      {block.data.items.map((item, i) => (
-        <li key={i}>
-          <span dangerouslySetInnerHTML={{ __html: item.content }} />
-          {item.items.length > 0 && (
-            <ul className="list-disc list-inside pl-5 mt-2">
-              {item.items.map((subItem, j) => (
-                <li
-                  key={j}
-                  dangerouslySetInnerHTML={{ __html: subItem.content }}
-                />
-              ))}
-            </ul>
-          )}
-        </li>
-      ))}
-    </ul>
-  );
-};
-
-const ImageBlock = ({ block }) => {
-  return (
-    <div className="my-4">
-      <ImageElement
-        src={block.data.file.url}
-        alt="Blog image"
-        className="w-full rounded-lg aspect-video object-cover"
-        loading="lazy"
-      />
-      {block.data.caption && (
-        <p className="text-center my-2 text-sm text-gray-600">
-          {block.data.caption}
-        </p>
-      )}
-    </div>
-  );
-};
-
-const EmbedBlock = ({ block }) => {
-  return (
-    <div className="my-4">
-      <iframe
-        width="100%"
-        height="315"
-        src={block.data.embed}
-        title={block.data.caption || "Embedded Content"}
-        frameBorder="0"
-        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-        allowFullScreen
-      ></iframe>
-      {block.data.caption && (
-        <p className="text-center my-2 text-sm text-gray-600">
-          {block.data.caption}
-        </p>
-      )}
-    </div>
-  );
-};
 
 export default ViewBlog;

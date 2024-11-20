@@ -1,5 +1,5 @@
-import React, { useEffect, useId, useState } from "react";
-import { useLocation, useNavigate, useParams } from "react-router-dom";
+import React, { useEffect, useState } from "react";
+import { useNavigate, useParams } from "react-router-dom";
 import SectionNavigation from "@/components/sectionNavigation/sectionNavigation.index";
 import InputField from "@/components/formFields/input";
 import InitiEditorjs from "@/constants/editorjs/initializeEditorjs";
@@ -17,19 +17,17 @@ import TextAreaField from "@/components/formFields/textarea";
 import { convertFileToBase64URL } from "@/utills/helpers/base64Url";
 import { fetchLocationCategory } from "@/globalStates/actions/cateGoryAction";
 import { FETCH_SINGLE_BLOG } from "@/globalStates/actions/actionsType";
-import RadioFields from "../../components/formFields/radio";
 
-function BlogEditor() {
-  const { id } = useParams();
-  const rendomID = useId()
+function CreateStaticPage() {
+  const { id } = useParams(); // Get blog ID from URL if editing
   const dispatch = useDispatch();
   const navigate = useNavigate();
-  const location = useLocation()
   const formData = new FormData();
   const blogData = useSelector((state) => state.blog.blogDetails);
   const isError = useSelector(
     (state) => state.blog?.error?.response?.data?.error
   );
+console.log("blogData ::", blogData);
 
   const { loadingArray } = useSelector((state) => state?.loader);
   let isLoading = loadingArray?.filter(
@@ -40,16 +38,6 @@ function BlogEditor() {
   const [locationCategory, setLocationCategory] = useState([]);
   const [subLocationCategoryList, setSubLocationCategoryList] = useState([]);
   const [categoryList, setCategoryList] = useState([]);
-  const [changePageLoader, setChangePageLoader] = useState(false)
-
-  useEffect(() => {
-    if (location.key) {
-      setChangePageLoader(true)
-      setTimeout(() => {
-        setChangePageLoader(false)
-      }, 500)
-    }
-  }, [location.key])
 
   // Fetch Categories (Countries, States, etc.)
   const fetchCategory = async (id) => {
@@ -61,7 +49,7 @@ function BlogEditor() {
     }
   };
 
-  // Fetch blog data if `id` exists
+  // Fetch data if editing an existing blog
   const fetchBlogById = async () => {
     if (id) {
       await dispatch(fetchSingleBlog(id));
@@ -95,51 +83,16 @@ function BlogEditor() {
     });
   }, []);
 
-  // Clear form data and fetch blog data when switching between create/edit mode
+  // Fetch blog data if `id` exists
   useEffect(() => {
-    if (id) {
-      fetchBlogById();
-    } else {
-      dispatch(clearBlog()); // Clear the form when it's in create mode
-    }
-    return () => dispatch(clearBlog()); // Clear on unmount
+    if (id) fetchBlogById();
+    return () => dispatch(clearBlog()); // Clear form data on unmount
   }, [id, dispatch]);
-
-  const fetchSubLocationCategoryList = async (id) => {
-    let subCategory = id ? await fetchCategory(id) : [];
-    setSubLocationCategoryList(subCategory)
-  }
-
-  const fetchCategoryList = async (id) => {
-    let category = id ? await fetchCategory(id) : [];
-    setCategoryList(category);
-  }
-
-  useEffect(() => {
-    let id = blogData?.parentMaincategory?.id ?? ''
-    if (id) {
-      fetchSubLocationCategoryList(id)
-    }
-  }, [blogData?.parentMaincategory?.id])
-
-  useEffect(() => {
-    let id = blogData?.parentSubcategory?.id ?? ''
-    if (id) {
-      fetchCategoryList(id)
-    }
-  }, [blogData?.parentSubcategory?.id])
 
   // Handle posting or updating the blog
   async function handlePostOrUpdateBlog(e) {
     e.preventDefault();
-    let updateKeys = {
-      ...blogData,
-      category_id: blogData.category.id,
-      parent_main_category_id: blogData.parentMaincategory.id,
-      parent_sub_category_id: blogData.parentSubcategory.id,
-    }
-
-    await appendFormData(formData, updateKeys);
+    await appendFormData(formData, blogData);
 
     if (isError) return;
 
@@ -181,12 +134,12 @@ function BlogEditor() {
     }
   };
 
-  if (isLoading || changePageLoader) {
+  if (isLoading) {
     return <CustomLoader name="BlogEditorFormLoader" />;
   }
 
   return (
-    <section className="container max-w-5xl mx-auto md:mt-5 pb-10 px-4" key={`section-${rendomID}`} >
+    <section className="container max-w-5xl mx-auto md:mt-5 pb-10 px-4">
       <SectionNavigation
         title={id ? "Edit Blog" : "Create Blog"}
         titlePosition="!text-left !mb-0"
@@ -195,93 +148,50 @@ function BlogEditor() {
 
       <div className="pt-0 bg-white p-6 rounded-lg shadow-lg">
         <form
-          key={`form-${rendomID}`}
           onChange={handleSetBlog}
           onSubmit={handlePostOrUpdateBlog}
           className={`space-y-6 ${isError ? "pointer-events-none" : ""}`}
         >
-          <div>
-            <RadioFields
-              label='Blog type'
-              name='blog_type'
-              defaultValue={blogData?.blog_type}
-              radioContainerClass={'flex gap-4'}
-              options={[{ value: 'news', label: 'News' }, { value: 'informational', label: 'Informational' }]}
-            />
-          </div>
           {/* Title */}
-          {/* {blogData?.blog_type === 'news' && */}
-            <>
-              <div>
-                <label htmlFor="title" className="text-[#17181C] font-bold ">
-                  Title
-                </label>
-                <InputField
-                  key={`input-${rendomID}`}
-
-                  type="text"
-                  name="title"
-                  placeholder="Write your blog title"
-                  className="w-full mt-1"
-                  defaultValue={blogData?.title}
-                />
-              </div>
-
-              {/* Description */}
-              <div>
-                <label htmlFor="description" className="text-[#17181C] font-bold">
-                  Description
-                </label>
-                <TextAreaField
-                  name="description"
-                  placeholder="Write your blog description"
-                  className="w-full mt-1"
-                  defaultValue={blogData?.description}
-                />
-              </div>
-            </>
-          {/* } */}
-
-          {/* Author Name */}
           <div>
-            <label htmlFor="author" className="text-[#17181C] font-bold">
-              Author Name
+            <label htmlFor="title" className="text-[#17181C] font-bold ">
+              Title
             </label>
             <InputField
               type="text"
-              name="author"
-              placeholder="Write your author name"
+              name="title"
+              placeholder="Write your blog title"
               className="w-full mt-1"
-              defaultValue={blogData?.author}
+              defaultValue={blogData?.title}
             />
           </div>
-
 
           {/* Country Autocomplete */}
           <div>
             <AutocompleteField
-              label="Main category"
-              name="parentMaincategory"
+              label="Location category"
+              name="location_category_name"
               options={locationCategory}
               title="name"
               value="name"
               defaultOption={true}
               defaultOptionLabel="Select country"
               showCheck={false}
-              selected={blogData?.parentMaincategory}
+              selected={blogData?.location_category_name}
               onSelect={async (value) => {
                 handleSetBlog({
                   target: {
                     value,
-                    name: "parentMaincategory",
+                    name: "location_category_name",
                     type: "select",
                   },
                 });
-                setCategoryList([]);
+                let state = value?.id ? await fetchCategory(value.id) : [];
+                setSubLocationCategoryList(state);
                 handleSetBlog({
                   target: {
                     value: "",
-                    name: "parentSubcategory",
+                    name: "location_sub_category_name",
                     type: "select",
                   },
                 });
@@ -294,17 +204,22 @@ function BlogEditor() {
             <div>
               <AutocompleteField
                 label="Sub location category"
-                name="parentSubcategory"
+                name="location_sub_category_name"
                 options={subLocationCategoryList}
                 title="name"
                 value="name"
                 defaultOption={true}
                 defaultOptionLabel="Select State"
                 showCheck={false}
-                selected={blogData?.parentSubcategory}
+                selected={blogData?.location_sub_category_name}
                 onSelect={async (value) => {
                   handleSetBlog({
-                    target: { value, name: "parentSubcategory" },
+                    target: { value, name: "location_sub_category_name" },
+                  });
+                  let categoryList = await fetchCategory(value.id);
+                  setCategoryList(categoryList);
+                  handleSetBlog({
+                    target: { value: "", name: "category", type: "select" },
                   });
                 }}
               />
@@ -361,7 +276,7 @@ function BlogEditor() {
               id="media"
               name="media"
               type="file"
-              accept=".png, .jpeg, .jpg, .mp4, .mov"
+              accept=".png, .jpeg, .jpg"
             />
           </div>
 
@@ -375,7 +290,7 @@ function BlogEditor() {
             type="submit"
             className="w-full py-3 px-4 bg-blue-600 text-white font-semibold rounded-lg hover:bg-blue-700 transition duration-300"
           >
-            {id ? "Update blog" : "Post blog"}
+            {id ? "Update blog" : "Create Page"}
           </button>
         </form>
       </div>
@@ -383,4 +298,4 @@ function BlogEditor() {
   );
 }
 
-export default BlogEditor;
+export default CreateStaticPage;

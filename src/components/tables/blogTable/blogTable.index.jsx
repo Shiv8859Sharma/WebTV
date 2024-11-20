@@ -6,8 +6,10 @@ import paths from "@/routes/paths";
 import CustomLoader from "@/layouts/skeletonLoaders";
 import Pagination from "../../pagination/paginationUI";
 
-const BlogTable = ({ blogs = [], isLoading = false, onDelete }) => {
-  if (blogs.length === 0 && !isLoading) {
+const BlogTable = ({ blogs = {}, isLoading = false, onDelete, onPageChange = () => { }, pageSize = 10, currentPage=1 }) => {
+  let { rows = [], count = 1,  } = blogs
+  
+  if (rows.length === 0 && !isLoading) {
     return (
       <NoDataFoundMessage message="No blogs available. Please add a new article." />
     );
@@ -30,7 +32,7 @@ const BlogTable = ({ blogs = [], isLoading = false, onDelete }) => {
         ) : (
           <>
             <tbody className="text-gray-700 text-xs md:text-sm font-light">
-              {blogs.map((blog) => (
+              {rows.map((blog) => (
                 <tr
                   key={blog.id}
                   className="border-b border-gray-200 hover:bg-gray-50 transition duration-200"
@@ -42,7 +44,7 @@ const BlogTable = ({ blogs = [], isLoading = false, onDelete }) => {
                     {blog.author}
                   </td>
                   <td className="py-3 px-4 md:px-6 hidden lg:table-cell">
-                    {blog.category}
+                    {blog.category?.name}
                   </td>
                   <td className="py-3 px-4 md:px-6 hidden md:table-cell">
                     {new Date(blog.updatedAt).toLocaleDateString()}
@@ -78,9 +80,9 @@ const BlogTable = ({ blogs = [], isLoading = false, onDelete }) => {
               <tr>
                 <td colSpan={5} className="pb-2">
                   <Pagination
-                    totalPages={1}
-                    currentPage={1}
-                    onPageChange={() => {}}
+                    totalPages={Math.ceil(count/pageSize)}
+                    currentPage={currentPage}
+                    onPageChange={onPageChange}
                   />
                 </td>
               </tr>

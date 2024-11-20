@@ -1,4 +1,4 @@
-import { Fragment, memo, useState } from "react";
+import { Fragment, memo, useEffect, useState } from "react";
 import {
   Dialog,
   DialogPanel,
@@ -9,25 +9,34 @@ import { Link } from "react-router-dom"; // Import Link for navigation
 import HamburgerButton from "@/components/buttons/hamburgerButton";
 import NavigatePage from "@/components/navigatePage";
 import logo from "@/assets/webp/logo.webp";
-import slogan from "@/assets/webp/slogan.webp";
+import slogan from "@/assets/webp/slogen-logo-4.png";
+import { useDispatch } from "react-redux";
+import { fetchLocationCategory } from "@/globalStates/actions/cateGoryAction";
 
 const LandingPageHeader = () => {
   const [open, setOpen] = useState(false);
+  const dispatch = useDispatch();
+  const [linkList, setLinkList] = useState([])
+
+  const fetchCategory = async (id) => {
+    let category = await dispatch(fetchLocationCategory(id));
+    if (category?.status === 200 && category?.data?.success) {
+      return category?.data?.data;
+    } else {
+      return [];
+    }
+  };
+  // Load categories when component mounts
+  useEffect(() => {
+    fetchCategory(0).then((result) => {
+      setLinkList(result);
+    });
+  }, []);
 
   const handleHideMobileTab = (event) => {
     const clickedElement = event.target;
     let targetedID = clickedElement.closest("[id]")?.getAttribute("id");
     let id = [
-      "findExperts",
-      "findWork",
-      "awsAdvisory",
-      "salesforceAdvisory",
-      "howItWorks",
-      "helpCenter",
-      "login",
-      "signUp",
-      "payments",
-      "notifications",
     ];
     if (id.includes(targetedID) && open) {
       setOpen(false);
@@ -67,7 +76,15 @@ const LandingPageHeader = () => {
                   onClick={handleHideMobileTab}
                 >
                   {/* Mobile menu items */}
-                  <Link
+                  {
+                    linkList.map((link) => (
+                      <Link to={link.category_code === "home" ? '/' : `news/${link?.category_code}`} key={`mobile-link-${link?.id}`} className="px-4 py-2 font-medium">
+                        {link?.name}
+                      </Link>
+                    )
+                    )
+                  }
+                  {/* <Link
                     to="/"
                     className="block px-4 py-1 rounded-md hover:bg-gray-300"
                   >
@@ -108,7 +125,7 @@ const LandingPageHeader = () => {
                     className="block px-4 py-1 rounded-md hover:bg-gray-300"
                   >
                     Yanayi a yau
-                  </Link>
+                  </Link> */}
                 </div>
               </DialogPanel>
             </TransitionChild>
@@ -149,7 +166,7 @@ const LandingPageHeader = () => {
                   src={slogan}
                   loading="lazy"
                   alt="logo"
-                  className="header-logo"
+                  className="header-logo h-28"
                 />
               </NavigatePage>
             </div>
@@ -178,7 +195,15 @@ const LandingPageHeader = () => {
         <div className="mt-2 border-t border-gray-200 bg-gray-100 text-gray-700 border-b-2 border-gray-700">
           <nav aria-label="Top" className="container mx-auto px-4">
             <div className="hidden lg:flex lg:flex-1 lg:items-center lg:justify-start lg:py-2 gap-2">
-              <Link to="/" className="px-4 py-2 font-medium">
+              {
+                linkList.map((link) => (
+                  <Link to={link.category_code === "home" ? '/' : `news/${link?.category_code}`} key={link?.id} className="px-4 py-2 font-medium">
+                    {link?.name}
+                  </Link>
+                )
+                )
+              }
+              {/* <Link to="/" className="px-4 py-2 font-medium">
                 GIDA
               </Link>
               <Link to="/news/kasar-hausa" className="px-4 py-2 font-medium">
@@ -198,7 +223,7 @@ const LandingPageHeader = () => {
               </Link>
               <Link to="/news/yanayi-a-yau" className="px-4 py-2 font-medium">
                 Yanayi a yau
-              </Link>
+              </Link> */}
             </div>
           </nav>
         </div>

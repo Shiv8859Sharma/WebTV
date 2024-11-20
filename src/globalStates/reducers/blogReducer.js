@@ -9,17 +9,21 @@ import {
 } from "../actions/actionsType";
 
 const init = {
-  allBlogs: [],
+  allBlogs: {
+    rows: [],
+    count: 1
+  },
   blogDetails: {
     title: "",
     description: "",
     author: "Anonymous",
-    location_category_name: "",
+    location_category: "",
     category: "",
     media: "",
-    location_sub_category_name: "",
+    location_sub_category: "",
     published: "yes",
     content: {},
+    blog_type: 'news'
   },
   error: "",
   successMessage: "",
@@ -28,7 +32,6 @@ const init = {
 
 const blogReducer = (state = init, action) => {
   const { type, payload } = action;
-
   switch (type) {
     // Fetch All Blogs Success
     case `${FETCH_ALL_BLOG}_SUCCESS`:
@@ -64,7 +67,7 @@ const blogReducer = (state = init, action) => {
     case `${DELETE_SINGLE_BLOG}_SUCCESS`:
       return {
         ...state,
-        allBlogs: state.allBlogs.filter((blog) => blog.id !== payload.id),
+        allBlogs: state.allBlogs.rows.filter((blog) => blog.id !== payload.id),
         successMessage: "Blog deleted successfully!",
         errorMessage: "",
       };
@@ -79,7 +82,7 @@ const blogReducer = (state = init, action) => {
         ...state,
         error: payload,
         successMessage: "",
-        errorMessage: payload || "An error occurred, please try again.",
+        errorMessage: payload.message || payload || "An error occurred, please try again.",
       };
 
     // Clear Blog State

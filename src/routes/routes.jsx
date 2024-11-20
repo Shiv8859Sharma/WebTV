@@ -2,6 +2,8 @@ import { lazy } from "react";
 import paths from "./paths";
 // public pages
 import Home from "@/pages/Home";
+import { element, exact } from "prop-types";
+import CreateStaticPage from "../pages/adminPages/createStaticPage";
 
 const LoginPage = lazy(() => import("@/pages/login"));
 const CategoryNews = lazy(
@@ -55,11 +57,13 @@ export const PublicRoutes = {
 export const AdminRoutes = {
   children: [
     { path: "/", element: <AdminHomePage /> },
-    { path: paths.CREATE_BLOG, element: <BlogEditor /> },
+    { path: paths.CREATE_BLOG, exact: true, element: <BlogEditor  /> },
     { path: paths.VIEW_BLOG(), element: <ShowBlog /> },
     {
       path: paths.EDIT_BLOG(),
+      exact: true,
       element: <BlogEditor />,
     },
+    {path:'/create-static-page', element : <CreateStaticPage />}
   ],
 };

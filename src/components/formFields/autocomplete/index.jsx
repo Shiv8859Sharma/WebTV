@@ -1,4 +1,4 @@
-import { Combobox, Transition } from "@headlessui/react";
+import { Combobox, ComboboxButton, ComboboxInput, ComboboxOption, ComboboxOptions, Transition } from "@headlessui/react";
 import { CheckIcon, ChevronDownIcon } from "@heroicons/react/24/outline";
 import { Fragment, useState } from "react";
 import { useSelector } from "react-redux";
@@ -14,17 +14,18 @@ const AutocompleteField = (props) => {
   let {
     label = "",
     name = "",
+    isMultiple=false,
     placeholder = "",
     containerClass = "flex flex-col gap-2.5",
     labelClass = "",
     options = [],
-    defaultValue = "",
+    defaultValue = isMultiple ? [] : "",
     errorElement = "span",
     errorMessageClassName = "",
     title = "name",
     showCheck = true,
     onSelect = () => {},
-    selected = "",
+    selected = isMultiple ? [] : "",
   } = props;
 
   const [query, setQuery] = useState("");
@@ -56,28 +57,30 @@ const AutocompleteField = (props) => {
           <Combobox
             value={selected || defaultValue}
             placeholder={placeholder}
+            multiple={isMultiple}
             onChange={onSelect}
             name={name}
           >
             <div className="">
-              <Combobox.Button className="flex items-center pr-2 w-full">
+              <ComboboxButton className="flex items-center pr-2 w-full">
                 <div
                   aria-hidden="true"
                   className="w-full px-4 py-3 border border-[#BBBDC8] rounded-md flex items-center "
                 >
-                  <Combobox.Input
+                  <ComboboxInput
                     className="w-full outline-none bg-transparent"
                     displayValue={(value) =>
                       optionsIsObject ? value?.[title] : value
                     }
                     onChange={(event) => setQuery(event.target.value)}
+                    autoComplete="off"
                   />
                   <ChevronDownIcon
                     className={`ml-2 h-5 w-5 transition duration-150 ease-in-out`}
                     aria-hidden="true"
                   />
                 </div>
-              </Combobox.Button>
+              </ComboboxButton>
               <Transition
                 as={Fragment}
                 leave="transition ease-in duration-100"
@@ -85,7 +88,7 @@ const AutocompleteField = (props) => {
                 leaveTo="opacity-0"
                 afterLeave={() => setQuery("")}
               >
-                <Combobox.Options className="absolute mt-1 max-h-60 w-full overflow-auto rounded-md bg-white py-1 text-base shadow-lg ring-1 ring-black/5 focus:outline-none sm:text-sm z-[9999]">
+                <ComboboxOptions className="absolute mt-1 max-h-60 w-full overflow-auto rounded-md bg-white py-1 text-base shadow-lg ring-1 ring-black/5 focus:outline-none sm:text-sm z-[9999]">
                   {filteredPeople.length === 0 && query !== "" ? (
                     <div className="relative cursor-default select-none px-4 py-2 text-gray-700">
                       Nothing found.
@@ -93,7 +96,7 @@ const AutocompleteField = (props) => {
                   ) : (
                     filteredPeople.map((option) =>
                       optionsIsObject ? (
-                        <Combobox.Option
+                        <ComboboxOption
                           key={option.id}
                           className={({ active }) =>
                             `relative cursor-default select-none py-2 pl-10 pr-4 ${
@@ -102,7 +105,7 @@ const AutocompleteField = (props) => {
                           }
                           value={option}
                         >
-                          {({ selected, active }) => (
+                          {({ selected }) => (
                             <>
                               <span
                                 className={`block truncate ${
@@ -113,9 +116,7 @@ const AutocompleteField = (props) => {
                               </span>
                               {selected && showCheck ? (
                                 <span
-                                  className={`absolute inset-y-0 left-0 flex items-center pl-3 ${
-                                    active ? "text-white" : "text-black-600"
-                                  }`}
+                                  className={`absolute inset-y-0 left-0 flex items-center pl-3 text-black-600`}
                                 >
                                   <CheckIcon
                                     className="h-5 w-5"
@@ -125,9 +126,9 @@ const AutocompleteField = (props) => {
                               ) : null}
                             </>
                           )}
-                        </Combobox.Option>
+                        </ComboboxOption>
                       ) : (
-                        <Combobox.Option
+                        <ComboboxOption
                           key={option}
                           className={({ active }) =>
                             `relative cursor-default select-none py-2 pl-10 pr-4 ${
@@ -159,11 +160,11 @@ const AutocompleteField = (props) => {
                               ) : null}
                             </>
                           )}
-                        </Combobox.Option>
+                        </ComboboxOption>
                       )
                     )
                   )}
-                </Combobox.Options>
+                </ComboboxOptions>
               </Transition>
             </div>
           </Combobox>
