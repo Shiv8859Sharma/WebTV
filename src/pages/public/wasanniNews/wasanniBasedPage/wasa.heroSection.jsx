@@ -22,9 +22,9 @@ const WasaHeroSection = ({ currentTab = "" }) => {
   };
 
   let mainArticle = {
-    "kalon-kapa": kalonKapa,
+    kalon_kapa: kalonKapa,
     dambe: addiniHeroArticle,
-    "wasa-kondo": wasaninHeroArticle,
+    wasa_kondo: wasaninHeroArticle,
   };
 
   return (

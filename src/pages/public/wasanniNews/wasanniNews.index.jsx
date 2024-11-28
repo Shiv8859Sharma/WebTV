@@ -1,24 +1,33 @@
-import { memo } from "react";
+import { memo, useEffect } from "react";
 import SectionNavigation from "@/components/sectionNavigation/sectionNavigation.index";
-import paths from "@/routes/paths";
+// import paths from "@/routes/paths";
 import WasanniHeroSection from "./wasanniHeroSection";
 import WasanniNewsFeeds from "./wasanniFeeds";
+import { useDispatch, useSelector } from "react-redux";
+import CustomLoader from "@/layouts/skeletonLoaders";
+import { WasanniPageArticles } from "@/globalStates/actions/articleAction";
 
-const WasanniNews = () => {
-  let categories = [
-    {
-      name: "Kalon Kapa",
-      link: paths.SUBCATEGORY_NEWS("wasanni", "kalon-kapa"),
-    },
-    {
-      name: "Dambe",
-      link: paths.SUBCATEGORY_NEWS("wasanni", "dambe"),
-    },
-    {
-      name: "Wasa Kondo",
-      link: paths.SUBCATEGORY_NEWS("wasanni", "wasa-kondo"),
-    },
-  ];
+const WasanniNews = ({ categories }) => {
+  const dispatch = useDispatch();
+  const { wasanni } = useSelector((state) => state?.articles);
+  const isLoading = useSelector((state) => state.loader?.isLoading);
+
+  useEffect(() => {
+    dispatch(
+      WasanniPageArticles({
+        pagination: {
+          page: 1,
+        },
+      })
+    );
+  }, [dispatch]);
+
+  if (isLoading) {
+    return <CustomLoader name="NewsSkeletonLoader"></CustomLoader>;
+  }
+
+  let { heroSection = {}, feeds = {} } = wasanni;
+
   return (
     <div className="">
       <SectionNavigation
@@ -26,8 +35,8 @@ const WasanniNews = () => {
         showCategory
         categories={categories}
       />
-      <WasanniHeroSection />
-      <WasanniNewsFeeds />
+      <WasanniHeroSection articles={heroSection} />
+      <WasanniNewsFeeds articles={feeds?.rows} />
     </div>
   );
 };

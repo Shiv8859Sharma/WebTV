@@ -4,6 +4,7 @@ import PopupDetails from "./popup";
 import { FormDetails } from "./formDetails";
 import loaderReducer from "./loader";
 import blogReducer from "./blogReducer";
+import ArticlesReducer from "./articlesReducer";
 
 export default combineReducers({
   auth: AuthDetails,
@@ -11,4 +12,5 @@ export default combineReducers({
   loader: loaderReducer,
   FormDetails,
   blog: blogReducer,
+  articles: ArticlesReducer,
 });

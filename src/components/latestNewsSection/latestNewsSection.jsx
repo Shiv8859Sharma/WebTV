@@ -1,5 +1,6 @@
 import SectionHeading from "@/components/sectionHeading";
 import NumberWiseArticleCard from "@/components/cards/numberWiseArticleCard";
+import paths from "@/routes/paths";
 
 const LatestNewsSection = ({
   sectionTitle,
@@ -25,7 +26,7 @@ const LatestNewsSection = ({
                     description={article.description}
                     imgSrc={article.imgSrc}
                     category={article.category}
-                    link={article.link}
+                    link={paths.VIEW_BLOG(article?.id)}
                     number={index + 1}
                   />
                 ))}

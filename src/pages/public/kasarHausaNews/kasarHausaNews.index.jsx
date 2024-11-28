@@ -1,7 +1,10 @@
 import { memo, useEffect, useState, useMemo } from "react";
+import { useDispatch, useSelector } from "react-redux";
 import SectionNavigation from "@/components/sectionNavigation/sectionNavigation.index";
 import KasarHausaImageSection from "./kasarHausaImageSection";
 import HausaNewsSection from "./hausaNewsSection/hausaNewsSection";
+import CustomLoader from "@/layouts/skeletonLoaders";
+import { KasarHausaPageArticles } from "@/globalStates/actions/articleAction";
 
 // Debounce utility to limit function calls
 function debounce(func, wait) {
@@ -17,7 +20,10 @@ function debounce(func, wait) {
 }
 
 const KasarHausaNews = ({ categories }) => {
+  const dispatch = useDispatch();
   const [isLargeScreen, setIsLargeScreen] = useState(false);
+  const { kasarHausa } = useSelector((state) => state?.articles);
+  const isLoading = useSelector((state) => state.loader?.isLoading);
 
   // Detect initial screen size on mount
   useEffect(() => {
@@ -56,6 +62,21 @@ const KasarHausaNews = ({ categories }) => {
     }
   }, [isLargeScreen, categories]);
 
+  useEffect(() => {
+    dispatch(
+      KasarHausaPageArticles({
+        pagination: {
+          page: 1,
+          limit: 4,
+        },
+      })
+    );
+  }, [dispatch]);
+
+  if (isLoading) {
+    return <CustomLoader name="BlogEditorViewLoader"></CustomLoader>;
+  }
+
   return (
     <div className="flex flex-col gap-4">
       <SectionNavigation
@@ -64,7 +85,7 @@ const KasarHausaNews = ({ categories }) => {
         categories={displayLinks}
       />
       <KasarHausaImageSection />
-      <HausaNewsSection />
+      <HausaNewsSection articlesData={kasarHausa} />
     </div>
   );
 };

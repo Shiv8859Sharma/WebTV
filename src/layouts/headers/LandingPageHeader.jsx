@@ -12,10 +12,12 @@ import logo from "@/assets/webp/logo.webp";
 import slogan from "@/assets/webp/slogen-logo-4.png";
 import { useDispatch } from "react-redux";
 import { fetchLocationCategory } from "@/globalStates/actions/cateGoryAction";
+import { fetchAllBlog } from "@/globalStates/actions/blogActions";
 
 const LandingPageHeader = () => {
   const [open, setOpen] = useState(false);
   const dispatch = useDispatch();
+  // const { categoryName } = useParams();
   const [linkList, setLinkList] = useState([]);
 
   const fetchCategory = async (id) => {
@@ -26,6 +28,17 @@ const LandingPageHeader = () => {
       return [];
     }
   };
+
+  const fetchBlodData = (id) => {
+    dispatch(
+      fetchAllBlog({
+        pagination: {},
+        filters: {
+          category_id: id,
+        },
+      })
+    );
+  };
   // Load categories when component mounts
   useEffect(() => {
     fetchCategory(0).then((result) => {
@@ -34,6 +47,17 @@ const LandingPageHeader = () => {
     // eslint-disable-next-line
   }, []);
 
+  // useEffect(() => {
+  //   if (linkList.length) {
+  //     let findCurrentTab = linkList.find(
+  //       (item) => item.category_code === categoryName
+  //     );
+  //     if (findCurrentTab?.id) {
+  //       // fetchBlodData(findCurrentTab?.id)
+  //     }
+  //   }
+  // }, [linkList]);
+
   const handleHideMobileTab = (event) => {
     const clickedElement = event.target;
     let targetedID = clickedElement.closest("[id]")?.getAttribute("id");
@@ -41,6 +65,10 @@ const LandingPageHeader = () => {
     if (id.includes(targetedID) && open) {
       setOpen(false);
     }
+  };
+
+  const handleDisptchData = (id) => {
+    fetchBlodData(id);
   };
 
   return (
@@ -201,17 +229,19 @@ const LandingPageHeader = () => {
           <nav aria-label="Top" className="container mx-auto px-4">
             <div className="hidden lg:flex lg:flex-1 lg:items-center lg:justify-start lg:py-2 gap-2">
               {linkList.map((link) => (
-                <Link
-                  to={
+                <NavigatePage
+                  url={
                     link.category_code === "home"
                       ? "/"
                       : `news/${link?.category_code}`
                   }
+                  type="actionWithNavigation"
                   key={link?.id}
+                  dispatchFun={() => handleDisptchData(link?.id)}
                   className="px-4 py-2 font-medium"
                 >
                   {link?.name}
-                </Link>
+                </NavigatePage>
               ))}
               {/* <Link to="/" className="px-4 py-2 font-medium">
                 GIDA

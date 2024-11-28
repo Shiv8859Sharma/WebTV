@@ -23,8 +23,8 @@ const paths = {
 
   // admin routes
   CREATE_BLOG: "/create-blog",
-  VIEW_BLOG: (id = ":id") => `/view-blog/${id}`,
-  EDIT_BLOG: (id = ":id") => `/edit-blog/${id}`,
+  VIEW_BLOG: (id = ":id") => `/news/article/${id}`,
+  EDIT_BLOG: (id = ":id") => `/edit/article/${id}`,
 };
 
 export default paths;

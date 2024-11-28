@@ -1,6 +1,6 @@
 import { TrashIcon } from "@heroicons/react/24/outline";
 import { useDispatch, useSelector } from "react-redux";
-import { deleteExistingBlog } from "../../globalStates/actions/blogActions";
+import { deleteExistingBlog } from "@/globalStates/actions/blogActions";
 
 const ConfirmDeleteBlog = ({ onClose = () => {} }) => {
   const dispatch = useDispatch();

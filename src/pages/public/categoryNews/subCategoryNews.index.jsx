@@ -25,7 +25,17 @@ const SubCategoryNews = () => {
   const fetchCategory = async (id) => {
     let category = await dispatch(fetchLocationCategory(id));
     if (category?.status === 200 && category?.data?.success) {
-      return category?.data?.data;
+      let showCategory = {
+        kasar_hausa: ["siyassa", "addini", "wasanni", "silma_kannywood"],
+        duniya:
+          subCategoryName === "gabas_ta_tsakiya"
+            ? ["siyassa", "addini", "wasanni", "yanayi_a_yau"]
+            : ["siyassa", "wasanni", "kasuwanci"],
+      };
+      let filteredCategories = category?.data?.data?.filter((item) =>
+        showCategory[categoryName].includes(item?.category_code)
+      );
+      return filteredCategories;
     } else {
       return [];
     }
@@ -50,8 +60,8 @@ const SubCategoryNews = () => {
   }, [categoryName, subCategoryName]);
 
   const currentPage = useMemo(() => {
-    let name = `${categoryName}-${subCategoryName}
-    `;
+    let name = `${categoryName}-${subCategoryName}`;
+    if (loading) return;
     if (name.includes("kasar_hausa")) {
       return <KasarHausaStatePage categories={subCategory} />;
     } else if (name.includes("afrika")) {
@@ -69,7 +79,7 @@ const SubCategoryNews = () => {
       );
     }
     // eslint-disable-next-line
-  }, [categoryName, subCategory]);
+  }, [categoryName, subCategory, loading]);
 
   if (loading) {
     return <CustomLoader name="NewsSkeletonLoader" />;

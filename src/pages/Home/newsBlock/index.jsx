@@ -3,6 +3,7 @@ import SectionHeading from "@/components/sectionHeading";
 import RightContent from "../rightContent";
 import ArticleCoverCard from "@/components/cards/articleCoverCard";
 import NumberWiseArticleCard from "@/components/cards/numberWiseArticleCard";
+import paths from "@/routes/paths";
 
 const NewsBlock = ({
   sectionTitle,
@@ -44,7 +45,8 @@ const NewsBlock = ({
                         description={article.description}
                         imgSrc={article.imgSrc}
                         category={article.category}
-                        link={article.link}
+                        link={paths.VIEW_BLOG(article?.id)}
+                        createdAt={article?.createdAt}
                       />
                     ) : (
                       <NumberWiseArticleCard
@@ -53,8 +55,9 @@ const NewsBlock = ({
                         description={article.description}
                         imgSrc={article.imgSrc}
                         category={article.category}
-                        link={article.link}
+                        link={paths.VIEW_BLOG(article?.id)}
                         number={index + 1}
+                        createdAt={article?.createdAt}
                       />
                     )
                   )}

@@ -4,7 +4,14 @@ import ArticleHeading from "../article/articleHeading";
 import ArticleTitle from "../article/articleTitle";
 import ArticleMeta from "../articleMeta/articleMeta";
 
-const ArticleCard = ({ title, description, imgSrc, category, link = "" }) => {
+const ArticleCard = ({
+  title,
+  description,
+  imgSrc,
+  category,
+  link = "",
+  createdAt = new Date(),
+}) => {
   return (
     <div className="flex-shrink max-w-full sm:w-full md:w-1/2 lg:w-1/4 px-3 pb-3 pt-3 sm:pt-0 border-b-2 sm:border-b-0 border-dotted border-gray-100">
       <NavigatePage url={link}>
@@ -30,7 +37,7 @@ const ArticleCard = ({ title, description, imgSrc, category, link = "" }) => {
                 className="text-lg font-bold line-clamp-2"
               />
               <ArticleTitle title={description} className="line-clamp-3" />
-              <ArticleMeta date={new Date()} category={category} />
+              <ArticleMeta date={createdAt} category={category} />
             </div>
           </div>
         </div>

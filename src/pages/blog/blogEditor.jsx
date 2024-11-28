@@ -17,7 +17,7 @@ import TextAreaField from "@/components/formFields/textarea";
 import { convertFileToBase64URL } from "@/utills/helpers/base64Url";
 import { fetchLocationCategory } from "@/globalStates/actions/cateGoryAction";
 import { FETCH_SINGLE_BLOG } from "@/globalStates/actions/actionsType";
-import RadioFields from "../../components/formFields/radio";
+import RadioFields from "@/components/formFields/radio";
 
 function BlogEditor() {
   const { id } = useParams();
@@ -90,7 +90,12 @@ function BlogEditor() {
   // Load categories when component mounts
   useEffect(() => {
     fetchCategory(0).then((result) => {
-      const filteredCategories = result.filter((cate) => cate.name !== "Gida");
+      const filteredCategories = result.filter(
+        (cate) =>
+          !["home", "kasuwanci", "wasanni", "yanayi_a_yau"].includes(
+            cate.category_code
+          )
+      );
       setLocationCategory(filteredCategories);
     });
     // eslint-disable-next-line
@@ -138,11 +143,10 @@ function BlogEditor() {
     e.preventDefault();
     let updateKeys = {
       ...blogData,
-      category_id: blogData.category.id,
-      parent_main_category_id: blogData.parentMaincategory.id,
-      parent_sub_category_id: blogData.parentSubcategory.id,
+      category_id: blogData?.category?.id || null,
+      parent_main_category_id: blogData?.parentMaincategory?.id || null,
+      parent_sub_category_id: blogData?.parentSubcategory?.id || null,
     };
-
     await appendFormData(formData, updateKeys);
 
     if (isError) return;
@@ -153,7 +157,7 @@ function BlogEditor() {
       navigate("/");
     } else {
       // Create a new blog
-      await dispatch(createNewBlog(formData));
+      await dispatch(createNewBlog(updateKeys));
       navigate("/");
     }
   }
@@ -314,6 +318,7 @@ function BlogEditor() {
                   handleSetBlog({
                     target: { value, name: "parentSubcategory" },
                   });
+                  handleSetBlog({ target: { value: "", name: "category" } });
                 }}
               />
             </div>

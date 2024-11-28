@@ -48,6 +48,9 @@ const CategoryNews = () => {
   }, [categoryName]);
 
   const currentPage = useMemo(() => {
+    if (loading) {
+      return <CustomLoader name="NewsSkeletonLoader" />;
+    }
     switch (categoryName) {
       case "kasar_hausa":
         return <KasarHausaNewsIndex categories={subCategory} />;
@@ -68,11 +71,7 @@ const CategoryNews = () => {
           </div>
         );
     }
-  }, [categoryName, subCategory]);
-
-  if (loading) {
-    return <CustomLoader name="NewsSkeletonLoader" />;
-  }
+  }, [subCategory, categoryName, loading]);
 
   return <main className="bg-white py-6">{currentPage}</main>;
 };

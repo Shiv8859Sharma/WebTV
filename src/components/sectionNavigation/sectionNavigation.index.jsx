@@ -68,7 +68,7 @@ const SectionNavigation = ({
                     </Menu>
                   ) : as === "tab" ? (
                     <button
-                      onClick={onChangeTab}
+                      onClick={(e) => onChangeTab(e, category)}
                       className={`text-2xl text-nowrap font-extralight text-black py-1 border-b-2  cursor-pointer ${isActive === category.name ? "border-gray-600" : "border-transparent"} hover:border-gray-600`}
                     >
                       {category.name}

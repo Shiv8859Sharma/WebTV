@@ -3,35 +3,36 @@ import SectionNavigation from "@/components/sectionNavigation/sectionNavigation.
 import { useState } from "react";
 import ContinentHeroSection from "./continent.herosection";
 
-const ContinentPage = () => {
+const ContinentPage = ({ categories }) => {
   const { subCategory } = useParams();
   const [isActiveTab, setIsActioveTab] = useState("Siyassa");
-  let allCategories = [
-    {
-      name: "Siyassa",
-    },
-    {
-      name: "Wasanin",
-    },
-    {
-      name: "Kasawanci",
-    },
-  ];
+  // let allCategories = [
+  //   {
+  //     name: "Siyassa",
+  //   },
+  //   {
+  //     name: "Wasanin",
+  //   },
+  //   {
+  //     name: "Kasawanci",
+  //   },
+  // ];
 
-  let gabasCategoties = [
-    {
-      name: "Siyassa",
-    },
-    {
-      name: "Addini",
-    },
-    {
-      name: "Wasanin",
-    },
-    {
-      name: "Yanayi a yau",
-    },
-  ];
+  // let gabasCategoties = [
+  //   {
+  //     name: "Siyassa",
+  //   },
+  //   {
+  //     name: "Addini",
+  //   },
+  //   {
+  //     name: "Wasanin",
+  //   },
+  //   {
+  //     name: "Yanayi a yau",
+  //   },
+  // ];
+  // console.log("categories ::", categories);
 
   const handleTabChange = (e) => {
     setIsActioveTab(e.target.innerText);
@@ -41,16 +42,14 @@ const ContinentPage = () => {
     turai: "Turai",
     amurka: "Amurka | Kudancin Amurka | Caribbean",
     asiya: "Asiya",
-    "gabas-ta-tsakiya": "Gabas-ta-tsakiya",
+    gabas_ta_tsakiya: "Gabas-ta-tsakiya",
   };
   return (
     <div>
       <SectionNavigation
         title={title[subCategory]}
         showCategory
-        categories={
-          subCategory === "gabas-ta-tsakiya" ? gabasCategoties : allCategories
-        }
+        categories={categories}
         as="tab"
         isActive={isActiveTab}
         onChangeTab={handleTabChange}

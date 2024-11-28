@@ -1,3 +1,4 @@
+import paths from "@/routes/paths";
 import ArticleMeta from "../articleMeta/articleMeta";
 import NavigatePage from "../navigatePage";
 import ArticleHeading from "./articleHeading";
@@ -10,7 +11,7 @@ const ArticleCategory = ({ title, articles }) => {
       </h2>
       {articles.map((article, index) => (
         <NavigatePage
-          url={article?.link}
+          url={paths.VIEW_BLOG(article?.id)}
           key={index}
           className="mb-6 flex flex-col gap-3"
         >
@@ -18,7 +19,7 @@ const ArticleCategory = ({ title, articles }) => {
             heading={article.title}
             className="text-xl font-medium text-gray-800"
           />
-          <ArticleMeta date={article?.date} />
+          <ArticleMeta date={article?.createdAt} />
         </NavigatePage>
       ))}
     </div>

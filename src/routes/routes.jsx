@@ -7,7 +7,7 @@ import {
   AdminHomePage,
   BlogEditor,
   ShowBlog,
-} from "./components"; // Import components
+} from "./components";
 
 import paths from "./paths";
 
@@ -34,6 +34,7 @@ export const PublicRoutes = {
         },
       ],
     },
+    { path: paths.VIEW_BLOG(), element: <ShowBlog /> },
   ],
 };
 

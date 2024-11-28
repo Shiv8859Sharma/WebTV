@@ -67,7 +67,11 @@ const blogReducer = (state = init, action) => {
     case `${DELETE_SINGLE_BLOG}_SUCCESS`:
       return {
         ...state,
-        allBlogs: state.allBlogs.rows.filter((blog) => blog.id !== payload.id),
+        allBlogs: {
+          ...state.allBlogs,
+          count: state.allBlogs.count - 1,
+          rows: state.allBlogs.rows.filter((blog) => blog.id !== payload.id),
+        },
         successMessage: "Blog deleted successfully!",
         errorMessage: "",
       };

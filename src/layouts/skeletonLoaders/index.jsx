@@ -3,12 +3,14 @@ import BlogEditorFormLoader from "./blogSkeletonLoader/BlogEditorFormLoader";
 import BlogEditorViewLoader from "./blogSkeletonLoader/BlogEditorViewLoader";
 import TableBodyLoader from "./tableSkeletonLoader/tableBodyLoader";
 import NewsSkeletonLoader from "./newsSkeletonLoader/newsSkeletonLoader.index";
+import MainSkeletonLoader from "./mainSkeletonLoader/mainSkeleton.index";
 
 const componentMap = {
   BlogEditorFormLoader: BlogEditorFormLoader,
   BlogEditorViewLoader: BlogEditorViewLoader,
   TableBodyLoader: TableBodyLoader,
   NewsSkeletonLoader: NewsSkeletonLoader,
+  MainSkeletonLoader: MainSkeletonLoader,
 };
 
 const CustomLoader = ({ count, name, ...rest }) => {

@@ -1,15 +1,14 @@
-import { memo, useEffect, useRef } from "react";
+import { memo, useEffect, useRef, useState } from "react";
 import EditorJS from "@editorjs/editorjs";
 import { useDispatch, useSelector } from "react-redux";
 import { EDITOR_JS_TOOLS as tools } from "./tools";
 import { setBlog } from "@/globalStates/actions/blogActions";
 
-let dat = true;
-const InitiEditorjs = () => {
+const InitEditorjs = () => {
   const editorjsRef = useRef(null);
   const dispatch = useDispatch();
   const initialContent = useSelector((state) => state.blog.blogDetails.content);
-
+  const [InitEditor, setIntiEditor] = useState(true);
   function initializeEditorjs() {
     editorjsRef.current = new EditorJS({
       placeholder: "write content...",
@@ -25,19 +24,14 @@ const InitiEditorjs = () => {
   }
 
   useEffect(() => {
-    if (editorjsRef.current === null && !dat) {
+    if (editorjsRef.current === null && InitEditor) {
       initializeEditorjs();
-      dat = true;
+      setIntiEditor((prev) => !prev);
     }
-
-    return () => {
-      dat = false;
-      editorjsRef.current = null;
-    };
     // eslint-disable-next-line
   }, []);
 
   return <div id="editorjs"></div>;
 };
 
-export default memo(InitiEditorjs);
+export default memo(InitEditorjs);

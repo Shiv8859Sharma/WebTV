@@ -1,4 +1,5 @@
 import NavigatePage from "@/components/navigatePage";
+import paths from "@/routes/paths";
 
 const PopularArticlesList = ({ title = "Most Popular", articles = [] }) => {
   return (
@@ -15,9 +16,9 @@ const PopularArticlesList = ({ title = "Most Popular", articles = [] }) => {
             >
               <NavigatePage
                 className="text-lg font-bold px-6 py-3 flex flex-row items-center"
-                url={article.link}
+                url={paths.VIEW_BLOG(article?.id)}
               >
-                {article.text}
+                {article?.title}
               </NavigatePage>
             </li>
           ))}

@@ -6,50 +6,11 @@ import { memo } from "react";
 import NavigatePage from "@/components/navigatePage";
 import VideoPlayer from "@/components/videoPlayer/videoPlayer.index";
 import { VideoProvider } from "@/context/videoContext";
+import paths from "@/routes/paths";
 
-const HausaNewsSection = () => {
-  let articles = [
-    {
-      id: "12-t-45",
-      title: "Starvation in war-hit Sudan 'almost everywhere' - WHO",
-      description:
-        "The head of the UN health agency says the world's attention to Sudan is 'really low' and race is a factor.",
-      imgSrc:
-        "https://ichef.bbci.co.uk/news/480/cpsprodpb/a5a0/live/8fa1fdc0-74dc-11ef-8eeb-fb4751416701.jpg.webp",
-      category: "Afirka",
-      link: "",
-    },
-    {
-      id: "12-34-f",
-      title: "Starvation in war-hit Sudan 'almost everywhere' - WHO",
-      description:
-        "The head of the UN health agency says the world's attention to Sudan is 'really low' and race is a factor.",
-      imgSrc:
-        "https://ichef.bbci.co.uk/news/480/cpsprodpb/a5a0/live/8fa1fdc0-74dc-11ef-8eeb-fb4751416701.jpg.webp",
-      category: "Afirka",
-      link: "",
-    },
-    {
-      id: "12-34-r",
-      title: "Starvation in war-hit Sudan 'almost everywhere' - WHO",
-      description:
-        "The head of the UN health agency says the world's attention to Sudan is 'really low' and race is a factor.",
-      imgSrc:
-        "https://ichef.bbci.co.uk/news/480/cpsprodpb/a5a0/live/8fa1fdc0-74dc-11ef-8eeb-fb4751416701.jpg.webp",
-      category: "Afirka",
-      link: "",
-    },
-    {
-      id: "12-s-35e",
-      title: "Starvation in war-hit Sudan 'almost everywhere' - WHO",
-      description:
-        "The head of the UN health agency says the world's attention to Sudan is 'really low' and race is a factor.",
-      imgSrc:
-        "https://ichef.bbci.co.uk/news/480/cpsprodpb/a5a0/live/8fa1fdc0-74dc-11ef-8eeb-fb4751416701.jpg.webp",
-      category: "Afirka",
-      link: "",
-    },
-  ];
+const HausaNewsSection = ({ articlesData = {} }) => {
+  const { articles = [], articleWithVideo = [] } = articlesData;
+
   return (
     <VideoProvider>
       <section className="container mx-auto mt-10">
@@ -63,7 +24,7 @@ const HausaNewsSection = () => {
 
             {/* Article List */}
             <div className="h-full">
-              {articles.map((article, index) => (
+              {articles?.rows?.map((article, index) => (
                 <ArticleCard key={index} article={article} />
               ))}
             </div>
@@ -81,7 +42,7 @@ const HausaNewsSection = () => {
 
             {/* Article List */}
             <div className="h-full">
-              {articles.map((article, index) => (
+              {articleWithVideo?.rows?.map((article, index) => (
                 <ArticleCard key={index} article={article} isVideoContent />
               ))}
             </div>
@@ -95,7 +56,7 @@ const HausaNewsSection = () => {
 // Reusable ArticleCard component
 const ArticleCard = ({ article, isVideoContent = false }) => (
   <div className="w-full px-3 pb-3 pt-3 sm:pt-0 border-b-2 border-dotted border-gray-100">
-    <NavigatePage url={article?.link || "#"}>
+    <NavigatePage url={paths.VIEW_BLOG(article?.id)}>
       <div
         className={`flex flex-col lg:flex-row w-full ${isVideoContent ? "" : "hover-img"}`}
       >
@@ -127,8 +88,8 @@ const ArticleCard = ({ article, isVideoContent = false }) => (
             className="line-clamp-2 md:line-clamp-3 lg:line-clamp-4"
           />
           <ArticleMeta
-            date={article?.date || new Date()}
-            category={article?.category || "General"}
+            date={article?.createdAt || new Date()}
+            category={article?.category || "Unknow"}
           />
         </div>
       </div>

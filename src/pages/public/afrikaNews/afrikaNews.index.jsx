@@ -1,28 +1,32 @@
-import { memo } from "react";
+import { memo, useEffect } from "react";
 import SectionNavigationIndex from "@/components/sectionNavigation/sectionNavigation.index";
 import AfrikaLatestNews from "./afrikaLatestNews";
 import AfrikaHeroSection from "./AfrikaHeroSection";
-import paths from "@/routes/paths";
+import { useDispatch, useSelector } from "react-redux";
+import { AfrikaPageArticles } from "@/globalStates/actions/articleAction";
+import CustomLoader from "@/layouts/skeletonLoaders";
 
-const AfirkaNews = () => {
-  let categories = [
-    {
-      name: "Kudancin afirka",
-      link: paths.SUBCATEGORY_NEWS("afrika", "kudancin-afirka"),
-    },
-    {
-      name: "Arewacin afirka",
-      link: paths.SUBCATEGORY_NEWS("afrika", "arewacin-afirka"),
-    },
-    {
-      name: "Afirka ta yamma",
-      link: paths.SUBCATEGORY_NEWS("afrika", "afirka-ta-yamma"),
-    },
-    {
-      name: "Gabashin afirka",
-      link: paths.SUBCATEGORY_NEWS("afrika", "gabashin-afirka"),
-    },
-  ];
+const AfirkaNews = ({ categories }) => {
+  const dispatch = useDispatch();
+  const { afrika } = useSelector((state) => state?.articles);
+  const isLoading = useSelector((state) => state.loader?.isLoading);
+
+  useEffect(() => {
+    dispatch(
+      AfrikaPageArticles({
+        pagination: {
+          page: 1,
+        },
+      })
+    );
+  }, [dispatch]);
+
+  if (isLoading) {
+    return <CustomLoader name="MainSkeletonLoader"></CustomLoader>;
+  }
+
+  let { heroSection, latestArticle, mostPopularPost } = afrika;
+
   return (
     <div>
       <SectionNavigationIndex
@@ -30,8 +34,11 @@ const AfirkaNews = () => {
         showCategory
         categories={categories}
       />
-      <AfrikaHeroSection />
-      <AfrikaLatestNews />
+      <AfrikaHeroSection articles={heroSection} />
+      <AfrikaLatestNews
+        articles={latestArticle}
+        mostPopularPost={mostPopularPost?.rows}
+      />
     </div>
   );
 };

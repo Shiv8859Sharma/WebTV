@@ -1,28 +1,29 @@
-import { memo } from "react";
+import { memo, useEffect } from "react";
 import DuniyaImageSection from "./duniyaImageSection";
 import SectionNavigation from "@/components/sectionNavigation/sectionNavigation.index";
-import paths from "@/routes/paths";
 import DuniyaNewsFeeds from "./duniyaNewsFeeds";
+import { useDispatch, useSelector } from "react-redux";
+import CustomLoader from "@/layouts/skeletonLoaders";
+import { DuniyaPageArticles } from "@/globalStates/actions/articleAction";
 
-const DuniyaNews = () => {
-  let categories = [
-    {
-      name: "Turai",
-      link: paths.SUBCATEGORY_NEWS("duniya", "turai"),
-    },
-    {
-      name: "Amurka",
-      link: paths.SUBCATEGORY_NEWS("duniya", "amurka"),
-    },
-    {
-      name: "Asiya",
-      link: paths.SUBCATEGORY_NEWS("duniya", "asiya"),
-    },
-    {
-      name: "Gabas ta Tsakiya",
-      link: paths.SUBCATEGORY_NEWS("duniya", "gabas-ta-tsakiya"),
-    },
-  ];
+const DuniyaNews = ({ categories }) => {
+  const dispatch = useDispatch();
+  const { duniya } = useSelector((state) => state?.articles);
+  const isLoading = useSelector((state) => state.loader?.isLoading);
+
+  useEffect(() => {
+    dispatch(
+      DuniyaPageArticles({
+        pagination: {
+          page: 1,
+        },
+      })
+    );
+  }, [dispatch]);
+
+  if (isLoading) {
+    return <CustomLoader name="NewsSkeletonLoader"></CustomLoader>;
+  }
 
   return (
     <div>
@@ -31,8 +32,8 @@ const DuniyaNews = () => {
         showCategory
         categories={categories}
       />
-      <DuniyaImageSection />
-      <DuniyaNewsFeeds />
+      <DuniyaImageSection article={duniya?.rows?.[0]} />
+      <DuniyaNewsFeeds articles={duniya?.rows?.slice(1)} />
     </div>
   );
 };

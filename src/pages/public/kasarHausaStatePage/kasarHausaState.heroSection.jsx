@@ -1,10 +1,11 @@
-import { kanoStateArticle } from "@/static";
-import RenderContent from "../../../components/renderContent/renderContent.index";
+// import { kanoStateArticle } from "@/static";
+import RenderContent from "@/components/renderContent/renderContent.index";
 import ImageElement from "@/components/ImageElement";
 import VideoPlayer from "@/components/videoPlayer/videoPlayer.index";
 
-const KasarHausaStateHeroSection = ({ currentTab = "" }) => {
-  let { media, content = {} } = kanoStateArticle[currentTab];
+// const KasarHausaStateHeroSection = ({ currentTab = "", articleDetails }) => {
+const KasarHausaStateHeroSection = ({ articleDetails }) => {
+  let { media, content = {} } = articleDetails;
   return (
     <section className="container max-w-5xl mx-auto pt-0 p-6 bg-white shadow-lg rounded-lg blog-container">
       {/* Blog Title */}

@@ -2,24 +2,27 @@ import ImageElement from "@/components/ImageElement";
 import NavigatePage from "@/components/navigatePage";
 import TimeAgo from "@/components/timeAgo";
 import staticData from "@/static/staticData.json";
+import paths from "@/routes/paths";
 
-const NewsFeeds = () => {
+const NewsFeeds = ({ feeds = [] }) => {
   return (
     <section className="container mx-auto py-8">
       <div className="w-3/4">
-        {staticData?.newsFedd.map((news, index) => (
-          <NewsFeedItem
-            key={index}
-            category={news?.category}
-            title={news?.title}
-            description={news?.description}
-            image={news?.image}
-            author={news?.author}
-            date={news?.date}
-            time={news?.time}
-            url={news?.link}
-          />
-        ))}
+        {[...(feeds.length ? feeds : staticData?.newsFedd || [])].map(
+          (news, index) => (
+            <NewsFeedItem
+              key={index}
+              category={news?.category || "OPINION"}
+              title={news?.title}
+              description={news?.description}
+              image={news?.image}
+              author={news?.author}
+              date={news?.createdAt || new Date()}
+              time={news?.time}
+              url={paths.VIEW_BLOG(news?.id)}
+            />
+          )
+        )}
         <div className="text-center mt-6">
           <button className="bg-black text-white px-4 py-2">Show more</button>
         </div>

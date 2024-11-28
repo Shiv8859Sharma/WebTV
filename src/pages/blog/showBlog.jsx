@@ -7,7 +7,7 @@ import VideoPlayer from "@/components/videoPlayer/videoPlayer.index";
 import { fetchSingleBlog, clearBlog } from "@/globalStates/actions/blogActions";
 import CustomLoader from "@/layouts/skeletonLoaders";
 import NoDataFoundMessage from "@/constants/NoDataFoundMessage";
-import RenderContent from "../../components/renderContent/renderContent.index";
+import RenderContent from "@/components/renderContent/renderContent.index";
 
 function ViewBlog() {
   const dispatch = useDispatch();

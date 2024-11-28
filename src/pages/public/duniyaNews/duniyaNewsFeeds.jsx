@@ -1,7 +1,7 @@
 import NewsFeeds from "../../newsFeeds/newsFeeds";
 
-const DuniyaNewsFeeds = () => {
-  return <NewsFeeds />;
+const DuniyaNewsFeeds = ({ articles = [] }) => {
+  return <NewsFeeds feeds={articles} />;
 };
 
 export default DuniyaNewsFeeds;
