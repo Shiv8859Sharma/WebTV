@@ -15,7 +15,7 @@ const NewsFeeds = ({ feeds = [] }) => {
               category={news?.category || "OPINION"}
               title={news?.title}
               description={news?.description}
-              image={news?.image}
+              image={news?.media?.url ?? news?.image}
               author={news?.author}
               date={news?.createdAt || new Date()}
               time={news?.time}

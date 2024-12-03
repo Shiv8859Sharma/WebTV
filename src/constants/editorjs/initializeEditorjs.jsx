@@ -9,6 +9,7 @@ const InitEditorjs = () => {
   const dispatch = useDispatch();
   const initialContent = useSelector((state) => state.blog.blogDetails.content);
   const [InitEditor, setIntiEditor] = useState(true);
+
   function initializeEditorjs() {
     editorjsRef.current = new EditorJS({
       placeholder: "write content...",

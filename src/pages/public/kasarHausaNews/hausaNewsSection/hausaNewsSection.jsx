@@ -89,7 +89,7 @@ const ArticleCard = ({ article, isVideoContent = false }) => (
           />
           <ArticleMeta
             date={article?.createdAt || new Date()}
-            category={article?.category || "Unknow"}
+            category={article?.category || "OPINION"}
           />
         </div>
       </div>

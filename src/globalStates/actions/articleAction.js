@@ -1,9 +1,13 @@
 import {
   AFRIKA_PAGE_ARTICLES,
+  AFRIKA_TA_YAMMA_PAGE_ARTICLES,
+  AREWACIN_AFRIKA_PAGE_ARTICLES,
   DUNIYA_PAGE_ARTICLES,
+  GABASHIN_AFRIKA_PAGE_ARTICLES,
   HOME_PAGE_ARTICLES,
   KASAR_HAUSA_PAGE_ARTICLES,
   KASUWANCI_PAGE_ARTICLES,
+  KUDANCIN_AFRIKA_PAGE_ARTICLES,
   WASANNI_PAGE_ARTICLES,
   YANAYI_PAGE_ARTICLES,
 } from "./actionsType";
@@ -77,6 +81,50 @@ export const YanayiPageArticles = (payload) => ({
   type: YANAYI_PAGE_ARTICLES,
   method: "POST",
   URLEndPoint: YANAYI_PAGE_ARTICLES,
+  data: payload,
+  axiosService: true,
+  toaster: {
+    loading: true,
+  },
+});
+
+export const KudancinAfrikaPageArticles = (payload) => ({
+  type: KUDANCIN_AFRIKA_PAGE_ARTICLES,
+  method: "POST",
+  URLEndPoint: KUDANCIN_AFRIKA_PAGE_ARTICLES,
+  data: payload,
+  axiosService: true,
+  toaster: {
+    loading: true,
+  },
+});
+
+export const ArewacinAfrikaPageArticles = (payload) => ({
+  type: AREWACIN_AFRIKA_PAGE_ARTICLES,
+  method: "POST",
+  URLEndPoint: AREWACIN_AFRIKA_PAGE_ARTICLES,
+  data: payload,
+  axiosService: true,
+  toaster: {
+    loading: true,
+  },
+});
+
+export const AfrikaTaYammaPageArticles = (payload) => ({
+  type: AFRIKA_TA_YAMMA_PAGE_ARTICLES,
+  method: "POST",
+  URLEndPoint: AFRIKA_TA_YAMMA_PAGE_ARTICLES,
+  data: payload,
+  axiosService: true,
+  toaster: {
+    loading: true,
+  },
+});
+
+export const GabashinAfrikaPageArticles = (payload) => ({
+  type: GABASHIN_AFRIKA_PAGE_ARTICLES,
+  method: "POST",
+  URLEndPoint: GABASHIN_AFRIKA_PAGE_ARTICLES,
   data: payload,
   axiosService: true,
   toaster: {

@@ -5,7 +5,30 @@ import Underline from "@editorjs/underline";
 import Embed from "@editorjs/embed";
 import ImageTool from "@editorjs/image";
 import TextVariantTune from "@editorjs/text-variant-tune";
-import { convertFileToBase64URL } from "@/utills/helpers/base64Url";
+import { UploadFiles } from "@/globalStates/actions/filesUploadAction";
+import { store } from "@/globalStates";
+
+// const uploadImageByUrl = (e) => {
+
+// };
+
+const uploadImageByFile = async (image) => {
+  let formData = new FormData();
+  formData.append("file", image);
+  const URI = await store.dispatch(UploadFiles(formData));
+  if (URI?.data?.success) {
+    return {
+      success: 1,
+      file: {
+        ...URI?.data?.data,
+      },
+    };
+  } else {
+    return {
+      success: 0,
+    };
+  }
+};
 
 export const EDITOR_JS_TOOLS = {
   header: {
@@ -30,14 +53,8 @@ export const EDITOR_JS_TOOLS = {
     class: ImageTool,
     config: {
       uploader: {
-        uploadByFile: async (image) => {
-          return {
-            success: 1,
-            file: {
-              url: await convertFileToBase64URL(image),
-            },
-          };
-        },
+        uploadByFile: uploadImageByFile,
+        // uploadByUrl: uploadImageByUrl
       },
     },
   },

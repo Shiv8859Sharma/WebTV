@@ -25,7 +25,7 @@ const AfirkaNews = ({ categories }) => {
     return <CustomLoader name="MainSkeletonLoader"></CustomLoader>;
   }
 
-  let { heroSection, latestArticle, mostPopularPost } = afrika;
+  let { heroSection, latestArticles, mostPopularArticles } = afrika;
 
   return (
     <div>
@@ -36,8 +36,8 @@ const AfirkaNews = ({ categories }) => {
       />
       <AfrikaHeroSection articles={heroSection} />
       <AfrikaLatestNews
-        articles={latestArticle}
-        mostPopularPost={mostPopularPost?.rows}
+        articles={latestArticles}
+        mostPopularPost={mostPopularArticles?.rows}
       />
     </div>
   );

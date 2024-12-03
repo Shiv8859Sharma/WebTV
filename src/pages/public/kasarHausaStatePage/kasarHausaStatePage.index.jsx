@@ -18,8 +18,6 @@ const KasarHausaStatePage = ({ categories }) => {
   const { subCategory } = useParams();
   const dispatch = useDispatch();
   const blogData = useSelector((state) => state.blog.allBlogs?.rows[0]);
-  // console.log("blogData :::", blogData);
-
   // Use state for the active tab with a fallback to the first category.
   const [isActiveTab, setIsActiveTab] = useState(() => categories[0] || null);
 

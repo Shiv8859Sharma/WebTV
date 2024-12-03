@@ -33,7 +33,7 @@ const SubCategoryNews = () => {
             : ["siyassa", "wasanni", "kasuwanci"],
       };
       let filteredCategories = category?.data?.data?.filter((item) =>
-        showCategory[categoryName].includes(item?.category_code)
+        showCategory[categoryName]?.includes(item?.category_code)
       );
       return filteredCategories;
     } else {
@@ -61,7 +61,9 @@ const SubCategoryNews = () => {
 
   const currentPage = useMemo(() => {
     let name = `${categoryName}-${subCategoryName}`;
-    if (loading) return;
+    if (loading) {
+      return <CustomLoader name="NewsSkeletonLoader" />;
+    }
     if (name.includes("kasar_hausa")) {
       return <KasarHausaStatePage categories={subCategory} />;
     } else if (name.includes("afrika")) {
@@ -73,7 +75,7 @@ const SubCategoryNews = () => {
     } else {
       return (
         <p>
-          `Category {categoryName} Sub category {subCategoryName}` page is not
+          Category {categoryName} Sub category {subCategoryName} page is not
           availble
         </p>
       );
@@ -81,9 +83,6 @@ const SubCategoryNews = () => {
     // eslint-disable-next-line
   }, [categoryName, subCategory, loading]);
 
-  if (loading) {
-    return <CustomLoader name="NewsSkeletonLoader" />;
-  }
   return <main className="bg-white py-6">{currentPage}</main>;
 };
 

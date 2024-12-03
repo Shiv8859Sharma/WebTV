@@ -14,7 +14,7 @@ const DuniyaImageSection = ({ article = {} }) => {
         className="flex flex-col gap-3"
       >
         <ImageElement
-          src={article?.imageUrl}
+          src={article?.media?.url}
           className="w-full h-[22rem] md:h-[25rem] lg:h-[34rem] aspect-video rounded-md object-fit"
           alt="Kasar hausa main image"
         />

@@ -6,6 +6,7 @@ import VideoPlayer from "@/components/videoPlayer/videoPlayer.index";
 // const KasarHausaStateHeroSection = ({ currentTab = "", articleDetails }) => {
 const KasarHausaStateHeroSection = ({ articleDetails }) => {
   let { media, content = {} } = articleDetails;
+
   return (
     <section className="container max-w-5xl mx-auto pt-0 p-6 bg-white shadow-lg rounded-lg blog-container">
       {/* Blog Title */}

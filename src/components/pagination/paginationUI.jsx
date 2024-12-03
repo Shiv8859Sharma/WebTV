@@ -3,7 +3,7 @@ import React from "react";
 
 const Pagination = ({
   totalPages = 5,
-  currentPage = 2,
+  currentPage = 1,
   onPageChange = () => {},
 }) => {
   const handlePageClick = (page) => {

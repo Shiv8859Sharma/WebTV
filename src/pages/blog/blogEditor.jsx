@@ -14,10 +14,11 @@ import {
 } from "@/globalStates/actions/blogActions";
 import AutocompleteField from "@/components/formFields/autocomplete";
 import TextAreaField from "@/components/formFields/textarea";
-import { convertFileToBase64URL } from "@/utills/helpers/base64Url";
 import { fetchLocationCategory } from "@/globalStates/actions/cateGoryAction";
 import { FETCH_SINGLE_BLOG } from "@/globalStates/actions/actionsType";
 import RadioFields from "@/components/formFields/radio";
+import { UploadFiles } from "@/globalStates/actions/filesUploadAction";
+import { SpinLoader } from "@/components/loader";
 
 function BlogEditor() {
   const { id } = useParams();
@@ -41,6 +42,7 @@ function BlogEditor() {
   const [subLocationCategoryList, setSubLocationCategoryList] = useState([]);
   const [categoryList, setCategoryList] = useState([]);
   const [changePageLoader, setChangePageLoader] = useState(false);
+  const [isCoverImageUploading, setCoverImageUploading] = useState(false);
 
   useEffect(() => {
     if (location.key) {
@@ -168,15 +170,23 @@ function BlogEditor() {
     if (type === "file") {
       let file = files[0];
       const fileType = file.type.startsWith("video/") ? "video" : "image";
-      const fileURL = await convertFileToBase64URL(file);
-      dispatch(
-        setBlog({
-          media: {
-            type: fileType,
-            url: fileURL,
-          },
-        })
-      );
+      let formData = new FormData();
+      formData.append("file", file);
+      setCoverImageUploading(true);
+
+      const URI = await dispatch(UploadFiles(formData));
+      if (URI?.data?.success) {
+        dispatch(
+          setBlog({
+            media: {
+              type: fileType,
+              ...URI?.data?.data,
+            },
+          })
+        );
+      }
+
+      setCoverImageUploading(false);
     } else {
       dispatch(setBlog({ [name]: value }));
     }
@@ -366,6 +376,7 @@ function BlogEditor() {
                     className="aspect-video object-cover"
                   />
                 )}
+                {isCoverImageUploading && <SpinLoader />}
               </div>
             </label>
 
