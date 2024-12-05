@@ -1,7 +1,7 @@
 import NewsFeeds from "@/pages/newsFeeds/newsFeeds";
 import { useDispatch, useSelector } from "react-redux";
 import { WasanniPageNewsFeedsArticles } from "@/globalStates/actions/articleAction";
-import { memo, useEffect, useState } from "react";
+import { memo, useCallback, useEffect, useRef, useState } from "react";
 
 const WasanniNewsFeeds = () => {
   const dispatch = useDispatch();
@@ -10,11 +10,13 @@ const WasanniNewsFeeds = () => {
 
   // Local state for pagination
   const [page, setPage] = useState(1);
+  const isFetching = useRef(false); // Track fetching state
 
   useEffect(() => {
-    // Fetch initial data when the component mounts
-    fetchArticles(page);
-    // eslint-disable-next-line
+    if (!isFetching.current) {
+      isFetching.current = true; // Prevent duplicate calls
+      fetchArticles(page);
+    }
   }, [page]);
 
   const fetchArticles = (currentPage) => {
@@ -24,12 +26,14 @@ const WasanniNewsFeeds = () => {
           page: currentPage,
         },
       })
-    );
+    ).finally(() => {
+      isFetching.current = false; // Reset fetching state after API call
+    });
   };
 
-  const handleShowMore = () => {
+  const handleShowMore = useCallback(() => {
     setPage((prevPage) => prevPage + 1);
-  };
+  }, []);
 
   const { count = 0, rows = [] } = wasanniFeeds || {};
 
