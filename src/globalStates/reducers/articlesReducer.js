@@ -1,15 +1,13 @@
-import { formatHeroSection } from "../../utills/dataFormatter/articleDataformatter";
 import {
   AFRIKA_PAGE_ARTICLES,
-  AFRIKA_TA_YAMMA_PAGE_ARTICLES,
-  AREWACIN_AFRIKA_PAGE_ARTICLES,
+  AFRIKA_REGION_MAIN_SECTION_ARTICLES,
+  AFRIKA_REGION_NEWS_FEED_SECTION_ARTICLES,
   DUNIYA_PAGE_ARTICLES,
-  GABASHIN_AFRIKA_PAGE_ARTICLES,
   HOME_PAGE_ARTICLES,
   KASAR_HAUSA_PAGE_ARTICLES,
   KASUWANCI_PAGE_ARTICLES,
-  KUDANCIN_AFRIKA_PAGE_ARTICLES,
   WASANNI_PAGE_ARTICLES,
+  WASANNI_PAGE_NEWS_FEEDS_ARTICLES,
   YANAYI_PAGE_ARTICLES,
 } from "../actions/actionsType";
 
@@ -27,11 +25,10 @@ const initialState = {
   kasuwanci: {},
   wasanni: {},
   yanayi_a_yau: {},
-  kudancinAfirka: {},
-  arewacinAfirka: {},
-  afirkaTaYamma: {},
-  gabashinAfirka: {},
+  afrikaRegionMainArticles: [],
+  afrikaRegionNewsFeedArticles: [],
   afirkaRegionBasedData: {},
+  wasanniFeeds: [],
 };
 
 const ArticlesReducer = (state = initialState, action) => {
@@ -46,28 +43,25 @@ const ArticlesReducer = (state = initialState, action) => {
       return { ...state, duniya: action.payload };
     case `${KASUWANCI_PAGE_ARTICLES}_SUCCESS`:
       return { ...state, kasuwanci: action.payload };
-    case `${KUDANCIN_AFRIKA_PAGE_ARTICLES}_SUCCESS`:
-      return {
-        ...state,
-        afirkaRegionBasedData: formatHeroSection(action.payload),
-      };
-    case `${AREWACIN_AFRIKA_PAGE_ARTICLES}_SUCCESS`:
-      return {
-        ...state,
-        afirkaRegionBasedData: formatHeroSection(action.payload),
-      };
-    case `${AFRIKA_TA_YAMMA_PAGE_ARTICLES}_SUCCESS`:
-      return {
-        ...state,
-        afirkaRegionBasedData: formatHeroSection(action.payload),
-      };
-    case `${GABASHIN_AFRIKA_PAGE_ARTICLES}_SUCCESS`:
-      return {
-        ...state,
-        afirkaRegionBasedData: formatHeroSection(action.payload),
-      };
+    case `${AFRIKA_REGION_MAIN_SECTION_ARTICLES}_SUCCESS`:
+      return { ...state, afrikaRegionMainArticles: action.payload };
+    case `${AFRIKA_REGION_NEWS_FEED_SECTION_ARTICLES}_SUCCESS`:
+      return { ...state, afrikaRegionNewsFeedArticles: action.payload };
     case `${WASANNI_PAGE_ARTICLES}_SUCCESS`:
       return { ...state, wasanni: formatWasanniArticleData(action.payload) };
+    case `${WASANNI_PAGE_NEWS_FEEDS_ARTICLES}_SUCCESS`: {
+      let { count = 0, rows = [] } = action.payload?.allArticle || {};
+      const existingRows =
+        (state.wasanniFeeds && state.wasanniFeeds.rows) || []; // Safe fallback
+      return {
+        ...state,
+        wasanniFeeds: {
+          ...state.wasanniFeeds,
+          count,
+          rows: [...existingRows, ...rows], // Spread the new rows correctly
+        },
+      };
+    }
     case `${YANAYI_PAGE_ARTICLES}_SUCCESS`:
       return { ...state, yanayi_a_yau: action.payload };
     default:

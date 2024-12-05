@@ -4,7 +4,11 @@ import TimeAgo from "@/components/timeAgo";
 import staticData from "@/static/staticData.json";
 import paths from "@/routes/paths";
 
-const NewsFeeds = ({ feeds = [] }) => {
+const NewsFeeds = ({
+  feeds = [],
+  onShowMore = () => {},
+  showButton = true,
+}) => {
   return (
     <section className="container mx-auto py-8">
       <div className="w-3/4">
@@ -12,7 +16,7 @@ const NewsFeeds = ({ feeds = [] }) => {
           (news, index) => (
             <NewsFeedItem
               key={index}
-              category={news?.category || "OPINION"}
+              category={news?.category?.name || "OPINION"}
               title={news?.title}
               description={news?.description}
               image={news?.media?.url ?? news?.image}
@@ -23,9 +27,16 @@ const NewsFeeds = ({ feeds = [] }) => {
             />
           )
         )}
-        <div className="text-center mt-6">
-          <button className="bg-black text-white px-4 py-2">Show more</button>
-        </div>
+        {showButton && (
+          <div className="text-center mt-6">
+            <button
+              className="bg-black text-white px-4 py-2"
+              onClick={onShowMore}
+            >
+              Show more
+            </button>
+          </div>
+        )}
       </div>
     </section>
   );

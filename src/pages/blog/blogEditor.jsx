@@ -361,7 +361,12 @@ function BlogEditor() {
             >
               Media
               <div className="bg-slate-500 aspect-video flex justify-center items-center text-4xl text-white mt-2 rounded-lg overflow-hidden">
-                {!blogData.media ? (
+                {isCoverImageUploading ? (
+                  <div className="flex gap-3">
+                    <SpinLoader isLoading />
+                    <span>Uploding...</span>
+                  </div>
+                ) : !blogData.media ? (
                   <div>Select cover Image or Video</div>
                 ) : blogData.media.type === "video" ? (
                   <video
@@ -376,7 +381,6 @@ function BlogEditor() {
                     className="aspect-video object-cover"
                   />
                 )}
-                {isCoverImageUploading && <SpinLoader />}
               </div>
             </label>
 

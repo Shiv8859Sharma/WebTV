@@ -10,7 +10,6 @@ import {
 } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import {
-  // fetchSingleBlog,
   fetchAllBlog,
 } from "@/globalStates/actions/blogActions";
 
@@ -52,7 +51,7 @@ const KasarHausaStatePage = ({ categories }) => {
 
   // Memoizing categories to avoid unnecessary re-renders.
   const memoizedCategories = useMemo(() => categories, [categories]);
-
+  
   return (
     <div>
       <SectionNavigation

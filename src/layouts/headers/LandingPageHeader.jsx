@@ -12,7 +12,6 @@ import logo from "@/assets/webp/logo.webp";
 import slogan from "@/assets/webp/slogen-logo-4.png";
 import { useDispatch } from "react-redux";
 import { fetchLocationCategory } from "@/globalStates/actions/cateGoryAction";
-import { fetchAllBlog } from "@/globalStates/actions/blogActions";
 
 const LandingPageHeader = () => {
   const [open, setOpen] = useState(false);
@@ -29,16 +28,6 @@ const LandingPageHeader = () => {
     }
   };
 
-  const fetchBlodData = (id) => {
-    dispatch(
-      fetchAllBlog({
-        pagination: {},
-        filters: {
-          category_id: id,
-        },
-      })
-    );
-  };
   // Load categories when component mounts
   useEffect(() => {
     fetchCategory(0).then((result) => {
@@ -65,10 +54,6 @@ const LandingPageHeader = () => {
     if (id.includes(targetedID) && open) {
       setOpen(false);
     }
-  };
-
-  const handleDisptchData = (id) => {
-    fetchBlodData(id);
   };
 
   return (
@@ -235,9 +220,7 @@ const LandingPageHeader = () => {
                       ? "/"
                       : `news/${link?.category_code}`
                   }
-                  type="actionWithNavigation"
                   key={link?.id}
-                  dispatchFun={() => handleDisptchData(link?.id)}
                   className="px-4 py-2 font-medium"
                 >
                   {link?.name}

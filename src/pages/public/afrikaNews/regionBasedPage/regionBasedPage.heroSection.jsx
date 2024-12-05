@@ -2,64 +2,68 @@ import ImageElement from "@/components/ImageElement";
 import ArticleMeta from "@/components/articleMeta/articleMeta";
 import ArticleHeading from "@/components/article/articleHeading";
 import ArticleTitle from "@/components/article/articleTitle";
+import { useEffect, useState } from "react";
+import { useParams } from "react-router-dom";
+import { useDispatch, useSelector } from "react-redux";
+import { fetchAfrikaRegionMainArticlesAction } from "@/globalStates/actions/articleAction";
+import CustomLoader from "@/layouts/skeletonLoaders";
 
 const RegionBasedPageHeroSection = () => {
-  const mainArticle = {
-    image:
-      "https://static.euronews.com/articles/stories/08/82/95/88/738x415_cmsv2_624a3c87-e0b7-55e4-a9d0-2b7f51270f01-8829588.jpg",
-    title:
-      "At least 14 people die in lightning strike on refugee camp in Uganda",
-    description:
-      "At least 14 people, including several children, were killed in a lightning strike in a refugee camp in northern Uganda, police said Sunday. Officials say the victims were residents of the Palabek settlement camp, which primarily houses people displaced from South Sudan.",
-  };
+  const { subCategory } = useParams();
+  const dispatch = useDispatch();
+  const { afrikaRegionMainArticles } = useSelector((state) => state?.articles);
+  const { isLoading } = useSelector((state) => state?.loader);
 
-  const listArticles = [
-    {
-      title: "Boba tea company apologises over Canada Dragon's Den row",
-      description:
-        "Marvel actor Simu Liu accused Canadian entrepreneurs of culturally appropriating the Taiwanese drink.",
-      date: new Date("10-20-2024 18:14"),
-    },
-    {
-      title: "Boba tea company apologises over Canada Dragon's Den row",
-      description:
-        "Marvel actor Simu Liu accused Canadian entrepreneurs of culturally appropriating the Taiwanese drink.",
-      date: new Date("10-19-2024 18:14"),
-    },
-    {
-      title: "Boba tea company apologises over Canada Dragon's Den row",
-      description:
-        "Marvel actor Simu Liu accused Canadian entrepreneurs of culturally appropriating the Taiwanese drink.",
-      date: new Date("09-14-2024 18:14"),
-    },
-    {
-      title: "Boba tea company apologises over Canada Dragon's Den row",
-      description:
-        "Marvel actor Simu Liu accused Canadian entrepreneurs of culturally appropriating the Taiwanese drink.",
-      date: new Date("08-14-2024 18:14"),
-    },
-    // Add more list articles...
-  ];
+  const [mainArticle, setMainArticle] = useState(null);
+  const [listArticles, setListArticles] = useState([]);
+
+  useEffect(() => {
+    if (subCategory) {
+      dispatch(
+        fetchAfrikaRegionMainArticlesAction({
+          category_code: subCategory,
+        })
+      );
+    }
+  }, [subCategory, dispatch]);
+
+  useEffect(() => {
+    if (afrikaRegionMainArticles?.latest_article) {
+      setMainArticle(afrikaRegionMainArticles.latest_article[0]);
+      setListArticles(afrikaRegionMainArticles.latest_article.slice(1));
+    }
+  }, [afrikaRegionMainArticles]);
+
+  if (isLoading) {
+    return <CustomLoader name="MainSkeletonLoader" />;
+  }
+
+  if (!mainArticle) {
+    return (
+      <div className="text-center mt-12">
+        No articles available for the selected category.
+      </div>
+    );
+  }
 
   return (
     <section className="container max-w-7xl mx-auto !mt-12 pb-10">
       <div className="flex flex-col md:flex-row items-stretch gap-3">
         {/* Main Article */}
-        <div className="">
+        <div className="flex-1">
           <article className="flex flex-col h-full">
-            <div>
-              <ImageElement
-                src={mainArticle.image}
-                className="w-full aspect-video rounded-md"
-              />
-            </div>
+            <ImageElement
+              src={mainArticle?.media?.url}
+              alt={mainArticle.title || "Article Image"}
+              className="w-full aspect-video rounded-md"
+            />
             <div className="flex flex-col gap-4 h-full">
               <ArticleHeading
-                heading={mainArticle.title}
+                heading={mainArticle?.title || "No title available"}
                 className="text-4xl font-extrabold"
               />
               <ArticleTitle
-                title={mainArticle.description}
+                title={mainArticle?.description || "No description available"}
                 className="line-clamp-2"
               />
             </div>
@@ -67,24 +71,36 @@ const RegionBasedPageHeroSection = () => {
         </div>
 
         {/* List Articles */}
-        <div className="">
+        <div className="flex-1">
           <div className="flex flex-col gap-2 h-full">
-            {listArticles.map((article, index) => (
-              <div
-                key={index}
-                className={`px-3 flex flex-col gap-2 py-2 flex-grow ${listArticles.length === index + 1 ? "" : "border-b-2 border-gray-500"} pb-3`}
-              >
-                <ArticleHeading
-                  heading={article.title}
-                  className="font-bold text-xl"
-                />
-                <ArticleTitle
-                  title={article.description}
-                  className="line-clamp-1"
-                />
-                <ArticleMeta date={article.date} />
+            {listArticles.length > 0 ? (
+              listArticles.map((article, index) => (
+                <div
+                  key={index}
+                  className={`px-3 flex flex-col gap-2 py-2 flex-grow ${
+                    listArticles.length === index + 1
+                      ? ""
+                      : "border-b-2 border-gray-500"
+                  } pb-3`}
+                >
+                  <ArticleHeading
+                    heading={article.title || "No title available"}
+                    className="font-bold text-xl"
+                  />
+                  <ArticleTitle
+                    title={article.description || "No description available"}
+                    className="line-clamp-1"
+                  />
+                  {article.createdAt && (
+                    <ArticleMeta date={article.createdAt} />
+                  )}
+                </div>
+              ))
+            ) : (
+              <div className="text-center text-gray-500">
+                No additional articles found.
               </div>
-            ))}
+            )}
           </div>
         </div>
       </div>

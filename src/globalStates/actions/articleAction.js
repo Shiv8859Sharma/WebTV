@@ -1,14 +1,13 @@
 import {
   AFRIKA_PAGE_ARTICLES,
-  AFRIKA_TA_YAMMA_PAGE_ARTICLES,
-  AREWACIN_AFRIKA_PAGE_ARTICLES,
+  AFRIKA_REGION_MAIN_SECTION_ARTICLES,
+  AFRIKA_REGION_NEWS_FEED_SECTION_ARTICLES,
   DUNIYA_PAGE_ARTICLES,
-  GABASHIN_AFRIKA_PAGE_ARTICLES,
   HOME_PAGE_ARTICLES,
   KASAR_HAUSA_PAGE_ARTICLES,
   KASUWANCI_PAGE_ARTICLES,
-  KUDANCIN_AFRIKA_PAGE_ARTICLES,
   WASANNI_PAGE_ARTICLES,
+  WASANNI_PAGE_NEWS_FEEDS_ARTICLES,
   YANAYI_PAGE_ARTICLES,
 } from "./actionsType";
 
@@ -77,6 +76,17 @@ export const WasanniPageArticles = (payload) => ({
   },
 });
 
+export const WasanniPageNewsFeedsArticles = (payload) => ({
+  type: WASANNI_PAGE_NEWS_FEEDS_ARTICLES,
+  method: "POST",
+  URLEndPoint: WASANNI_PAGE_NEWS_FEEDS_ARTICLES,
+  data: payload,
+  axiosService: true,
+  toaster: {
+    loading: true,
+  },
+});
+
 export const YanayiPageArticles = (payload) => ({
   type: YANAYI_PAGE_ARTICLES,
   method: "POST",
@@ -88,10 +98,10 @@ export const YanayiPageArticles = (payload) => ({
   },
 });
 
-export const KudancinAfrikaPageArticles = (payload) => ({
-  type: KUDANCIN_AFRIKA_PAGE_ARTICLES,
+export const fetchAfrikaRegionMainArticlesAction = (payload) => ({
+  type: AFRIKA_REGION_MAIN_SECTION_ARTICLES,
   method: "POST",
-  URLEndPoint: KUDANCIN_AFRIKA_PAGE_ARTICLES,
+  URLEndPoint: AFRIKA_REGION_MAIN_SECTION_ARTICLES,
   data: payload,
   axiosService: true,
   toaster: {
@@ -99,32 +109,10 @@ export const KudancinAfrikaPageArticles = (payload) => ({
   },
 });
 
-export const ArewacinAfrikaPageArticles = (payload) => ({
-  type: AREWACIN_AFRIKA_PAGE_ARTICLES,
+export const fetchAfrikaRegionNewsFeedArticlesAction = (payload) => ({
+  type: AFRIKA_REGION_NEWS_FEED_SECTION_ARTICLES,
   method: "POST",
-  URLEndPoint: AREWACIN_AFRIKA_PAGE_ARTICLES,
-  data: payload,
-  axiosService: true,
-  toaster: {
-    loading: true,
-  },
-});
-
-export const AfrikaTaYammaPageArticles = (payload) => ({
-  type: AFRIKA_TA_YAMMA_PAGE_ARTICLES,
-  method: "POST",
-  URLEndPoint: AFRIKA_TA_YAMMA_PAGE_ARTICLES,
-  data: payload,
-  axiosService: true,
-  toaster: {
-    loading: true,
-  },
-});
-
-export const GabashinAfrikaPageArticles = (payload) => ({
-  type: GABASHIN_AFRIKA_PAGE_ARTICLES,
-  method: "POST",
-  URLEndPoint: GABASHIN_AFRIKA_PAGE_ARTICLES,
+  URLEndPoint: AFRIKA_REGION_NEWS_FEED_SECTION_ARTICLES,
   data: payload,
   axiosService: true,
   toaster: {

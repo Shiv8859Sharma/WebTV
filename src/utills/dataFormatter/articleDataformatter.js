@@ -85,17 +85,23 @@ export const formatAfricaArticleData = (data) => {
 
 // Formatter for Wasanni Page articles
 export const formatWasanniArticleData = (data) => {
-  const { latest_article: mainArticles = [], allArticle: feeds = {} } =
-    data || {};
+  const { latest_article = [], groupedArticles: categories = [] } = data || {};
 
   return {
-    heroSection: formatHeroSection(mainArticles),
-    feeds: {
-      ...feeds,
-      rows: feeds?.rows.map((article) => ({
-        ...article,
-        category: article.parentMaincategory?.name || "OPINION",
-      })),
-    },
+    heroSection: formatHeroSection(latest_article),
+    categories: [
+      {
+        title: "Wasa Afrika",
+        articles: categories?.afrika || [],
+      },
+      {
+        title: "Wasa Duniya",
+        articles: categories?.duniya || [],
+      },
+      {
+        title: "Wasa Kasar Hausax",
+        articles: categories?.kasar_hausa || [],
+      },
+    ],
   };
 };
