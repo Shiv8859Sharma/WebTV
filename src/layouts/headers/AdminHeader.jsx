@@ -4,7 +4,7 @@ import logo from "@/assets/webp/logo.webp";
 import slogan from "@/assets/webp/slogan.webp";
 import { logOutUser } from "@/globalStates/actions/authAction";
 import MenuDropDown from "@/components/dropDown";
-import Image from "@/components/ImageElement";
+import ImageElement from "@/components/ImageElement";
 import { ChevronDownIcon } from "@heroicons/react/24/outline";
 
 const AdminHeader = () => {
@@ -65,7 +65,7 @@ export default memo(AdminHeader);
 const ProfileMenuButton = ({ src = "", dropDownClass = "" }) => {
   let menuTitle = (
     <>
-      <Image
+      <ImageElement
         src={src}
         type="profile"
         alt="user-profile"

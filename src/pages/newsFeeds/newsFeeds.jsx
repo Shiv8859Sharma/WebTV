@@ -1,8 +1,8 @@
-import ImageElement from "@/components/ImageElement";
 import NavigatePage from "@/components/navigatePage";
 import TimeAgo from "@/components/timeAgo";
 import staticData from "@/static/staticData.json";
 import paths from "@/routes/paths";
+import MediaDisplay from "@/components/mediaDisplay/mediaDisplay.index";
 
 const NewsFeeds = ({
   feeds = [],
@@ -20,6 +20,7 @@ const NewsFeeds = ({
               title={news?.title}
               description={news?.description}
               image={news?.media?.url ?? news?.image}
+              mediaType={news?.media?.type ?? "image"}
               author={news?.author}
               date={news?.createdAt || new Date()}
               time={news?.time}
@@ -52,6 +53,7 @@ const NewsFeedItem = ({
   author,
   date,
   url,
+  mediaType,
 }) => {
   return (
     <NavigatePage url={url} className="flex border-b py-6">
@@ -74,9 +76,10 @@ const NewsFeedItem = ({
         </footer>
       </article>
       <figure className="w-1/4">
-        <ImageElement
-          src={image}
-          alt={title}
+        <MediaDisplay
+          mediaType={mediaType}
+          source={image}
+          altText={title}
           className="w-full h-auto object-cover"
         />
         {/* <figcaption>Image caption describing the photo</figcaption> */}

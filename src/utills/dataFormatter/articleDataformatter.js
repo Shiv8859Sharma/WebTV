@@ -4,6 +4,7 @@ export const formatHeroSection = (articles) => {
     mainArticle: articles[0]
       ? {
           image: articles[0]?.media?.url,
+          mediaType: articles[0]?.media?.type,
           id: articles[0].id,
           title: articles[0].title,
           description: articles[0].description,
@@ -11,6 +12,7 @@ export const formatHeroSection = (articles) => {
       : null,
     sideArticles: articles.slice(1, 3).map((item) => ({
       image: item?.media?.url,
+      mediaType: item.media?.type,
       title: item.title,
       id: item.id,
       date: new Date(item.createdAt),
@@ -18,6 +20,7 @@ export const formatHeroSection = (articles) => {
     })),
     listArticles: articles.slice(3, 7).map((item) => ({
       title: item.title,
+      mediaType: item.media?.type,
       id: item.id,
       date: new Date(item.createdAt),
       category: item.parentMaincategory?.name || "OPINION",

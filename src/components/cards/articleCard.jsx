@@ -1,8 +1,8 @@
-import ImageElement from "@/components/ImageElement";
 import NavigatePage from "@/components/navigatePage";
 import ArticleHeading from "../article/articleHeading";
 import ArticleTitle from "../article/articleTitle";
 import ArticleMeta from "../articleMeta/articleMeta";
+import MediaDisplay from "../mediaDisplay/mediaDisplay.index";
 
 const ArticleCard = ({
   title,
@@ -11,23 +11,26 @@ const ArticleCard = ({
   category,
   link = "",
   createdAt = new Date(),
+  mediaType = "image",
 }) => {
   return (
     <div className="flex-shrink max-w-full sm:w-full md:w-1/2 lg:w-1/4 px-3 pb-3 pt-3 sm:pt-0 border-b-2 sm:border-b-0 border-dotted border-gray-100">
       <NavigatePage url={link}>
         <div className="flex flex-row sm:block hover-img">
           <div className="block md:hidden">
-            <ImageElement
+            <MediaDisplay
+              source={imgSrc}
+              altText={title}
+              mediaType={mediaType}
               className="max-w-1/4 w-full mx-auto aspect-video"
-              src={imgSrc}
-              alt={title}
             />
           </div>
           <div className="hidden md:block">
-            <ImageElement
+            <MediaDisplay
+              source={imgSrc}
+              altText={title}
+              mediaType={mediaType}
               className="max-w-full w-full mx-auto aspect-video"
-              src={imgSrc}
-              alt={title}
             />
           </div>
           <div className="py-0 w-full md:w-full sm:py-3 pl-3 sm:pl-0">

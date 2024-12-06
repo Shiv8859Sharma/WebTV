@@ -1,9 +1,9 @@
-import ImageElement from "@/components/ImageElement";
 import ArticleMeta from "@/components/articleMeta/articleMeta";
 import ArticleHeading from "@/components/article/articleHeading";
 import ArticleTitle from "@/components/article/articleTitle";
 import NavigatePage from "@/components/navigatePage";
 import paths from "@/routes/paths";
+import MediaDisplay from "@/components/mediaDisplay/mediaDisplay.index";
 
 const HeroSection = ({ articles = {} }) => {
   let { mainArticle = {}, sideArticles = [], listArticles = [] } = articles;
@@ -16,8 +16,9 @@ const HeroSection = ({ articles = {} }) => {
           <NavigatePage url={paths.VIEW_BLOG(mainArticle?.id)}>
             <article className="flex flex-col h-full">
               <div>
-                <ImageElement
-                  src={mainArticle?.image}
+                <MediaDisplay
+                  mediaType={mainArticle?.mediaType}
+                  source={mainArticle?.image}
                   className="w-full aspect-video rounded-md"
                 />
               </div>
@@ -42,8 +43,9 @@ const HeroSection = ({ articles = {} }) => {
               <div key={index} className="flex flex-col gap-2 flex-grow">
                 <NavigatePage url={paths.VIEW_BLOG(article?.id)}>
                   <div>
-                    <ImageElement
-                      src={article.image}
+                    <MediaDisplay
+                      mediaType={article?.mediaType}
+                      source={article?.image}
                       className="w-full aspect-video rounded-md"
                     />
                   </div>

@@ -3,7 +3,12 @@ import ImageElement from "@/components/ImageElement";
 import VideoPlayer from "@/components/videoPlayer/videoPlayer.index";
 import { VideoProvider } from "@/context/videoContext";
 
-const MediaDisplay = ({ mediaType, source, altText, className = "" }) => {
+const MediaDisplay = ({
+  mediaType = "image",
+  source,
+  altText,
+  className = "",
+}) => {
   return (
     <div>
       {mediaType === "image" ? (

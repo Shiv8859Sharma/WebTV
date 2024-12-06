@@ -2,7 +2,7 @@ import NumberWiseArticleCard from "@/components/cards/numberWiseArticleCard";
 import Pagination from "@/components/pagination/paginationUI";
 import paths from "@/routes/paths";
 import NavigatePage from "@/components/navigatePage";
-import ImageElement from "@/components/ImageElement";
+import MediaDisplay from "@/components/mediaDisplay/mediaDisplay.index";
 
 const ContinentHeroSection = ({
   articles = [],
@@ -19,9 +19,10 @@ const ContinentHeroSection = ({
             className="relative"
             url={paths.VIEW_BLOG(mainArticle?.id)}
           >
-            <ImageElement
-              src={mainArticle?.media?.url}
-              alt="Pangolin Smuggling News"
+            <MediaDisplay
+              mediaType={mainArticle?.media?.type}
+              source={mainArticle?.media?.url}
+              altText={mainArticle.title}
               className="w-full h-[32rem]  aspect-video object-cover"
             />
             <div className="absolute inset-0 bg-black opacity-40"></div>

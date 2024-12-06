@@ -1,4 +1,3 @@
-import ImageElement from "@/components/ImageElement";
 import ArticleMeta from "@/components/articleMeta/articleMeta";
 import ArticleHeading from "@/components/article/articleHeading";
 import ArticleTitle from "@/components/article/articleTitle";
@@ -9,6 +8,7 @@ import { fetchAfrikaRegionMainArticlesAction } from "@/globalStates/actions/arti
 import CustomLoader from "@/layouts/skeletonLoaders";
 import NavigatePage from "@/components/navigatePage";
 import paths from "@/routes/paths";
+import MediaDisplay from "@/components/mediaDisplay/mediaDisplay.index";
 
 const RegionBasedPageHeroSection = () => {
   const { subCategory } = useParams();
@@ -55,9 +55,10 @@ const RegionBasedPageHeroSection = () => {
         <div className="flex-1">
           <NavigatePage url={paths.VIEW_BLOG(mainArticle.id)}>
             <article className="flex flex-col h-full">
-              <ImageElement
-                src={mainArticle?.media?.url}
-                alt={mainArticle.title || "Article Image"}
+              <MediaDisplay
+                mediaType={mainArticle?.media?.type}
+                source={mainArticle?.media?.url}
+                altText={mainArticle.title}
                 className="w-full aspect-video rounded-md"
               />
               <div className="flex flex-col gap-4 h-full">

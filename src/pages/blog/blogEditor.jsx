@@ -19,7 +19,7 @@ import { FETCH_SINGLE_BLOG } from "@/globalStates/actions/actionsType";
 import RadioFields from "@/components/formFields/radio";
 import { UploadFiles } from "@/globalStates/actions/filesUploadAction";
 import { SpinLoader } from "@/components/loader";
-import MediaDisplay from "../../components/mediaDisplay/mediaDisplay.index";
+import MediaDisplay from "@/components/mediaDisplay/mediaDisplay.index";
 
 function BlogEditor() {
   const { id } = useParams();

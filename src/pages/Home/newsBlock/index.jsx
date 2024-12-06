@@ -44,6 +44,7 @@ const NewsBlock = ({
                         title={article.title}
                         description={article.description}
                         imgSrc={article.imgSrc}
+                        mediaType={article?.media?.type}
                         category={article.category}
                         link={paths.VIEW_BLOG(article?.id)}
                         createdAt={article?.createdAt}
