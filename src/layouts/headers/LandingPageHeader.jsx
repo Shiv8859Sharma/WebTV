@@ -5,7 +5,7 @@ import {
   Transition,
   TransitionChild,
 } from "@headlessui/react";
-import { Link } from "react-router-dom"; // Import Link for navigation
+import ImageElement from "@/components/ImageElement";
 import HamburgerButton from "@/components/buttons/hamburgerButton";
 import NavigatePage from "@/components/navigatePage";
 import logo from "@/assets/webp/logo.webp";
@@ -50,7 +50,7 @@ const LandingPageHeader = () => {
   const handleHideMobileTab = (event) => {
     const clickedElement = event.target;
     let targetedID = clickedElement.closest("[id]")?.getAttribute("id");
-    let id = [];
+    let id = linkList.map(link => link?.category_code);
     if (id.includes(targetedID) && open) {
       setOpen(false);
     }
@@ -90,17 +90,20 @@ const LandingPageHeader = () => {
                 >
                   {/* Mobile menu items */}
                   {linkList.map((link) => (
-                    <Link
-                      to={
-                        link.category_code === "home"
-                          ? "/"
-                          : `news/${link?.category_code}`
-                      }
-                      key={`mobile-link-${link?.id}`}
-                      className="px-4 py-2 font-medium"
-                    >
-                      {link?.name}
-                    </Link>
+                    <div>
+                      <NavigatePage
+                        url={
+                          link.category_code === "home"
+                            ? "/"
+                            : `news/${link?.category_code}`
+                        }
+                        key={link?.id}
+                        id={link.category_code}
+                        className="px-4 py-2 font-medium w-full block"
+                      >
+                        {link?.name}
+                      </NavigatePage>
+                    </div>
                   ))}
                   {/* <Link
                     to="/"
@@ -164,7 +167,7 @@ const LandingPageHeader = () => {
                 className="flex justify-center items-center cursor-pointer"
               >
                 <span className="sr-only">Your Company</span>
-                <img
+                <ImageElement
                   src={logo}
                   loading="lazy"
                   alt="logo"
@@ -180,11 +183,11 @@ const LandingPageHeader = () => {
                 className="flex justify-center items-center cursor-pointer"
               >
                 <span className="sr-only">Your Company</span>
-                <img
+                <ImageElement
                   src={slogan}
                   loading="lazy"
                   alt="logo"
-                  className="header-logo h-28"
+                  className="header-logo h-20 md:h-28"
                 />
               </NavigatePage>
             </div>
@@ -226,27 +229,6 @@ const LandingPageHeader = () => {
                   {link?.name}
                 </NavigatePage>
               ))}
-              {/* <Link to="/" className="px-4 py-2 font-medium">
-                GIDA
-              </Link>
-              <Link to="/news/kasar-hausa" className="px-4 py-2 font-medium">
-                Kasar Hausa
-              </Link>
-              <Link to="/news/afrika" className="px-4 py-2 font-medium">
-                Afirka
-              </Link>
-              <Link to="/news/duniya" className="px-4 py-2 font-medium">
-                Duniya
-              </Link>
-              <Link to="/news/kasuwanci" className="px-4 py-2 font-medium">
-                Kasuwanci
-              </Link>
-              <Link to="/news/wasanni" className="px-4 py-2 font-medium">
-                Wasanni
-              </Link>
-              <Link to="/news/yanayi-a-yau" className="px-4 py-2 font-medium">
-                Yanayi a yau
-              </Link> */}
             </div>
           </nav>
         </div>
