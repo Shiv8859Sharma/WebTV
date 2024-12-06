@@ -24,7 +24,7 @@ const Yanayi_a_yau_hero_section = ({ articles }) => {
                 {mediaType === "image" && (
                   <div className="relative">
                     <div className="absolute inset-0 bg-black opacity-40"></div>
-                    <div className="absolute bottom-4 left-4 max-w-lg w-full bg-white rounded">
+                    <div className="absolute bottom-4 left-0 md:left-4 max-w-lg w-full bg-white rounded">
                       <h2 className="text-2xl  font-bold p-3">
                         {article?.title}
                       </h2>

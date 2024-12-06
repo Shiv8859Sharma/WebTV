@@ -6,12 +6,12 @@ import MediaDisplay from "@/components/mediaDisplay/mediaDisplay.index";
 
 const NewsFeeds = ({
   feeds = [],
-  onShowMore = () => {},
+  onShowMore = () => { },
   showButton = true,
 }) => {
   return (
     <section className="container mx-auto py-8">
-      <div className="w-3/4">
+      <div className="w-full md:w-3/4">
         {[...(feeds.length ? feeds : staticData?.newsFedd || [])].map(
           (news, index) => (
             <NewsFeedItem
@@ -57,30 +57,32 @@ const NewsFeedItem = ({
 }) => {
   return (
     <NavigatePage url={url} className="flex border-b py-6">
-      <article className="w-3/4 pr-4">
+      <article className="w-2/3 md:w-3/4 pr-4">
         <header>
           <p className="text-sm text-gray-600 uppercase">{category}</p>
-          <h2 className="text-lg font-bold">{title}</h2>
+          <h2 className="text-lg font-bold line-clamp-3">{title}</h2>
         </header>
-        <p className="text-gray-700 mt-2">{description}</p>
-        <footer className="flex items-center text-gray-500 mt-4">
-          {author && (
-            <>
-              <span>{author}</span>
-              <span className="mx-2">|</span>
-            </>
-          )}
-          <time dateTime="2024-10-22">
-            <TimeAgo date={date} />
-          </time>
-        </footer>
+        <div className="hidden md:block">
+          <p className="text-gray-700 mt-2">{description}</p>
+          <footer className="flex items-center text-gray-500 mt-4">
+            {author && (
+              <>
+                <span>{author}</span>
+                <span className="mx-2">|</span>
+              </>
+            )}
+            <time dateTime="2024-10-22">
+              <TimeAgo date={date} />
+            </time>
+          </footer>
+        </div>
       </article>
-      <figure className="w-1/4">
+      <figure className="w-1/3 md:w-1/4">
         <MediaDisplay
           mediaType={mediaType}
           source={image}
           altText={title}
-          className="w-full h-auto object-cover"
+          className="w-full h-auto object-cover aspect-video"
         />
         {/* <figcaption>Image caption describing the photo</figcaption> */}
       </figure>
