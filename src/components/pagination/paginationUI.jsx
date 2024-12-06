@@ -23,9 +23,25 @@ const Pagination = ({
       if (currentPage <= 4) {
         pages.push(1, 2, 3, 4, 5, "...", totalPages);
       } else if (currentPage >= totalPages - 3) {
-        pages.push(1, "...", totalPages - 4, totalPages - 3, totalPages - 2, totalPages - 1, totalPages);
+        pages.push(
+          1,
+          "...",
+          totalPages - 4,
+          totalPages - 3,
+          totalPages - 2,
+          totalPages - 1,
+          totalPages
+        );
       } else {
-        pages.push(1, "...", currentPage - 1, currentPage, currentPage + 1, "...", totalPages);
+        pages.push(
+          1,
+          "...",
+          currentPage - 1,
+          currentPage,
+          currentPage + 1,
+          "...",
+          totalPages
+        );
       }
     }
     return pages;
@@ -54,8 +70,8 @@ const Pagination = ({
               page === currentPage
                 ? "bg-blue-500 text-white" // Active page
                 : page === "..."
-                ? "cursor-default text-gray-500" // Dots
-                : "bg-gray-200 text-gray-800 hover:bg-blue-100" // Regular pages
+                  ? "cursor-default text-gray-500" // Dots
+                  : "bg-gray-200 text-gray-800 hover:bg-blue-100" // Regular pages
             }`}
         >
           {page}

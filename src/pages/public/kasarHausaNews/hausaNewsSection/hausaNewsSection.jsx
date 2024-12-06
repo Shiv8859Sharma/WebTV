@@ -64,10 +64,7 @@ const ArticleCard = ({ article, isVideoContent = false }) => (
         <div className="relative w-full lg:w-[40%] aspect-video overflow-hidden rounded-md aspect-video">
           {/* Video play icon for video content */}
           {isVideoContent ? (
-            <VideoPlayer
-              id={article?.id}
-              src={article?.media?.url}
-            />
+            <VideoPlayer id={article?.id} src={article?.media?.url} />
           ) : (
             <ImageElement
               className="w-full h-full object-cover rounded-md"

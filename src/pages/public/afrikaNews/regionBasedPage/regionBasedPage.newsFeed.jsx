@@ -49,7 +49,7 @@ const NewsFeedRegionBased = () => {
   if (!rows.length) {
     return (
       <div className="text-center py-10">
-        <p className="text-lg">No articles found for the selected category.</p>
+        {/* <p className="text-lg">No articles found for the selected category.</p> */}
       </div>
     );
   }

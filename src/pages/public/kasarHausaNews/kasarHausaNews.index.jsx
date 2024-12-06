@@ -25,7 +25,7 @@ const KasarHausaNews = ({ categories }) => {
   const { kasarHausa } = useSelector((state) => state?.articles);
   const isLoading = useSelector((state) => state.loader?.isLoading);
   console.log("kasarHausa ::::", kasarHausa);
-  
+
   // Detect initial screen size on mount
   useEffect(() => {
     setIsLargeScreen(window.innerWidth >= 768);

@@ -104,7 +104,9 @@ const VideoPlayer = ({ src, id, className }) => {
   };
 
   return (
-    <div className={`relative w-full bg-black rounded-lg overflow-hidden shadow-lg group ${className}`}>
+    <div
+      className={`relative w-full bg-black rounded-lg overflow-hidden shadow-lg group ${className}`}
+    >
       <video
         ref={videoRef}
         src={src}

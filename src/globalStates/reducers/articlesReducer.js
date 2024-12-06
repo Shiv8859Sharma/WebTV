@@ -35,13 +35,13 @@ const initialState = {
 const mergeUniqueRows = (existingRows, newRows) => {
   const mergedRows = [...existingRows, ...newRows];
   return mergedRows.filter(
-    (item, index, self) => self.findIndex(row => row.id === item.id) === index
+    (item, index, self) => self.findIndex((row) => row.id === item.id) === index
   );
 };
 
 const ArticlesReducer = (state = initialState, action) => {
   switch (action.type) {
-    case 'RESET_NEWS_ARTICLES':
+    case "RESET_NEWS_ARTICLES":
       return initialState;
 
     case `${HOME_PAGE_ARTICLES}_SUCCESS`:

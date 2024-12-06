@@ -1,15 +1,18 @@
-import React from 'react';
+import React from "react";
 import ImageElement from "@/components/ImageElement";
 import VideoPlayer from "@/components/videoPlayer/videoPlayer.index";
 import { VideoProvider } from "@/context/videoContext";
 
-const MediaDisplay = ({ mediaType, source, altText, className = '' }) => {
-
+const MediaDisplay = ({ mediaType, source, altText, className = "" }) => {
   return (
     <div>
-      {mediaType === 'image' ? (
-        <ImageElement src={source} alt={altText || 'Image'} className={className} />
-      ) : mediaType === 'video' ? (
+      {mediaType === "image" ? (
+        <ImageElement
+          src={source}
+          alt={altText || "Image"}
+          className={className}
+        />
+      ) : mediaType === "video" ? (
         <VideoProvider>
           <VideoPlayer src={source} className={className} />
         </VideoProvider>

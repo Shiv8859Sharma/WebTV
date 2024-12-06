@@ -185,7 +185,7 @@ const AxiosService =
             "Signature has expired",
             "Invalid segment encoding",
             "Not an authorized user",
-            "Token missing"
+            "Token missing",
           ];
           // 'Network Error',
           // if (axiosError.message === 'Network Error') {

@@ -50,7 +50,7 @@ const LandingPageHeader = () => {
   const handleHideMobileTab = (event) => {
     const clickedElement = event.target;
     let targetedID = clickedElement.closest("[id]")?.getAttribute("id");
-    let id = linkList.map(link => link?.category_code);
+    let id = linkList.map((link) => link?.category_code);
     if (id.includes(targetedID) && open) {
       setOpen(false);
     }

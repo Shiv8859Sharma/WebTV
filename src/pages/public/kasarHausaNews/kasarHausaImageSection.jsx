@@ -3,7 +3,6 @@ import NavigatePage from "@/components/navigatePage";
 import paths from "@/routes/paths";
 
 const KasarHausaImageSection = ({ article }) => {
-  
   return (
     <section className="container mx-auto">
       <div className="w-full bg-white shadow-md rounded-lg overflow-hidden">
@@ -16,9 +15,7 @@ const KasarHausaImageSection = ({ article }) => {
           />
           <div className="absolute inset-0 bg-black opacity-40"></div>
           <div className="absolute bottom-4 left-4 max-w-xl w-full bg-white rounded">
-            <h2 className="text-2xl  font-bold p-3">
-              {article?.title}
-            </h2>
+            <h2 className="text-2xl  font-bold p-3">{article?.title}</h2>
           </div>
         </NavigatePage>
       </div>

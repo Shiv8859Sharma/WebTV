@@ -7,6 +7,8 @@ import { useParams } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { fetchAfrikaRegionMainArticlesAction } from "@/globalStates/actions/articleAction";
 import CustomLoader from "@/layouts/skeletonLoaders";
+import NavigatePage from "@/components/navigatePage";
+import paths from "@/routes/paths";
 
 const RegionBasedPageHeroSection = () => {
   const { subCategory } = useParams();
@@ -30,7 +32,7 @@ const RegionBasedPageHeroSection = () => {
   useEffect(() => {
     if (afrikaRegionMainArticles?.latest_article) {
       setMainArticle(afrikaRegionMainArticles.latest_article[0]);
-      setListArticles(afrikaRegionMainArticles.latest_article.slice(1));
+      setListArticles(afrikaRegionMainArticles.latest_article.slice(1, 5));
     }
   }, [afrikaRegionMainArticles]);
 
@@ -51,23 +53,25 @@ const RegionBasedPageHeroSection = () => {
       <div className="flex flex-col md:flex-row items-stretch gap-3">
         {/* Main Article */}
         <div className="flex-1">
-          <article className="flex flex-col h-full">
-            <ImageElement
-              src={mainArticle?.media?.url}
-              alt={mainArticle.title || "Article Image"}
-              className="w-full aspect-video rounded-md"
-            />
-            <div className="flex flex-col gap-4 h-full">
-              <ArticleHeading
-                heading={mainArticle?.title || "No title available"}
-                className="text-4xl font-extrabold"
+          <NavigatePage url={paths.VIEW_BLOG(mainArticle.id)}>
+            <article className="flex flex-col h-full">
+              <ImageElement
+                src={mainArticle?.media?.url}
+                alt={mainArticle.title || "Article Image"}
+                className="w-full aspect-video rounded-md"
               />
-              <ArticleTitle
-                title={mainArticle?.description || "No description available"}
-                className="line-clamp-2"
-              />
-            </div>
-          </article>
+              <div className="flex flex-col gap-4 h-full">
+                <ArticleHeading
+                  heading={mainArticle?.title || "No title available"}
+                  className="text-4xl font-extrabold"
+                />
+                <ArticleTitle
+                  title={mainArticle?.description || "No description available"}
+                  className="line-clamp-2"
+                />
+              </div>
+            </article>
+          </NavigatePage>
         </div>
 
         {/* List Articles */}
@@ -83,17 +87,19 @@ const RegionBasedPageHeroSection = () => {
                       : "border-b-2 border-gray-500"
                   } pb-3`}
                 >
-                  <ArticleHeading
-                    heading={article.title || "No title available"}
-                    className="font-bold text-xl"
-                  />
-                  <ArticleTitle
-                    title={article.description || "No description available"}
-                    className="line-clamp-1"
-                  />
-                  {article.createdAt && (
-                    <ArticleMeta date={article.createdAt} />
-                  )}
+                  <NavigatePage url={paths.VIEW_BLOG(article.id)}>
+                    <ArticleHeading
+                      heading={article.title || "No title available"}
+                      className="font-bold text-xl"
+                    />
+                    <ArticleTitle
+                      title={article.description || "No description available"}
+                      className="line-clamp-1"
+                    />
+                    {article.createdAt && (
+                      <ArticleMeta date={article.createdAt} />
+                    )}
+                  </NavigatePage>
                 </div>
               ))
             ) : (

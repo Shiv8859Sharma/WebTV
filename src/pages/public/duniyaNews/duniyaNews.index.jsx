@@ -13,7 +13,7 @@ const DuniyaNews = ({ categories }) => {
   const [page, setPage] = useState(1);
 
   useEffect(() => {
-      fetchArticles(page);
+    fetchArticles(page);
     // eslint-disable-next-line
   }, [page]);
 
@@ -24,13 +24,12 @@ const DuniyaNews = ({ categories }) => {
           page: currentPage,
         },
       })
-    )
+    );
   };
-
 
   const handleShowMore = useCallback(() => {
     setPage((prevPage) => prevPage + 1);
-  }, [])
+  }, []);
 
   if (isLoading) {
     return <CustomLoader name="NewsSkeletonLoader"></CustomLoader>;
