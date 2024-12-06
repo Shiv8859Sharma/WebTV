@@ -24,7 +24,8 @@ const KasarHausaNews = ({ categories }) => {
   const [isLargeScreen, setIsLargeScreen] = useState(false);
   const { kasarHausa } = useSelector((state) => state?.articles);
   const isLoading = useSelector((state) => state.loader?.isLoading);
-
+  console.log("kasarHausa ::::", kasarHausa);
+  
   // Detect initial screen size on mount
   useEffect(() => {
     setIsLargeScreen(window.innerWidth >= 768);
@@ -84,7 +85,7 @@ const KasarHausaNews = ({ categories }) => {
         showCategory
         categories={displayLinks}
       />
-      <KasarHausaImageSection />
+      <KasarHausaImageSection article={kasarHausa?.latestArticle} />
       <HausaNewsSection articlesData={kasarHausa} />
     </div>
   );

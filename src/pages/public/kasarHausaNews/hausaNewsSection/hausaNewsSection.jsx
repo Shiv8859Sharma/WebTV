@@ -66,12 +66,12 @@ const ArticleCard = ({ article, isVideoContent = false }) => (
           {isVideoContent ? (
             <VideoPlayer
               id={article?.id}
-              src="http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4"
+              src={article?.media?.url}
             />
           ) : (
             <ImageElement
               className="w-full h-full object-cover rounded-md"
-              src={article?.imgSrc || "default-image.jpg"}
+              src={article?.media?.url || "default-image.jpg"}
               alt={article?.title || "article image"}
             />
           )}

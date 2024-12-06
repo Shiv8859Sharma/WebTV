@@ -96,7 +96,7 @@ const getAxiosProps = (apiDetails, token) => {
     params,
     data,
     headers: {
-      Authorization: token,
+      Authorization: `Bearer ${token}`,
       "content-type": "application/json",
       "ngrok-skip-browser-warning": "69420",
       Accept: "application/json",
@@ -185,6 +185,7 @@ const AxiosService =
             "Signature has expired",
             "Invalid segment encoding",
             "Not an authorized user",
+            "Token missing"
           ];
           // 'Network Error',
           // if (axiosError.message === 'Network Error') {

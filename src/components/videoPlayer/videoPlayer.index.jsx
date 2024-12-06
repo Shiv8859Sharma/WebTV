@@ -8,7 +8,7 @@ import React, { useRef, useState, useCallback, useEffect } from "react";
 import "./videoPlayer.style.css";
 import { useVideoContext } from "@/context/useVideoContext";
 
-const VideoPlayer = ({ src, id }) => {
+const VideoPlayer = ({ src, id, className }) => {
   const { activeVideoId, setActiveVideoId } = useVideoContext();
   const videoRef = useRef(null);
   const [state, setState] = useState({
@@ -104,7 +104,7 @@ const VideoPlayer = ({ src, id }) => {
   };
 
   return (
-    <div className="relative w-full bg-black rounded-lg overflow-hidden shadow-lg group">
+    <div className={`relative w-full bg-black rounded-lg overflow-hidden shadow-lg group ${className}`}>
       <video
         ref={videoRef}
         src={src}

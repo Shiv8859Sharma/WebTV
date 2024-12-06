@@ -8,6 +8,7 @@ import { fetchSingleBlog, clearBlog } from "@/globalStates/actions/blogActions";
 import CustomLoader from "@/layouts/skeletonLoaders";
 import NoDataFoundMessage from "@/constants/NoDataFoundMessage";
 import RenderContent from "@/components/renderContent/renderContent.index";
+import MediaDisplay from "../../components/mediaDisplay/mediaDisplay.index";
 
 function ViewBlog() {
   const dispatch = useDispatch();
@@ -53,54 +54,22 @@ function ViewBlog() {
       <section className="container max-w-5xl mx-auto mt-10 p-6 bg-white shadow-lg rounded-lg blog-container">
         {/* Blog Title */}
         <h1 className="text-5xl font-bold text-gray-800 mb-4">{title}</h1>
-
-        {/* Blog Metadata */}
-        {/* <div className="flex items-center space-x-4 text-sm text-gray-500 mb-6">
-          <p><span className="font-semibold">Author:</span> {author_name}</p>
-          <p><span className="font-semibold">Category:</span> {category}</p>
-          <p><span className="font-semibold">Location:</span> {country_name?.name}, {state_name?.name}</p>
-        </div> */}
-
         {/* Blog Description */}
         <p className="text-lg text-gray-700 mb-8">{description}</p>
-
         {/* Media Preview */}
         {media && (
           <div className="mb-8">
-            {media.type === "video" ? (
-              <VideoPlayer
-                src={media?.url}
-                className="w-full h-auto rounded-lg"
-              />
-            ) : (
-              <ImageElement
-                src={media?.url}
-                alt="Blog media"
-                className="w-full h-auto rounded-lg aspect-video object-cover"
-                loading="lazy" // Implement lazy loading for images
-              />
-            )}
+            <MediaDisplay
+              mediaType={media.type}
+              source={media?.url}
+              altText="Blog media"
+              className="w-full h-auto rounded-lg aspect-video object-cover"
+            />
           </div>
         )}
 
         {/* Blog Content */}
         <div className="my-10 mx-7">
-          {/* {content?.blocks?.map((block, index) => {
-            switch (block.type) {
-              case "header":
-                return <Header key={index} block={block} />;
-              case "paragraph":
-                return <Paragraph key={index} block={block} />;
-              // case "List":
-              //   return <List key={index} block={block} />;
-              case "image":
-                return <ImageBlock key={index} block={block} />;
-              case "embed":
-                return <EmbedBlock key={index} block={block} />;
-              default:
-                return null;
-            }
-          })} */}
           <RenderContent content={content} />
         </div>
       </section>

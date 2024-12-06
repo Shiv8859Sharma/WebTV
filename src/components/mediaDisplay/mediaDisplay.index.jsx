@@ -11,7 +11,7 @@ const MediaDisplay = ({ mediaType, source, altText, className = '' }) => {
         <ImageElement src={source} alt={altText || 'Image'} className={className} />
       ) : mediaType === 'video' ? (
         <VideoProvider>
-          <VideoPlayer src={source} />
+          <VideoPlayer src={source} className={className} />
         </VideoProvider>
       ) : (
         <p>Unsupported media type.</p>

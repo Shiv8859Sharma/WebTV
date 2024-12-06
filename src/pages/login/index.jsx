@@ -77,7 +77,7 @@ const LoginPage = () => {
           <form
             className="px-4 sm:px-6 md:px-8 flex flex-col gap-5"
             name="login_form"
-            autoComplete="off"
+            autoComplete
             id="login_id"
             onSubmit={handleLogin}
           >
@@ -95,6 +95,7 @@ const LoginPage = () => {
                 name="email"
                 type="email"
                 placeholder="Enter email"
+                autoComplete
               />
               <InputField
                 label="Password"
