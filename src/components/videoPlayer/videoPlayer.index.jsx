@@ -117,6 +117,7 @@ const VideoPlayer = ({ src, id, className }) => {
       ></video>
 
       <button
+        type="button"
         onClick={handlePlayPause}
         className={`absolute inset-0 flex items-center justify-center text-white bg-opacity-40 ${isPlaying ? "hidden" : "group-hover:flex"}`}
       >
@@ -132,7 +133,11 @@ const VideoPlayer = ({ src, id, className }) => {
       <div
         className={`absolute ${isPlaying ? "group-hover:flex" : ""} hidden bottom-0 left-0 right-0 flex items-center justify-between gap-2 p-3 bg-gray-900 bg-opacity-75`}
       >
-        <button onClick={handlePlayPause} className="text-white p-1">
+        <button
+          type="button"
+          onClick={handlePlayPause}
+          className="text-white p-1"
+        >
           {isPlaying ? (
             <PauseIcon className="h-6 w-6 text-white" />
           ) : (
@@ -157,7 +162,11 @@ const VideoPlayer = ({ src, id, className }) => {
         </div>
 
         <div className="flex items-center space-x-2">
-          <button onClick={handleMuteToggle} className="text-white p-1">
+          <button
+            type="button"
+            onClick={handleMuteToggle}
+            className="text-white p-1"
+          >
             {isMuted || volume === 0 ? (
               <SpeakerXMarkIcon className="h-5 w-5 text-white" />
             ) : (

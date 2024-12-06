@@ -7,6 +7,7 @@ import SideBar from "./sideBars/sidebar.index";
 import logo from "@/assets/webp/logo.webp";
 import slogan from "@/assets/webp/slogan.webp";
 import PopupComponent from "@/components/popUp/popup.index";
+import ImageElement from "@/components/ImageElement";
 
 let hasSideBar = ["admin"];
 
@@ -18,14 +19,14 @@ const Layout = ({ userType }) => {
       <div className="flex items-center justify-center h-full w-[100vw]">
         <p className="text-center flex flex-col justify-center items-center gap-3">
           {/* <SvgIcon name='logo' folderName='commonAssets' outSide='..' width='3.8rem' /> */}
-          <img
+          <ImageElement
             src={logo}
             loading="lazy"
             alt="logo"
             className="h-16 w-16 md:h-24 md:w-24 lg:h-32 lg:w-32"
           />
           <span className="font-bold text-2xl lg:text-3xl text-transparent bg-clip-text bg-gradient-to-tl from-[#4ED4F7] via-[#2C57F3] to-[#7143D7]">
-            <img
+            <ImageElement
               src={slogan}
               loading="lazy"
               alt="logo"

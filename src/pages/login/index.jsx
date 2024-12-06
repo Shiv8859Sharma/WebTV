@@ -8,6 +8,7 @@ import { loginUser } from "@/globalStates/actions/authAction";
 import { setFormFieldErrors } from "@/globalStates/actions/formAction";
 import { useNavigate } from "react-router-dom";
 import { setAuthToken } from "@/globalStates/actions/authAction";
+import ImageElement from "@/components/ImageElement";
 
 const LoginPage = () => {
   const formDetails = useSelector((state) => state?.FormDetails);
@@ -66,7 +67,7 @@ const LoginPage = () => {
     <div className=" relative m-auto  h-full border border-[#BBBDC8] rounded-lg me-0.5 bg-white overflow-x-hidden flex flex-col lg:flex-row">
       <div className="bg-sky-100 w-full flex justify-center items-center">
         <div className="w-1/2 h-full hidden lg:block">
-          <img
+          <ImageElement
             src="https://img.freepik.com/fotos-premium/imagen-fondo_910766-187.jpg?w=826"
             alt="Placeholder Image"
             className="object-cover w-full h-full"

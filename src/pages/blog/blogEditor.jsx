@@ -19,6 +19,7 @@ import { FETCH_SINGLE_BLOG } from "@/globalStates/actions/actionsType";
 import RadioFields from "@/components/formFields/radio";
 import { UploadFiles } from "@/globalStates/actions/filesUploadAction";
 import { SpinLoader } from "@/components/loader";
+import MediaDisplay from "../../components/mediaDisplay/mediaDisplay.index";
 
 function BlogEditor() {
   const { id } = useParams();
@@ -368,16 +369,11 @@ function BlogEditor() {
                   </div>
                 ) : !blogData.media ? (
                   <div>Select cover Image or Video</div>
-                ) : blogData.media.type === "video" ? (
-                  <video
-                    controls
-                    src={blogData.media.url}
-                    className="aspect-video object-cover"
-                  />
                 ) : (
-                  <img
-                    src={blogData.media.url}
-                    alt="Selected preview"
+                  <MediaDisplay
+                    mediaType={blogData.media.type}
+                    source={blogData.media.url}
+                    altText="blog cover image"
                     className="aspect-video object-cover"
                   />
                 )}

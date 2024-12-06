@@ -1,4 +1,5 @@
 import React from "react";
+import ImageElement from "@/components/ImageElement";
 
 const textSize = {
   2: "4xl",
@@ -97,7 +98,7 @@ const RenderBlock = ({ block }) => {
     case "image":
       return (
         <div className="my-4">
-          <img
+          <ImageElement
             className="w-full rounded"
             src={data.file.url}
             alt={data.caption || "Image"}

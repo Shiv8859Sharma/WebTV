@@ -1,5 +1,6 @@
 import VideoPlayer from "@/components/videoPlayer/videoPlayer.index";
 import { VideoProvider } from "@/context/videoContext";
+import ImageElement from "@/components/ImageElement";
 
 const WasaHeroSection = ({ currentTab = "" }) => {
   let kalonKapa = {
@@ -33,7 +34,7 @@ const WasaHeroSection = ({ currentTab = "" }) => {
         <div className="max-w-6xl w-full bg-white shadow-md rounded-lg overflow-hidden">
           {mainArticle[currentTab]?.imgSrc ? (
             <div className="relative">
-              <img
+              <ImageElement
                 src={mainArticle[currentTab]?.imgSrc}
                 alt="Pangolin Smuggling News"
                 className="w-full h-[32rem]  aspect-video object-cover"
@@ -47,12 +48,6 @@ const WasaHeroSection = ({ currentTab = "" }) => {
             </div>
           ) : mainArticle[currentTab]?.videoSrc ? (
             <div className="relative">
-              {/* <video
-                  className="w-full h-[32rem]  aspect-video object-cover"
-                  controls
-                  src={mainArticle[currentTab]?.videoSrc}
-                >
-                </video> */}
               <VideoProvider>
                 <VideoPlayer src={mainArticle[currentTab]?.videoSrc} />
               </VideoProvider>
