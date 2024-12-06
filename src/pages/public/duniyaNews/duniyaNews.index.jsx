@@ -35,7 +35,6 @@ const DuniyaNews = ({ categories }) => {
     return <CustomLoader name="NewsSkeletonLoader"></CustomLoader>;
   }
   const { count = 0, rows = [] } = duniya || {};
-  console.log("duniya :::", duniya);
 
   return (
     <div>

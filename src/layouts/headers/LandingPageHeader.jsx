@@ -36,17 +36,6 @@ const LandingPageHeader = () => {
     // eslint-disable-next-line
   }, []);
 
-  // useEffect(() => {
-  //   if (linkList.length) {
-  //     let findCurrentTab = linkList.find(
-  //       (item) => item.category_code === categoryName
-  //     );
-  //     if (findCurrentTab?.id) {
-  //       // fetchBlodData(findCurrentTab?.id)
-  //     }
-  //   }
-  // }, [linkList]);
-
   const handleHideMobileTab = (event) => {
     const clickedElement = event.target;
     let targetedID = clickedElement.closest("[id]")?.getAttribute("id");
@@ -90,7 +79,7 @@ const LandingPageHeader = () => {
                 >
                   {/* Mobile menu items */}
                   {linkList.map((link) => (
-                    <div>
+                    <div key={`mobile-nav-link-${link?.category_code}`}>
                       <NavigatePage
                         url={
                           link.category_code === "home"
@@ -105,48 +94,6 @@ const LandingPageHeader = () => {
                       </NavigatePage>
                     </div>
                   ))}
-                  {/* <Link
-                    to="/"
-                    className="block px-4 py-1 rounded-md hover:bg-gray-300"
-                  >
-                    Home
-                  </Link>
-                  <Link
-                    to="/news/kasar-hausa"
-                    className="block px-4 py-1 rounded-md hover:bg-gray-300"
-                  >
-                    Kasar Hausa
-                  </Link>
-                  <Link
-                    to="/news/afrika"
-                    className="block px-4 py-1 rounded-md hover:bg-gray-300"
-                  >
-                    Afirka
-                  </Link>
-                  <Link
-                    to="/news/duniya"
-                    className="block px-4 py-1 rounded-md hover:bg-gray-300"
-                  >
-                    Duniya
-                  </Link>
-                  <Link
-                    to="/news/kasuwanci"
-                    className="block px-4 py-1 rounded-md hover:bg-gray-300"
-                  >
-                    Kasuwanci
-                  </Link>
-                  <Link
-                    to="/news/wasanni"
-                    className="block px-4 py-1 rounded-md hover:bg-gray-300"
-                  >
-                    Wasanni
-                  </Link>
-                  <Link
-                    to="/news/yanayi-a-yau"
-                    className="block px-4 py-1 rounded-md hover:bg-gray-300"
-                  >
-                    Yanayi a yau
-                  </Link> */}
                 </div>
               </DialogPanel>
             </TransitionChild>
@@ -223,7 +170,7 @@ const LandingPageHeader = () => {
                       ? "/"
                       : `news/${link?.category_code}`
                   }
-                  key={link?.id}
+                  key={`nav-link-${link?.id}`}
                   className="px-4 py-2 font-medium"
                 >
                   {link?.name}

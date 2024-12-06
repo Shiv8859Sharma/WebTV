@@ -11,7 +11,10 @@ const Yanayi_a_yau_hero_section = ({ articles }) => {
         {rows?.map((article) => {
           let mediaType = article?.media?.type;
           return (
-            <div className=" w-full bg-white shadow-md rounded-lg overflow-hidden">
+            <div
+              key={`yanayi-article-${article?.id}`}
+              className=" w-full bg-white shadow-md rounded-lg overflow-hidden"
+            >
               <NavigatePage url={paths.VIEW_BLOG(article?.id)}>
                 <MediaDisplay
                   mediaType={mediaType}

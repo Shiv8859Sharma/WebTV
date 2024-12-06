@@ -1,7 +1,7 @@
 import NewsFeeds from "@/pages/newsFeeds/newsFeeds";
 import { useDispatch, useSelector } from "react-redux";
 import { WasanniPageNewsFeedsArticles } from "@/globalStates/actions/articleAction";
-import { memo, useCallback, useEffect, useRef, useState } from "react";
+import { memo, useCallback, useEffect, useState } from "react";
 
 const WasanniNewsFeeds = () => {
   const dispatch = useDispatch();
@@ -10,13 +10,10 @@ const WasanniNewsFeeds = () => {
 
   // Local state for pagination
   const [page, setPage] = useState(1);
-  const isFetching = useRef(false); // Track fetching state
 
   useEffect(() => {
-    if (!isFetching.current) {
-      isFetching.current = true; // Prevent duplicate calls
-      fetchArticles(page);
-    }
+    fetchArticles(page);
+    // eslint-disable-next-line
   }, [page]);
 
   const fetchArticles = (currentPage) => {
@@ -26,9 +23,7 @@ const WasanniNewsFeeds = () => {
           page: currentPage,
         },
       })
-    ).finally(() => {
-      isFetching.current = false; // Reset fetching state after API call
-    });
+    );
   };
 
   const handleShowMore = useCallback(() => {
@@ -39,12 +34,12 @@ const WasanniNewsFeeds = () => {
 
   return (
     <div>
-      {isLoading && <p>Loading...</p>}
       <NewsFeeds
         feeds={rows} // Display fetched articles or fallback to default
         onShowMore={handleShowMore}
         showButton={rows.length < count && !isLoading}
       />
+      {isLoading && <p>Loading...</p>}
     </div>
   );
 };

@@ -2,13 +2,11 @@ import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import "./blog.style.css";
 import { useParams } from "react-router-dom";
-import ImageElement from "@/components/ImageElement";
-import VideoPlayer from "@/components/videoPlayer/videoPlayer.index";
 import { fetchSingleBlog, clearBlog } from "@/globalStates/actions/blogActions";
 import CustomLoader from "@/layouts/skeletonLoaders";
 import NoDataFoundMessage from "@/constants/NoDataFoundMessage";
 import RenderContent from "@/components/renderContent/renderContent.index";
-import MediaDisplay from "../../components/mediaDisplay/mediaDisplay.index";
+import MediaDisplay from "@/components/mediaDisplay/mediaDisplay.index";
 
 function ViewBlog() {
   const dispatch = useDispatch();
@@ -18,10 +16,6 @@ function ViewBlog() {
   let {
     title = "Sample Blog Title",
     description = "This is a sample blog description.",
-    // author_name = "Author Name",
-    // category = "Category",
-    // country_name = "Country",
-    // state_name = "State",
     media,
     content = {},
   } = blogDetails;
