@@ -4,6 +4,9 @@ import { useEffect, useLayoutEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { fetchAllBlog } from "@/globalStates/actions/blogActions";
 import { popupOpen } from "@/globalStates/actions/PopupAction";
+import InputField from "@/components/formFields/input";
+import { MagnifyingGlassIcon } from "@heroicons/react/24/outline";
+import helpers from "@/utills/helpers";
 
 const AdminHomePage = () => {
   const { allBlogs, successMessage, errorMessage } = useSelector(
@@ -18,6 +21,7 @@ const AdminHomePage = () => {
     page: 1,
     limit: 10,
   });
+  const [search, setSearch] = useState("");
 
   // Fetch blogs when the page or limit changes
   useLayoutEffect(() => {
@@ -27,10 +31,12 @@ const AdminHomePage = () => {
           page: pagination.page,
           limit: pagination.limit,
         },
-        filters: {},
+        filters: {
+          search: search,
+        },
       })
     );
-  }, [pagination.page, pagination.limit, dispatch]);
+  }, [pagination.page, pagination.limit, dispatch, search]);
 
   useEffect(() => {
     if (successMessage || errorMessage) {
@@ -68,13 +74,40 @@ const AdminHomePage = () => {
     }));
   };
 
+  const handleSearchArticle = (e) => {
+    let { value } = e.target;
+    helpers.debounce(() => {
+      setSearch(value);
+    }, 1000)();
+  };
+
   return (
     <section className="container mx-auto">
-      <SectionNavigation
-        title={"All blogs"}
-        titlePosition="!text-left !mb-0"
-        titleClassname="!text-2xl"
-      />
+      <div className="flex items-center gap-2 justify-between mb-4">
+        <div className="">
+          <SectionNavigation
+            title={"All blogs"}
+            titlePosition="!text-left !mb-0"
+            titleClassname="!text-2xl"
+          />
+        </div>
+        <div className="">
+          <form
+            onSubmit={(e) => {
+              e.preventDefault();
+            }}
+            onChange={handleSearchArticle}
+          >
+            <InputField
+              placeholder="Search"
+              name="search"
+              leftIcon={<MagnifyingGlassIcon />}
+              containerClass="!w-50"
+            />
+          </form>
+        </div>
+      </div>
+
       <BlogTable
         blogs={allBlogs}
         isLoading={isLoading}

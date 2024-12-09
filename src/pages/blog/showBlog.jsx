@@ -47,7 +47,9 @@ function ViewBlog() {
       {/* Blog Section */}
       <section className="container max-w-5xl mx-auto mt-0 md:mt-10 p-6 bg-white shadow-lg rounded-lg blog-container">
         {/* Blog Title */}
-        <h1 className="text-2xl md:text-4xl lg:text-5xl font-bold text-gray-800 mb-4">{title}</h1>
+        <h1 className="text-2xl md:text-4xl lg:text-5xl font-bold text-gray-800 mb-4">
+          {title}
+        </h1>
         {/* Blog Description */}
         <p className="text-lg text-gray-700 mb-8">{description}</p>
         {/* Media Preview */}

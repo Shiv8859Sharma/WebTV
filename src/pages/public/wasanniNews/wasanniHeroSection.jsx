@@ -3,7 +3,7 @@ import ArticleHeading from "@/components/article/articleHeading";
 import ArticleTitle from "@/components/article/articleTitle";
 import NavigatePage from "@/components/navigatePage";
 import paths from "@/routes/paths";
-import MediaDisplay from "../../../components/mediaDisplay/mediaDisplay.index";
+import MediaDisplay from "@/components/mediaDisplay/mediaDisplay.index";
 
 const WasanniHeroSection = ({ articles = {} }) => {
   let { mainArticle = {}, sideArticles = [], listArticles = [] } = articles;

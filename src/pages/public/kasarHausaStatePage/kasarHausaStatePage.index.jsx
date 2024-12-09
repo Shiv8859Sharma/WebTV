@@ -1,33 +1,41 @@
 import { useParams } from "react-router-dom";
 import KasarHausaStateHeroSection from "./kasarHausaState.heroSection";
 import SectionNavigation from "@/components/sectionNavigation/sectionNavigation.index";
-import {
-  useEffect,
-  useLayoutEffect,
-  useState,
-  useCallback,
-  useMemo,
-} from "react";
+import { useEffect, useState, useCallback, useMemo } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { fetchAllBlog } from "@/globalStates/actions/blogActions";
+import CustomLoader from "@/layouts/skeletonLoaders";
 
-const KasarHausaStatePage = ({ categories }) => {
+const KasarHausaStatePage = ({ categories = [] }) => {
   const { subCategory } = useParams();
   const dispatch = useDispatch();
-  const blogData = useSelector((state) => state.blog.allBlogs?.rows[0]);
-  // Use state for the active tab with a fallback to the first category.
-  const [isActiveTab, setIsActiveTab] = useState(() => categories[0] || null);
 
-  // Set the active tab to the first category when the categories array changes.
+  // Selector to fetch blog data from the Redux store
+  const { blogData, isLoading } = useSelector((state) => {
+    // Destructure blog state for clarity
+    const { allBlogs } = state.blog || {};
+    const rows = allBlogs?.rows || [];
+
+    // Safely return the last blog entry or null as fallback
+    return {
+      blogData: rows.length > 0 ? rows[rows.length - 1] : null,
+      isLoading: state?.loader?.isLoading,
+    };
+  });
+
+  // Active tab state, initialized to the first category or null
+  const [activeTab, setActiveTab] = useState(categories[0] || null);
+
+  // Effect to set the default active tab when categories change
   useEffect(() => {
-    if (categories.length > 0) {
-      setIsActiveTab(categories[0]);
+    if (categories.length > 0 && !activeTab) {
+      setActiveTab(categories[0]);
     }
-  }, [categories]);
+  }, [categories, activeTab]);
 
-  // Fetch the blog data when isActiveTab changes, using useCallback for handler.
-  useLayoutEffect(() => {
-    if (isActiveTab?.id) {
+  // Effect to fetch blog data when the active tab changes
+  useEffect(() => {
+    if (activeTab?.id) {
       dispatch(
         fetchAllBlog({
           pagination: {
@@ -35,34 +43,40 @@ const KasarHausaStatePage = ({ categories }) => {
             limit: 10,
           },
           filters: {
-            category_id: isActiveTab?.id,
+            category_id: activeTab.id,
           },
         })
       );
     }
-  }, [dispatch, isActiveTab?.id]);
+  }, [dispatch, activeTab]);
 
-  // Using useCallback to memoize handleTabChange function for better performance.
+  // Callback to handle tab change
   const handleTabChange = useCallback((e, category) => {
-    setIsActiveTab(category);
+    setActiveTab(category);
   }, []);
 
-  // Memoizing categories to avoid unnecessary re-renders.
+  // Memoized categories to prevent unnecessary renders
   const memoizedCategories = useMemo(() => categories, [categories]);
 
   return (
     <div>
+      {/* Section Navigation */}
       <SectionNavigation
         title={subCategory}
         showCategory
         categories={memoizedCategories}
         as="tab"
-        isActive={isActiveTab?.name}
+        isActive={activeTab?.name}
         onChangeTab={handleTabChange}
       />
-      {isActiveTab?.name && blogData && (
+
+      {/* Hero Section */}
+      {isLoading && (
+        <CustomLoader name="BlogEditorViewLoader" toggleTitleSection={false} />
+      )}
+      {activeTab?.name && blogData && (
         <KasarHausaStateHeroSection
-          currentTab={isActiveTab.name}
+          currentTab={activeTab.name}
           articleDetails={blogData}
         />
       )}

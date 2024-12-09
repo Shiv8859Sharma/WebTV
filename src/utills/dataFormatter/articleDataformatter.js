@@ -80,9 +80,15 @@ export const formatAfricaArticleData = (data) => {
   } = data || {};
 
   return {
-    latestArticles,
+    latestArticles: latestArticles.map((article) => ({
+      ...article,
+      category: article.category?.name || "OPINION",
+    })),
     heroSection: formatHeroSection(mainArticles),
-    mostPopularArticles,
+    mostPopularArticles: mostPopularArticles?.rows?.map((article) => ({
+      ...article,
+      category: article.category?.name || "OPINION",
+    })),
   };
 };
 

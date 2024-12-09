@@ -5,19 +5,7 @@ import KasarHausaImageSection from "./kasarHausaImageSection";
 import HausaNewsSection from "./hausaNewsSection/hausaNewsSection";
 import CustomLoader from "@/layouts/skeletonLoaders";
 import { KasarHausaPageArticles } from "@/globalStates/actions/articleAction";
-
-// Debounce utility to limit function calls
-function debounce(func, wait) {
-  let timeout;
-  return function (...args) {
-    const later = () => {
-      clearTimeout(timeout);
-      func(...args);
-    };
-    clearTimeout(timeout);
-    timeout = setTimeout(later, wait);
-  };
-}
+import helpers from "@/utills/helpers";
 
 const KasarHausaNews = ({ categories }) => {
   const dispatch = useDispatch();
@@ -29,7 +17,7 @@ const KasarHausaNews = ({ categories }) => {
   useEffect(() => {
     setIsLargeScreen(window.innerWidth >= 768);
 
-    const handleResize = debounce(() => {
+    const handleResize = helpers.debounce(() => {
       setIsLargeScreen(window.innerWidth >= 768);
     }, 150); // Debounce resize handler by 150ms
 

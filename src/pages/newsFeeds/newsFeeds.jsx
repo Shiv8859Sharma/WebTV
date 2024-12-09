@@ -6,7 +6,7 @@ import MediaDisplay from "@/components/mediaDisplay/mediaDisplay.index";
 
 const NewsFeeds = ({
   feeds = [],
-  onShowMore = () => { },
+  onShowMore = () => {},
   showButton = true,
 }) => {
   return (
@@ -16,7 +16,7 @@ const NewsFeeds = ({
           (news, index) => (
             <NewsFeedItem
               key={index}
-              category={news?.category?.name || "OPINION"}
+              category={news?.category || "OPINION"}
               title={news?.title}
               description={news?.description}
               image={news?.media?.url ?? news?.image}

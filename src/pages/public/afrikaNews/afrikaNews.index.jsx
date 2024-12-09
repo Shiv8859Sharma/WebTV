@@ -37,7 +37,7 @@ const AfirkaNews = ({ categories }) => {
       <AfrikaHeroSection articles={heroSection} />
       <AfrikaLatestNews
         articles={latestArticles}
-        mostPopularPost={mostPopularArticles?.rows}
+        mostPopularPost={mostPopularArticles}
       />
     </div>
   );
