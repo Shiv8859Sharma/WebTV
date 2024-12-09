@@ -1,18 +1,17 @@
 import NavigatePage from "@/components/navigatePage";
 import TimeAgo from "@/components/timeAgo";
-import staticData from "@/static/staticData.json";
 import paths from "@/routes/paths";
 import MediaDisplay from "@/components/mediaDisplay/mediaDisplay.index";
 
 const NewsFeeds = ({
   feeds = [],
-  onShowMore = () => {},
+  onShowMore = () => { },
   showButton = true,
 }) => {
   return (
     <section className="container mx-auto py-8">
       <div className="w-full md:w-3/4">
-        {[...(feeds.length ? feeds : staticData?.newsFedd || [])].map(
+        {[...(feeds.length ? feeds : [])].map(
           (news, index) => (
             <NewsFeedItem
               key={index}

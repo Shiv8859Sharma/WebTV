@@ -1,4 +1,3 @@
-// import { kanoStateArticle } from "@/static";
 import RenderContent from "@/components/renderContent/renderContent.index";
 import MediaDisplay from "@/components/mediaDisplay/mediaDisplay.index";
 
